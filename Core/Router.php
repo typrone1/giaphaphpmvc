@@ -25,7 +25,7 @@ class Router
         $route = preg_replace('/\//','\\/', $route);
         // posts\edit
         // Chuyển đổi {controller} thành dạng name capture group
-        $route = preg_replace('/\{([a-z]+)\}/','(?<\1>[a-z]+)', $route);
+        $route = preg_replace('/\{([a-z]+)\}/', '(?P<\1>[a-z-]+)', $route);
         // (posts)\edit => posts
 
         // Lấy tham số đầu vào {id:\d+}
@@ -61,20 +61,70 @@ class Router
 //        return false;
 
         //Cách 2:
-        foreach ($this->routes as $route => $params){
-            if(preg_match($route, $url, $matches)){
-                foreach ($matches as $key => $match){
-                    if (is_string($key)){
+
+//
+//        foreach ($this->routes as $route => $params){
+//            if(preg_match($route, $url, $matches)){
+//                foreach ($matches as $key => $match){
+//                    if (is_string($key)){
+//                        $params[$key] = $match;
+//                    }
+//                }
+//                $this->params = $params;
+//                return true;
+//            }
+//        }
+//        return false;
+
+        foreach ($this->routes as $route => $params) {
+            if (preg_match($route, $url, $matches)) {
+                // Get named capture group values
+                foreach ($matches as $key => $match) {
+                    if (is_string($key)) {
                         $params[$key] = $match;
                     }
                 }
+
                 $this->params = $params;
                 return true;
             }
         }
+
         return false;
     }
 
+    public function dispatch($url){
+        if ($this->match($url)){
+            $controller = $this->params['controller'];
+            $controller = $this->convertKieuTenClass($controller);
+            if (class_exists($controller)){
+                $controller_object = new $controller();
+                $action = $this->params['action'];
+                $action = $this->convertKieuLacDa($action);
+                if (is_callable([$controller_object, $action])){
+                    $controller_object->$action();
+                } else {
+                    echo "Method $action in ($controller) not found";
+
+                }
+            }
+            else {
+                echo "$controller not found";
+            }
+        }
+        else {
+            echo "No route match";
+        }
+    }
+
+    protected function convertKieuTenClass($string){
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
+
+    }
+
+    protected function convertKieuLacDa($string){
+        return lcfirst($this->convertKieuTenClass($string));
+    }
     public function getParams()
     {
         return $this->params;
