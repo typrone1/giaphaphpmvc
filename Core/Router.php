@@ -6,6 +6,7 @@
  * Date: 16/09/2017
  * Time: 11:16 PM
  */
+namespace Core;
 class Router
 {
     protected $routes = [];
@@ -46,7 +47,7 @@ class Router
 //            }
 //        }
 //        return false;
-
+//
 //        $bieu_thuc_chinh_quy = "/^(?P<controller>[a-z-]+)\/(?P<action>[a-z-]+)$/";
 //        if (preg_match($bieu_thuc_chinh_quy, $url, $matches)){
 //            $params = [];
@@ -59,9 +60,9 @@ class Router
 //            return true;
 //        }
 //        return false;
-
-        //Cách 2:
-
+//
+//        Cách 2:
+//
 //
 //        foreach ($this->routes as $route => $params){
 //            if(preg_match($route, $url, $matches)){
@@ -94,13 +95,16 @@ class Router
     }
 
     public function dispatch($url){
+        $url = $this->removeQueryStringVariables($url);
         if ($this->match($url)){
             $controller = $this->params['controller'];
-            $controller = $this->convertKieuTenClass($controller);
+            $controller = $this->convertToStudlyCaps($controller);
+//            $controller = "App\Controllers\\$controller";
+            $controller = $this->getNamespace().$controller;
             if (class_exists($controller)){
-                $controller_object = new $controller();
+                $controller_object = new $controller($this->params);
                 $action = $this->params['action'];
-                $action = $this->convertKieuLacDa($action);
+                $action = $this->convertToCamelCase($action);
                 if (is_callable([$controller_object, $action])){
                     $controller_object->$action();
                 } else {
@@ -117,13 +121,15 @@ class Router
         }
     }
 
-    protected function convertKieuTenClass($string){
+    protected function convertToStudlyCaps($string)
+    {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $string)));
-
     }
 
-    protected function convertKieuLacDa($string){
-        return lcfirst($this->convertKieuTenClass($string));
+
+    protected function convertToCamelCase($string)
+    {
+        return lcfirst($this->convertToStudlyCaps($string));
     }
     public function getParams()
     {
@@ -133,5 +139,30 @@ class Router
     public function getRoutes()
     {
         return $this->routes;
+    }
+    protected function removeQueryStringVariables($url)
+    {
+        if ($url != '') {
+            $parts = explode('&', $url, 2);
+
+            if (strpos($parts[0], '=') === false) {
+                $url = $parts[0];
+            } else {
+                $url = '';
+            }
+        }
+
+        return $url;
+    }
+
+    protected function getNamespace()
+    {
+        $namespace = 'App\Controllers\\';
+
+        if (array_key_exists('namespace', $this->params)) {
+            $namespace .= $this->params['namespace'] . '\\';
+        }
+
+        return $namespace;
     }
 }
