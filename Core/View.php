@@ -7,6 +7,7 @@
  */
 namespace Core;
 use App\Auth;
+use App\Flash;
 
 class View
 {
@@ -28,6 +29,7 @@ class View
 //            $twig->addGlobal('session', $_SESSION);
 //            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
             $twig->addGlobal('current_user', Auth::getUser());
+            $twig->addGlobal('flash_messages', Flash::getMessages());
 
         }
         echo $twig->render($template, $args);

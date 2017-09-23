@@ -7,7 +7,7 @@
  */
 namespace Core;
 use App\Auth;
-
+use App\Flash;
 abstract class Controller{
     public function __call($name, $arguments)
     {
@@ -49,6 +49,7 @@ abstract class Controller{
     public function requireLogin(){
         if (!Auth::isLoggedIn()){
 //            exit("Access denine");
+            Flash::addMessage('Vui long login', Flash::INFO);
             Auth::rememberRequestedPage();
             $this->redirect('/login');
         }
