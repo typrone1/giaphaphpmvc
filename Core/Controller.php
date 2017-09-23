@@ -6,6 +6,8 @@
  * Time: 10:42 PM
  */
 namespace Core;
+use App\Auth;
+
 abstract class Controller{
     public function __call($name, $arguments)
     {
@@ -29,7 +31,7 @@ abstract class Controller{
         $this->routeParams = $routeParams;
     }
 
-    private function before()
+    protected function before()
     {
 //        echo "Before";
 //        return false;
@@ -43,5 +45,12 @@ abstract class Controller{
         header('Location: http://'. $_SERVER['HTTP_HOST']. $url,true, 303);
         exit;
 
+    }
+    public function requireLogin(){
+        if (!Auth::isLoggedIn()){
+//            exit("Access denine");
+            Auth::rememberRequestedPage();
+            $this->redirect('/login');
+        }
     }
 }

@@ -6,6 +6,8 @@
  * Time: 11:24 PM
  */
 namespace Core;
+use App\Auth;
+
 class View
 {
     public static function render($view, $args =[]){
@@ -24,6 +26,8 @@ class View
             $loader = new \Twig_Loader_Filesystem('../App/Views');
             $twig = new \Twig_Environment($loader);
             $twig->addGlobal('session', $_SESSION);
+            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
+
         }
         echo $twig->render($template, $args);
     }
