@@ -1,4 +1,6 @@
 <?php
+session_start();
+ob_start();
 /**
  * Created by PhpStorm.
  * User: Huu Ty
@@ -13,6 +15,14 @@ spl_autoload_register(function ($class) {
         require $root . '/' . str_replace('\\', '/', $class) . '.php';
     }
 });
+error_reporting(E_ALL);
+set_error_handler('Core\Error::errorHandler');
+set_exception_handler('Core\Error::exceptionHandler');
+
+
+require_once dirname(__DIR__).'/vendor/twig/twig/lib/Twig/Autoloader.php';
+Twig_Autoloader::register();
+
 //require '../App/Controllers/Posts.php';
 //require '../Core/Router.php';
 $router = new Core\Router();
@@ -20,6 +30,7 @@ $router = new Core\Router();
 //echo get_class($router);
 //
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
+$router->add('login', ['controller' => 'Login', 'action' => 'new']);
 //    $router->add('posts',['controller' => 'Posts', 'action' => 'index']);
 //    $router->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
 

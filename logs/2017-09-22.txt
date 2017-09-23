@@ -1,0 +1,78 @@
+[22-Sep-2017 10:48:16 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:48:32 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:48:41 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:44 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:45 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:46 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:47 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:47 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:49:48 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:54:09 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:54:39 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:55:35 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:56:26 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:56:29 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:57:16 Europe/Berlin] Uncaught exception: 'ParseError' with message 'syntax error, unexpected '}''
+Stack trace: #0 [internal function]: {closure}('App\\Controllers...')
+#1 [internal function]: spl_autoload_call('App\\Controllers...')
+#2 C:\xampp\htdocs\giapha\Core\Router.php(104): class_exists('App\\Controllers...')
+#3 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('Signup/new')
+#4 {main}
+Thrown in 'C:\xampp\htdocs\giapha\App\Controllers\Signup.php' on line 20
+[22-Sep-2017 10:57:16 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
+[22-Sep-2017 10:57:18 Europe/Berlin] Uncaught exception: 'ParseError' with message 'syntax error, unexpected '}''
+Stack trace: #0 [internal function]: {closure}('App\\Controllers...')
+#1 [internal function]: spl_autoload_call('App\\Controllers...')
+#2 C:\xampp\htdocs\giapha\Core\Router.php(104): class_exists('App\\Controllers...')
+#3 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('Signup/new')
+#4 {main}
+Thrown in 'C:\xampp\htdocs\giapha\App\Controllers\Signup.php' on line 20
+[22-Sep-2017 10:57:18 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
+Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
+#1 {main}
+Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122

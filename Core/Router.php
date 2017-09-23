@@ -109,15 +109,17 @@ class Router
                     $controller_object->$action();
                 } else {
                     echo "Method $action in ($controller) not found";
-
+                    throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
                 }
             }
             else {
                 echo "$controller not found";
+                throw new \Exception("Controller class $controller not found");
             }
         }
         else {
             echo "No route match";
+            throw new \Exception('No route matched.', 404);
         }
     }
 

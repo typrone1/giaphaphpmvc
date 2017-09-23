@@ -19,6 +19,7 @@ abstract class Controller{
         }
         else {
             echo "Không tìm thấy";
+            throw new \Exception("Method $method not found in controller " . get_class($this));
         }
     }
 
@@ -30,12 +31,17 @@ abstract class Controller{
 
     private function before()
     {
-        echo "Before";
+//        echo "Before";
 //        return false;
     }
 
     private function after()
     {
-        echo "After";
+//        echo "After";
+    }
+    public function redirect($url){
+        header('Location: http://'. $_SERVER['HTTP_HOST']. $url,true, 303);
+        exit;
+
     }
 }
