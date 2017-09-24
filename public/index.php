@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+ini_set('session.cookie_lifetime',864000); // 10 days
 /**
  * Created by PhpStorm.
  * User: Huu Ty
@@ -19,7 +20,7 @@ error_reporting(E_ALL);
 set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
-
+require_once dirname(__DIR__).'/vendor/autoload.php';
 require_once dirname(__DIR__).'/vendor/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 
@@ -32,6 +33,7 @@ $router = new Core\Router();
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
 $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
+$router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
 //    $router->add('posts',['controller' => 'Posts', 'action' => 'index']);
 //    $router->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
 
