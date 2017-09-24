@@ -36,7 +36,7 @@ $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
 $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
 //    $router->add('posts',['controller' => 'Posts', 'action' => 'index']);
 //    $router->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
-
+$router->add('signup/activate/{token:[\da-f]+}', ['controller' => 'Signup', 'action' => 'activate']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 //$router->add('admin/{action}/{controller}');
