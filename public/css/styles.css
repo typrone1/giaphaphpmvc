@@ -44,7 +44,7 @@ body {
     vertical-align: middle;
     float: left;
     z-index: 0;
-    margin: 17px 1em 0 2em;
+    margin: 6px 1em 0 2em;
 }
 
 .item input+.arrow {
@@ -78,13 +78,13 @@ label {
 .multi-level ul,
 .multi-level li,
 label {
-    line-height: 50px;
+    /* line-height: 50px; */
     margin: 0;
     padding: 0 2em;
     list-style: none;
     text-decoration: none;
-    color: #90A4AE;
-    font-weight: 100;
+    /* color: #90A4AE; */
+    /* font-weight: 100; */
     width: 100%;
 }
 
@@ -93,13 +93,13 @@ label {
 }
 
 .multi-level li a {
-    line-height: 50px;
+    /* line-height: 50px; */
     margin: 0;
     padding: 0 4em;
     list-style: none;
     text-decoration: none;
-    color: #90A4AE;
-    font-weight: 100;
+    /* color: #90A4AE; */
+    /* font-weight: 100; */
 }
 
 /* END CSS */

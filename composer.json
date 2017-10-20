@@ -5,6 +5,7 @@
         "mailgun/mailgun-php": "^2.3",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/message": "^1.6",
-        "twig/extensions": "^1.5"
+        "twig/extensions": "^1.5",
+        "knplabs/knp-paginator-bundle": "^2.6"
     }
 }

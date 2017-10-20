@@ -105,6 +105,8 @@ class View
     static function inGiaPhaDangDung($data, $mahsbo = null, $hoten = '')
     {
         $flag = false;
+
+        // Kiểm tra xem có phải là nút gốc == null;
         foreach ($data as $val) {
             if ($val['mahosobo'] == $mahsbo) {
                 $flag = true;
@@ -112,7 +114,7 @@ class View
             }
         }
 
-        if ($flag) {
+        if ($flag && $mahsbo != null) {
             echo "<ul>";
         }
         foreach ($data as $val) {
@@ -135,19 +137,26 @@ class View
                     }
 
                     $idName = isset($mahsbo) ? $mahsbo : 'root';
-                    echo '<li>
+                    if ($flag && $mahsbo != null) {
+                        echo "<li>";
+                    }
+                    echo '
                     <div class="' . $temp . '">
                     <input type="checkbox" id="' . $idName . '" checked/>
                     <img src="/images/Arrow.png" class="arrow"><label for="' . $idName . '">' . $val['hoten'] . " - " . $val['hotenvo'] . '</label>';
                 } else {
                     echo '<li><a href="#">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a></li>';
+                    if ($flag2 == true && $parent) {
+                        echo "</div>";
+                    }
                 }
+
                 $mahoso = $val['mahoso'];
                 self::inGiaPhaDangDung($data, $mahoso, $val['hoten']);
             }
 
         }
-        if ($flag) {
+        if ($flag && $mahsbo != null) {
             echo "</li></ul>";
         }
     }
