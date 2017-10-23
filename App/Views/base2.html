@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}
+        {% endblock %}</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css"/>
+</head>
+<body>
+<div class="container">
+    <nav>
+        <ul>
+            <li><a href="/trangchu/index">Home</a></li>
+            <li><a href="/themhoso/index">Thêm hồ sơ</a></li>
+            {% if current_user %}
+            <li><a href="/profile/show">Profile</a></li>
+            <li><a href="/logout">Log out</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+
+    {% for message in flash_messages %}
+    <div class="alert alert-{{message.type}}">
+        {{message.body}}
+    </div>
+    {% endfor %}
+
+
+    <a href="/">Home</a>
+    <a href="/Signup/new">Signup</a>
+    <a href="/login">Login</a>
+
+    {% block body %}
+    {% endblock %}
+
+
+</div>
+<script src="/js/jquery-3.2.1.js"></script>
+<script src="/js/tether.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+
+{% block footer %}
+{% endblock %}
+</body>
+</html>

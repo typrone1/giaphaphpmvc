@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}
+    Xin chào
+{% endblock %}
+{% block body %}
+
+{% if current_user %}
+User with ID {{ current_user.name }} is logged in. <a href="/logout">Log out</a>.
+{% else %}
+<a href="/signup/new">Sign up</a> or <a href="/login">log in</a>.
+{% endif %}
+
+Hello {{ user.name }}
+Hello {{ current_user.name }}
+<div class="tree">
+    {{ inGiaPhaDangCay() }}
+</div>
+<form method="post">
+    <ul>
+        {% for colour in colours %}
+        <li>{{ colour}}</li>
+        {% endfor %}
+    </ul>
+    <img src="/images/6.jpg">
+    <!--<input type="text" name="name">-->
+    <!--<input type="submit" value="Submit">-->
+</form>
+
+
+{% endblock %}

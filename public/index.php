@@ -2,6 +2,16 @@
 session_start();
 ob_start();
 ini_set('session.cookie_lifetime',864000); // 10 days
+
+// Da co Autoload
+//include 'app/Database/Query/SqlClauses.php';
+//include 'app/Database/Query/BaseSqlBuilder.php';
+//include 'app/Database/Query/MySqlBuilder.php';
+//include 'app/Database/MySqlConnection.php';
+
+use App\Database\MySqlConnection;
+use App\Database\Query\MySqlBuilder;
+
 /**
  * Created by PhpStorm.
  * User: Huu Ty
@@ -21,8 +31,8 @@ set_error_handler('Core\Error::errorHandler');
 set_exception_handler('Core\Error::exceptionHandler');
 
 require_once dirname(__DIR__).'/vendor/autoload.php';
-require_once dirname(__DIR__).'/vendor/twig/twig/lib/Twig/Autoloader.php';
-Twig_Autoloader::register();
+//require_once dirname(__DIR__).'/vendor/twig/twig/lib/Twig/Autoloader.php';
+//Twig_Autoloader::register();
 
 //require '../App/Controllers/Posts.php';
 //require '../Core/Router.php';
@@ -44,10 +54,11 @@ $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 //$router->add('admin/{action}/{controller}');
 $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
+$router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);
 $router->dispatch($_SERVER['QUERY_STRING']);
-//Test request match URL
-
-$url = $_SERVER['QUERY_STRING'];
+////Test request match URL
+//
+//$url = $_SERVER['QUERY_STRING'];
 
 //if ($router->match($url)){
 //    echo "<pre>";
@@ -69,3 +80,29 @@ $url = $_SERVER['QUERY_STRING'];
 //echo '<pre>';
 //echo htmlspecialchars(print_r($router->getParams()), true);
 //echo '</pre>';
+//$connection = new MySqlConnection([
+//    'dbname' => 'mvc',
+//    'hostname' => '127.0.0.1',
+//    'username' => 'root',
+//    'password' => '',
+//]);
+//
+//// create a new mysql instance.
+//$builder = new MySqlBuilder($connection);
+//
+//// test an example.
+//$user = $builder
+//    ->select('mahoso', 'hoten')
+//    ->where('mahoso', 1)
+//    ->from('hoso')
+//    ->first();
+//
+//print_r($user->hoten);
+//
+//// get a compiled select.
+//$sql = $builder->select('id', 'fullname')
+//    ->from('users')
+//    ->where('id', '=', 3)
+//    ->getCompiledSelectStatement();
+//
+//print_r($sql);

@@ -10,7 +10,7 @@ namespace Core;
 use App\Auth;
 use App\Flash;
 use App\Models\HoSo;
-use Twig\TwigFunction;
+use Twig_SimpleFunction;
 
 class View
 {
@@ -21,7 +21,7 @@ class View
         if (is_readable($file)) {
             require $file;
         } else {
-            echo "$file not found";
+            throw new \Exception("$file not found");
         }
     }
 
@@ -32,10 +32,10 @@ class View
             $loader = new \Twig_Loader_Filesystem('../App/Views');
             $twig = new \Twig_Environment($loader);
 //            Them tinh nang twig
-            $function = new TwigFunction('inGiaPhaDangCay', function () {
+            $function = new Twig_SimpleFunction('inGiaPhaDangCay', function () {
                 self::showGiaPha();
             });
-            $function2 = new TwigFunction('inGiaPhaDangDung', function () {
+            $function2 = new Twig_SimpleFunction('inGiaPhaDangDung', function () {
                 self::showGiaPha2();
             });
             $twig->addFunction($function);
@@ -90,9 +90,8 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li><a class="hop-chua" href="ho-so/' . $val['mahoso'] . '" data-toggle="modal" 
-                data-target="#hopThongTin" data-id="' . $val['mahoso'] . '">' . $val['mahoso'] . '–' . $val['hoten']
-                    . " (" . $val['hotenvo'] . ")" . '</a>';
+                echo '<li><a href="/ho-so/' . $val['mahoso'] .'">' . $val['mahoso'] . '–' . $val['hoten']
+                    . "(" . $val['hotenvo'] . ")" . '</a>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
             }

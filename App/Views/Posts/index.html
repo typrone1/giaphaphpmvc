@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+Xin chào
+{% endblock %}
+{% block body %}
+
+<h1>Post</h1>
+{% for post in posts %}
+    <h2>{{ post.title }}</h2>
+{%   endfor%}
+
+{% endblock %}

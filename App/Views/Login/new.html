@@ -1,0 +1,89 @@
+{% extends "base_login.html" %}
+
+{% block title %}Log in{% endblock %}
+
+{% block body %}
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <form action="/login/create" method="post">
+                <h1>Đăng nhập</h1>
+                <div>
+                    <input type="text" class="form-control" placeholder="Email" required="" id="inputEmail"
+                           name="email"/>
+                </div>
+                <div>
+                    <input type="password" class="form-control" placeholder="Mật khẩu" required="" id="inputPassword"
+                           name="password"/>
+                </div>
+                <div>
+                    <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}}> Nhớ
+                    mật khẩu
+                </div>
+                <div>
+                    <input type="submit" value="Đăng nhập" class="btn btn-default submit">
+                    <a class="reset_pass" href="#">Quên mật khẩu?</a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="separator">
+                    <p class="change_link">Bạn chưa có tài khoản?
+                        <a href="#signup" class="to_register"> Tạo tài khoản </a>
+                    </p>
+
+                    <div class="clearfix"></div>
+                    <br/>
+
+                    <div>
+                        <h1>
+                            <i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                        <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+
+    <div id="register" class="animate form registration_form">
+        <section class="login_content">
+            <form action="/signup/create" method="post">
+                <h1>Đăng ký thành viên</h1>
+                <div>
+                    <input type="text" id="inputName" name="name" class="form-control" placeholder="Họ và tên"
+                           value="{{ user.name }}" required=""/>
+                </div>
+                <div>
+                    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email"
+                           value="{{ user.email }}" required=""/>
+                </div>
+                <div>
+                    <input type="password" id="inputPassword" name="password" class="form-control"
+                           placeholder="Mật khẩu" required="" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
+                           title="Minimum 6 chars, at least one letter and number"/>
+                </div>
+                <div>
+                    <input type="submit" value="Đăng ký" class="btn btn-default submit">
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="separator">
+                    <p class="change_link">Đã là thành viên ?
+                        <a href="#signin" class="to_register"> Đăng nhập ngay </a>
+                    </p>
+
+                    <div class="clearfix"></div>
+                    <br/>
+
+                    <div>
+                        <h1>
+                            <i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                        <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}
