@@ -90,7 +90,7 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li><a href="/ho-so/' . $val['mahoso'] .'">' . $val['mahoso'] . '–' . $val['hoten']
+                echo '<li><a href="/ho-so/' . $val['mahoso'] . '">' . $val['mahoso'] . '–' . $val['hoten']
                     . "(" . $val['hotenvo'] . ")" . '</a>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
@@ -128,28 +128,35 @@ class View
                     }
 
                 }
-                if ($flag2 == true) {
+                if ($flag2 == true || $mahsbo == null) {
                     if ($mahsbo != null) {
                         $temp = "sub-item";
                     } else {
                         $temp = "item";
                     }
 
-                    $idName = isset($mahsbo) ? $mahsbo : 'root';
+                    $idName = isset($mahsbo) ? $mahsbo : $random_id = rand(0,1000);;
                     if ($flag && $mahsbo != null) {
                         echo "<li>";
                     }
                     echo '
                     <div class="' . $temp . '">
                     <input type="checkbox" id="' . $idName . '" checked/>
-                    <img src="/images/Arrow.png" class="arrow"><label for="' . $idName . '">' . $val['hoten'] . " - " . $val['hotenvo'] . '</label>';
+                    <img src="/images/Arrow.png" class="arrow"><label for="' . $idName . '">' . $val['mahoso'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label>';
                 } else {
-                    echo '<li><a href="#">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a></li>';
+                    echo '<li><a href="#">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>';
+                    if ($flag2 != true) {
+                        echo "</li>";
+                    }
                     if ($flag2 == true && $parent) {
                         echo "</div>";
                     }
                 }
-
+                if ($flag2 != true) {
+                    if ($mahsbo == null) {
+                        echo "</div>";
+                    }
+                }
                 $mahoso = $val['mahoso'];
                 self::inGiaPhaDangDung($data, $mahoso, $val['hoten']);
             }

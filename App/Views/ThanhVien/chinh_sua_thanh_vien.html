@@ -31,7 +31,7 @@ Xin chào
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Đổi thông tin tài khoản
-                            <small>{{account.id}}</small>
+                            <small>MHS: {{account.id}}</small>
                         </h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -53,7 +53,7 @@ Xin chào
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/admin/users/updateProfile" method="post" data-parsley-validate="" class="form-horizontal form-label-left"
+                        <form action="/admin/thanhvien/updateProfile" method="post" data-parsley-validate="" class="form-horizontal form-label-left"
                               novalidate="">
                             <input type="hidden" name="id" value="{{account.id}}">
                             <div class="form-group">

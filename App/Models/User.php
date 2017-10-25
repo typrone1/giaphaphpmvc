@@ -298,7 +298,6 @@ password_reset_hash =:token_hash';
         }
 
         $this->validate();
-
         if (empty($this->errors)) {
 
             $sql = 'UPDATE users
@@ -338,4 +337,5 @@ password_reset_hash =:token_hash';
         $stmt = $db->query('SELECT * FROM users');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
 }

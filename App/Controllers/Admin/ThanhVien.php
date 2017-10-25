@@ -30,22 +30,19 @@ class ThanhVien extends Authenticated
         View::renderTemplate('ThanhVien/cap_quyen.html');
     }
     public function chinhSuaAction(){
-        View::renderTemplate('ThanhVien/chinh_sua_thong_tin.html',['account' => $this->user]);
+        View::renderTemplate('ThanhVien/chinh_sua_thanh_vien.html',['account' => User::findByID($this->routeParams['id'])]);
     }
 
     public function updateProfileAction()
     {
-        if ($this->user->updateProfile($_POST)) {
+        if (User::findByID($_POST['id'])->updateProfile($_POST)) {
 
             Flash::addMessage('Changes saved');
 
-            $this->redirect('/admin/thanhvien/chinhsua');
+            $this->redirect('/admin/thanhvien/'.$_POST['id'].'/chinhsua');
 
         } else {
-            View::renderTemplate('ThanhVien/chinh_sua_thong_tin.html', [
-                'account' => $this->user
-            ]);
-
+            View::renderTemplate('ThanhVien/chinh_sua_thanh_vien.html',['account' => User::findByID($_POST['id'])]);
         }
     }
 }

@@ -17,4 +17,7 @@ class GiaPha extends Controller
     public function indexAction(){
         View::renderTemplate('GiaPha/index.html');
     }
+    public function giaPhaDangDungAction(){
+        View::renderTemplate('GiaPha/gia_pha_dung.html');
+    }
 }
