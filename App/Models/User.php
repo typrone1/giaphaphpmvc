@@ -338,4 +338,14 @@ password_reset_hash =:token_hash';
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function capNhatHoSoQuanLy($maHoSo){
+        $sql = 'UPDATE users
+                SET MaHoSo = :mahoso
+                WHERE id = :id';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
+        $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

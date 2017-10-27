@@ -48,6 +48,7 @@ $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'ac
 //    $router->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
 $router->add('signup/activate/{token:[\da-f]+}', ['controller' => 'Signup', 'action' => 'activate']);
 $router->add('ho-so/{mahoso:[\da-f]+}', ['controller' => 'ChiTietHoSo', 'action' => 'getChiTietHoSo']);
+$router->add('ho-so/{mahoso:[\da-f]+}/them-con', ['controller' => 'HoSo', 'action' => 'themCon', 'namespace' => 'Admin']);
 $router->add('ho-so/{mahoso:[\da-f]+}/edit', ['controller' => 'ChiTietHoSo', 'action' => 'edit']);
 $router->add('danh-sach-ho-so', ['controller' => 'TestPhanTrang', 'action' => 'index']);
 $router->add('{controller}/{action}');

@@ -27,4 +27,5 @@ class ChiTietHoSo extends Controller
     {
         echo "Đây là trang chỉnh sửa";
     }
+
 }

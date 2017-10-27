@@ -12,6 +12,7 @@ namespace App\Controllers\Admin;
 use App\Auth;
 use App\Controllers\Authenticated;
 use App\Flash;
+use App\Models\HoSo;
 use App\Models\User;
 use Core\Controller;
 use Core\View;
@@ -27,7 +28,10 @@ class ThanhVien extends Authenticated
         View::renderTemplate('ThanhVien/danh_sach.html', ['users' => User::getAll()]);
     }
     public function capQuyenAction(){
-        View::renderTemplate('ThanhVien/cap_quyen.html');
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            User::findByID($_POST['mathanhvien'])->capNhatHoSoQuanLy($_POST['mahoso']);
+        }
+        View::renderTemplate('ThanhVien/cap_quyen.html', ['users' => User::getAll(), 'dsHoSo' => HoSo::getAll()]);
     }
     public function chinhSuaAction(){
         View::renderTemplate('ThanhVien/chinh_sua_thanh_vien.html',['account' => User::findByID($this->routeParams['id'])]);

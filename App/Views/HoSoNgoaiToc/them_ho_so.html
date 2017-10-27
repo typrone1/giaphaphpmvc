@@ -29,7 +29,7 @@ Xin chào
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Thêm hồ sơ
+                        <h2>Thêm hồ sơ ngoại tộc
                             <small>Thêm thông tin chi tiết</small>
                         </h2>
                         <ul class="nav navbar-right panel_toolbox">
@@ -61,27 +61,30 @@ Xin chào
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/ThemHoSo/create" method="post" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
-
+                        <form action="/Admin/HoSoNgoaiToc/postThemHoSoNT" method="post" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh bố
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Mã hồ sơ phụ thuộc
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="maHoSoBo">
-                                        <option>Chọn mã hồ sơ bố</option>
-                                        <option value="{{maHoSoBo}}" selected>{{maHoSoBo}}</option>
-                                    </select>
+                                    <input type="text" name="maHoSo" value="{{mahoso}}" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ tên bố
+                                    <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="hoTenMe" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh mẹ
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Họ tên mẹ
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control">
-                                        <option>Chọn nhánh mẹ</option>
-                                    </select>
+                                    <input type="text" name="hoTenBo" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -89,7 +92,7 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="hoTen" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" name="hoTen" class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -110,15 +113,14 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="ngaySinh" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="ngaySinh" class="date-picker form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Quê quán
-                                    <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,7 +128,7 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="doiThu" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="doiThu" class="date-picker form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,7 +136,7 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="conThu" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="conThu" class="date-picker form-control col-md-7 col-xs-12" type="text">
                                 </div>
                             </div>
                             <div class="form-group">

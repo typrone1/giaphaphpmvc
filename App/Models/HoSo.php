@@ -59,8 +59,8 @@ class HoSo extends Model
     {
         $this->validate();
         if (empty($this->errors)) {
-            $sql = 'INSERT INTO HoSo (MaHoToc, HoTen, NgaySinh, GioiTinh, DoiThu, ConThu)
-            VALUES (1, :hoTen, :ngaySinh, :gioiTinh, :doiThu, :conThu)';
+            $sql = 'INSERT INTO HoSo (MaHoToc, HoTen, NgaySinh, GioiTinh, DoiThu, ConThu, MaHoSoBo)
+            VALUES (1, :hoTen, :ngaySinh, :gioiTinh, :doiThu, :conThu, :maHoSoBo)';
             $db = static::getDB();
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':hoTen', $this->hoTen, PDO::PARAM_STR);
@@ -68,6 +68,7 @@ class HoSo extends Model
             $stmt->bindValue(':gioiTinh', 'Nam', PDO::PARAM_STR);
             $stmt->bindValue(':doiThu', $this->doiThu, PDO::PARAM_INT);
             $stmt->bindValue(':conThu', $this->conThu, PDO::PARAM_INT);
+            $stmt->bindValue(':maHoSoBo', $this->maHoSoBo?$this->maHoSoBo: null, PDO::PARAM_INT);
             return $stmt->execute();
         }
     }

@@ -24,16 +24,14 @@ Xin chào
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <form action="#" class="form-horizontal form-label-left">
+                        <form action="/admin/thanhvien/capQuyen" method="post" class="form-horizontal form-label-left">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn thành viên</label>
                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                    <select class="form-control">
-                                        <option>Choose option</option>
-                                        <option>Option one</option>
-                                        <option>Option two</option>
-                                        <option>Option three</option>
-                                        <option>Option four</option>
+                                    <select class="form-control" name="mathanhvien">
+                                        {% for user in users %}
+                                        <option value="{{user.id}}">{{user.name}} - {{user.email}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>
@@ -59,7 +57,11 @@ Xin chào
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Mã hồ sơ quản lý</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input type="text" class="form-control" placeholder="2020">
+                                        <select class="form-control" name="mahoso">
+                                            {% for hoSo in dsHoSo %}
+                                            <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
