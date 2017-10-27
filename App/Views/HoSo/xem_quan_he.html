@@ -1,39 +1,43 @@
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-    <tbody>
-    {% if hoSoOng is defined %}
+<!--<table width="100%" border="0" cellpadding="0" cellspacing="0">-->
+    <!--<tbody>-->
+    <!--{% if hoSoOng is defined %}-->
 
-    <tr>
-        <td colspan="3" align="center" valign="middle">
+    <!--<tr>-->
+        <!--<td colspan="3" align="center" valign="middle">-->
 
-            <div style=" width: 400px;text-align:center; vertical-align:middle;">
-                Ông nội: <br>
-                <div style="">
-                    Con: <br>
-                    <span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a
-                        href="">{{ hoSoOng.hoten }}</a>
-                </div>
-            </div>
-        </td>
-    </tr>
+            <!--<div style=" width: 400px;text-align:center; vertical-align:middle;">-->
+                <!--Ông nội: <br>-->
+                <!--<div style="">-->
+                    <!--Con: <br>-->
+                    <!--<span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a-->
+                        <!--href="">{{ hoSoOng.hoten }}</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</td>-->
+    <!--</tr>-->
 
-    {% endif %}
+    <!--{% endif %}-->
 
-    {% if hoSoBo is defined %}
-    <tr>
-        <td colspan="3" align="center" valign="middle">
-            <div>
-                Bố: <br>
-                <span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a
-                    style=""
-                    href="">{{ hoSoBo.HoTen }}</a>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" height="10" align="center" valign="middle"><img
-                src="/images/down.gif"></td>
-    </tr>
-    {% endif %}
+    <!--{% if hoSoBo is defined %}-->
+    <!--<tr>-->
+        <!--<td colspan="3" align="center" valign="middle">-->
+            <!--<div>-->
+                <!--Bố: <br>-->
+                <!--<span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a-->
+                    <!--style=""-->
+                    <!--href="">{{ hoSoBo.HoTen }}</a>-->
+            <!--</div>-->
+        <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+        <!--<td colspan="3" height="10" align="center" valign="middle"><img-->
+                <!--src="/images/down.gif"></td>-->
+    <!--</tr>-->
+    <!--{% endif %}-->
 
-    </tbody>
-</table>
+    <!--</tbody>-->
+<!--</table>-->
+
+{% set ty = 1 %}
+{% set ty2 = 1 %}
+{{ "foo #{ty + ty2} baz" }}
