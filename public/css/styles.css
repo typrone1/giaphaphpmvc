@@ -16,7 +16,7 @@
 }
 
 .tree {
-    width: 3500px;
+    min-width: 5000px;
     margin: 50px auto;
 }
 
@@ -225,3 +225,25 @@ right connector from last child*/
 
 
 /* Het gia pha dang dung */
+
+/* Cay gia pha gan */
+.hopTo {
+    padding: 0.5em;
+    width: 20rem;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #00aeef;
+    overflow: hidden;
+}
+
+.hopNho {
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+    position: relative;
+    background-color: #3c763d;
+    overflow: hidden;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+/* Het cay gia pha gan */

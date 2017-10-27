@@ -1,43 +1,148 @@
-<!--<table width="100%" border="0" cellpadding="0" cellspacing="0">-->
-    <!--<tbody>-->
-    <!--{% if hoSoOng is defined %}-->
+<style>
+    .hopTo {
+        padding: 0.5em;
+        width: 20rem;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #00aeef;
+    }
 
-    <!--<tr>-->
-        <!--<td colspan="3" align="center" valign="middle">-->
+    .hopNho {
+        max-width: 15em;
+        padding: 0.5em;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        background-color: #3c763d;
+    }
 
-            <!--<div style=" width: 400px;text-align:center; vertical-align:middle;">-->
-                <!--Ông nội: <br>-->
-                <!--<div style="">-->
-                    <!--Con: <br>-->
-                    <!--<span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a-->
-                        <!--href="">{{ hoSoOng.hoten }}</a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</td>-->
-    <!--</tr>-->
+    .space-horizontal {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        width: 2px;
+        background-color: #FFFFFF
+    }
+</style>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+    {% if hoSoOng is defined %}
+    <tr>
+        <td colspan="3" align="center" valign="middle">
 
-    <!--{% endif %}-->
+            <div class="hopTo">
+                Ông nội: <br>
+                <span>Đời thứ: 10 - Con thứ: 3</span><br><a
+                    href="">{{ hoSoOng.hoten }}</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" height="10" align="center" valign="middle"><img
+                src="/images/down.gif"></td>
+    </tr>
 
-    <!--{% if hoSoBo is defined %}-->
-    <!--<tr>-->
-        <!--<td colspan="3" align="center" valign="middle">-->
-            <!--<div>-->
-                <!--Bố: <br>-->
-                <!--<span style="color:#FF0000">Đời thứ: 10 - Con thứ: 3</span><br><a-->
-                    <!--style=""-->
-                    <!--href="">{{ hoSoBo.HoTen }}</a>-->
-            <!--</div>-->
-        <!--</td>-->
-    <!--</tr>-->
-    <!--<tr>-->
-        <!--<td colspan="3" height="10" align="center" valign="middle"><img-->
-                <!--src="/images/down.gif"></td>-->
-    <!--</tr>-->
-    <!--{% endif %}-->
+    {% endif %}
 
-    <!--</tbody>-->
-<!--</table>-->
+    {% if hoSoBo is defined %}
+    <tr>
+        <td colspan="3" align="center" valign="middle">
+            <div class="hopTo">
+                Bố: <br>
+                <span>Đời thứ: 10 - Con thứ: 3</span><br><a
 
-{% set ty = 1 %}
-{% set ty2 = 1 %}
-{{ "foo #{ty + ty2} baz" }}
+                    href="">{{ hoSoBo.HoTen }}</a>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" height="10" align="center" valign="middle"><img
+                src="/images/down.gif"></td>
+    </tr>
+    {% endif %}
+    {% set count = dsAnhEm|length %}
+    {% if count == 0 %}
+    {% set count = 1 %}
+    {% endif %}
+    {% set percent = 100/count %}
+    {% set linePercent = 100/count %}
+    {% set marginPercent = linePercent/2 %}
+    {% set viTri = 0 %}
+    <tr>
+        <td colspan="3" align="center" style="position: relative"><img
+                src="/images/VLine.jpg" width="{{linePercent*(count-1)}}%"
+                height="1px" style="position: absolute; left: {{marginPercent}}%">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    {% for anhEm in dsAnhEm %}
+                    <td width="{{percent}}%" align="center" valign="top"
+                        style="vertical-align:middle;">
+                        <div align="center"><img
+                                src="/images/down.gif"></div>
+                        <div class="hopNho">
+                            Anh em: <br>
+                            <span>Đời thứ: 10 - Con thứ: 3</span><br><a
+                                style="color: chocolate;"
+                                href="">{{ anhEm.hoten }}</a>
+                            <div class="space-horizontal"></div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                <tr>
+                    {% set viTri = 0 %}
+                    {% set position = 0 %}
+                    {% for anhEm in dsAnhEm %}
+                    {% set viTri = viTri+1 %}
+                    {% if anhEm.mahoso == 9 %}
+                    {% set position = viTri %}
+                    {% endif %}
+                    {% endfor %}
+                    {% for i in 1..position %}
+                    <td></td>
+                    {% endfor %}
+                    <td align="center" valign="middle"><img src="/images/down.gif"></td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        {% set count = dsCon|length %}
+        {% if count == 0 %}
+        {% set count = 1 %}
+        {% endif %}
+        {% set percent = 100/count %}
+        {% set linePercent = 100/count %}
+        {% set marginPercent = linePercent/2 %}
+        {% set viTri = 0 %}
+
+
+        <td colspan="3" align="center" style="position: relative"><img
+                src="/images/VLine.jpg" width="{{linePercent*(count-1)}}%"
+                height="1px" style="position: absolute; left: {{marginPercent}}%">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                <tr>
+                    {% for con in dsCon %}
+                    <td width="{{percent}}%" align="center" valign="top"
+                        style="vertical-align:middle; height: 200px; float: left">
+                        <div align="center"><img
+                                src="/images/down.gif"></div>
+                        <div class="hopNho">
+                            Con: <br>
+                            <span>Đời thứ: 10 - Con thứ: 3</span><br><a
+                                href="">{{con.hoten}}</a>
+                            <div class="space-horizontal"></div>
+                        </div>
+                    </td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>

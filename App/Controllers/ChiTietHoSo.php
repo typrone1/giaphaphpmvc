@@ -7,6 +7,8 @@
  */
 namespace App\Controllers;
 
+use App\Database\Query\MySqlBuilder;
+use App\Database\MySqlConnection;
 use App\Models\HoSo;
 use Core\Controller;
 use Core\View;
@@ -19,8 +21,44 @@ class ChiTietHoSo extends Controller
         $hoSo = HoSo::find($this->routeParams['mahoso']);
         if (empty($hoSo)) {
             echo "Hồ sơ không tồn tại";
+        } else {
+            $maHoSo = $this->routeParams['mahoso'];
+            $connection = new MySqlConnection([
+                'dbname' => 'mvc',
+                'hostname' => '127.0.0.1',
+                'username' => 'root',
+                'password' => '',
+            ]);
+            $builder = new MySqlBuilder($connection);
+            $hoSoOng = null;
+            $hoSoBo = null;
+            $dsAnhEm = null;
+            $hoSo = HoSo::find($maHoSo);
+            if (isset($hoSo)) {
+                $hoSoBo = HoSo::find($hoSo->MaHoSoBo) != false ? HoSo::find($hoSo->MaHoSoBo) : null;
+                if (isset($hoSoBo->MaHoSoBo)) {
+                    $hoSoOng = $builder
+                        ->select('mahoso', 'hoten')
+                        ->where('mahoso', $hoSoBo->MaHoSoBo)
+                        ->from('hoso')
+                        ->first();
+                }
+            }
+            $dsVo = $builder
+                ->select('mahoso', 'hoten')
+                ->where('mahoso', $maHoSo)
+                ->from('hosongoaitoc')
+                ->all();
+            $dsCon = $builder
+                ->select('mahoso', 'hoten')
+                ->where('mahosobo', $maHoSo)
+                ->from('hoso')
+                ->all();
+
+            $dsAnhEm = HoSo::findAllByParent($hoSo->MaHoSoBo);
+            View::renderTemplate('HoSo/chi_tiet.html', ['hoSo' => $hoSo, 'hoSoOng' => $hoSoOng, 'hoSoBo' => $hoSoBo, 'dsAnhEm' => $dsAnhEm, 'dsCon' => $dsCon, 'dsVo' => $dsVo]);
         }
-        View::renderTemplate('HoSo/chi_tiet.html', ['hoSo' => $hoSo]);
+
     }
 
     public function editAction()

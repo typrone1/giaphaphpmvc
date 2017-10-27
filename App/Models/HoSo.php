@@ -54,6 +54,24 @@ class HoSo extends Model
         return $stmt->fetch();
     }
 
+    public static function findAllByParent($maHoSoBo)
+    {
+        $ketnoi = mysqli_connect("localhost", "root", "",'mvc');
+        mysqli_query($ketnoi, "set names utf8");
+        $sql = 'SELECT * FROM HoSo ';
+        if (!isset($maHoSoBo)){
+            $sql.= 'WHERE mahosobo is null';
+        } else {
+            $sql.= 'WHERE mahosobo = '.$maHoSoBo;
+        }
+        $query = $ketnoi->query($sql);
+        while ($row = mysqli_fetch_object($query))
+        {
+            $array[] = $row;
+        }
+        return $array;
+
+    }
 
     public function save()
     {

@@ -44,6 +44,7 @@ class HoSo extends Controller
         ]);
         $builder = new MySqlBuilder($connection);
         $hoSoOng = null;
+        $hoSoBo = null;
         $hoSo = HoSoModel::find($maHoSo);
         if (isset($hoSo)) {
             $hoSoBo = HoSoModel::find($hoSo->MaHoSoBo);
@@ -72,7 +73,7 @@ class HoSo extends Controller
             ->where('mahosobo', $hoSo->MaHoSoBo)
             ->from('hoso')
             ->all();
-        View::renderTemplate('HoSo/xem_quan_he.html', ['hoSoOng' => $hoSoOng, 'hoSoBo' => $hoSoBo]);
+        View::renderTemplate('HoSo/xem_quan_he.html', ['hoSoOng' => $hoSoOng, 'hoSoBo' => $hoSoBo, 'dsAnhEm' => $dsAnhEm, 'dsCon' => $dsCon, 'dsVo' => $dsVo]);
     }
 
     public function themConAction()
