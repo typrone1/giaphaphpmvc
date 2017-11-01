@@ -109,7 +109,7 @@ right connector from last child*/
     height: 20px;
 }
 
-.tree li a {
+.tree li .box-item {
     border: 1px solid #ccc;
     padding: 5px 10px;
     text-decoration: none;
@@ -130,8 +130,8 @@ right connector from last child*/
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 
-.tree li a:hover,
-.tree li a:hover + ul li a {
+.tree li .box-item:hover,
+.tree li .box-item:hover + ul li .box-item {
     background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
     color: #000;
     opacity: 1;
@@ -140,13 +140,12 @@ right connector from last child*/
 
 /*Connector styles on hover*/
 
-.tree li a:hover + ul li::after,
-.tree li a:hover + ul li::before,
-.tree li a:hover + ul::before,
-.tree li a:hover + ul ul::before {
+.tree li .box-item:hover + ul li::after,
+.tree li .box-item:hover + ul li::before,
+.tree li .box-item:hover + ul::before,
+.tree li .box-item:hover + ul ul::before {
     border-color: #94a0b4;
 }
-
 
 /* Gia pha dang dung */
 

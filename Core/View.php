@@ -90,8 +90,8 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li><a href="/ho-so/' . $val['mahoso'] . '">'  . $val['mahoso'] . '– <i class="fa fa-male" aria-hidden="true"></i> ' . $val['hoten']
-                    .'(<i class="fa fa-female" aria-hidden="true"></i>' . $val['hotenvo'] . ")" . '<br>Đời: <b>'.$val['doithu'].'</b>, Con thứ: <b>'.$val['conthu'].'</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: '.$val['ngaysinh'].'<br>Ngày kỵ: '.$val['ngaymat'].' </a>';
+                echo '<li><div class="box-item"><a href="/ho-so/' . $val['mahoso'] . '">'  . $val['mahoso'] . '– <i class="fa fa-male" aria-hidden="true"></i> ' . $val['hoten']
+                    .'(<i class="fa fa-female" aria-hidden="true"></i>' . $val['hotenvo'] . ")" . '<br>Đời: <b>'.$val['doithu'].'</b>, Con thứ: <b>'.$val['conthu'].'</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: '.$val['ngaysinh'].'<br>Ngày kỵ: '.$val['ngaymat'].'</a><br><button class="mo-rong" href="javascript:function() { return false; }">-</button></div>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
             }
@@ -144,7 +144,14 @@ class View
                     <input type="checkbox" id="' . $idName . '" checked/>
                     <img src="/images/Arrow.png" class="arrow"><label for="' . $idName . '">' . $val['mahoso'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label>';
                 } else {
-                    echo '<li><a href="#">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>';
+                    echo '<li><div class="dropdown">
+                    <a href="#" class="dropbtn">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
+                      <div class="dropdown-content">
+                        <a href="#"><i class="fa fa-edit"></i> Xem chi tiết</a>
+                        <a href="#"><i class="fa fa-edit"></i> Xóa</a>
+                        <a href="#"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
+                      </div>
+                    </div>';
                     if ($flag2 != true) {
                         echo "</li>";
                     }
