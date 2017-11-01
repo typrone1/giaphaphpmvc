@@ -16,7 +16,7 @@
 }
 
 .tree {
-    min-width: 5000px;
+    min-width: 9999px;
     margin: 50px auto;
 }
 
@@ -117,7 +117,7 @@ right connector from last child*/
     font-family: arial, verdana, tahoma;
     font-size: 11px;
     display: inline-block;
-
+    background: linear-gradient(to bottom, rgba(210,255,82,1) 0%, rgba(145,232,66,1) 100%);
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -132,6 +132,7 @@ right connector from last child*/
 
 .tree li a:hover,
 .tree li a:hover + ul li a {
+    background: linear-gradient(to bottom, rgba(252,234,187,1) 0%, rgba(252,205,77,1) 50%, rgba(248,181,0,1) 51%, rgba(251,223,147,1) 100%);
     color: #000;
     opacity: 1;
     border: 1px solid #94a0b4;
@@ -232,7 +233,7 @@ right connector from last child*/
     width: 20rem;
     text-align: center;
     vertical-align: middle;
-    background-color: #00aeef;
+    background-image: url('/images/phado.gif');
     overflow: hidden;
 }
 
@@ -241,7 +242,7 @@ right connector from last child*/
     text-align: center;
     vertical-align: middle;
     position: relative;
-    background-color: #3c763d;
+    background-image: url('/images/phado.gif');
     overflow: hidden;
     border-left: 1px solid white;
     border-right: 1px solid white;

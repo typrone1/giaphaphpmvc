@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<header>
+    <div class="container">
+        <div id="banner">
+            <div id="tai-khoan">
+
+                <a href="#">
+                    <i class="fa fa-apple" aria-hidden="true"></i>Đăng nhập</a> |
+                <a href="#">
+                    <i class="fa fa-long-arrow-right"></i>Đăng ký</a>
+            </div>
+            <h1>Gia phả họ Nguyễn</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi dicta earum explicabo natus sapiente officia
+            </p>
+        </div>
+        <nav id="nav">
+            <input type="checkbox" id="menu" />
+            <label for="menu" id="nav-icon">&#9776;</label>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>Trang chủ</a>
+                </li>
+                <li>
+                    <a href="#">Xem phả đồ</a>
+                </li>
+                <li>
+                    <a href="#">Tin tức</a>
+                </li>
+                <li>
+                    <a href="#">Giới thiệu</a>
+                </li>
+                <li>
+                    <a href="#">Kết nối</a>
+                </li>
+                <li>
+                    <a href="#">Tư liệu</a>
+                </li>
+                <li>
+                    <a href="#">Văn hóa</a>
+                </li>
+                <li>
+                    <a href="#">Sự kiện</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+{% block body %}
+{% endblock %}
+
+<footer>
+    <div class="container">
+        <p>C - Gia phả Họ Nguyễn Hữu 2017</p>
+    </div>
+
+</footer>
+<script src="/js/jquery.minjs"></script>
+
+{% block footer %}
+{% endblock %}
+</body>
+
+</html>

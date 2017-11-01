@@ -1,0 +1,228 @@
+* {
+    padding: 0;
+    margin: 0 auto;
+    box-sizing: border-box
+}
+
+.container {
+    max-width: 1140px;
+}
+#banner {
+    background-image: url("../images/anh1.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 1em;
+    position: relative;
+}
+#banner #tai-khoan {
+    position: absolute;
+    top: 0;
+    right: 1em;
+    background: orange;
+    padding: .5em;
+    border-radius: 0 0 5px 5px;
+}
+#banner h1 {
+    font-style: italic;
+    margin-bottom: 1em;
+    color: yellow;
+}
+/* Navbar */
+#nav {
+    overflow: hidden;
+    background-color: cyan;
+    position: relative;
+}
+#nav ul {
+    width: 100%;
+    float: left;
+}
+#nav ul li {
+    background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
+    display: inline-block;
+    width: 5.5em;
+    text-align: center;
+    line-height: 2em;
+}
+#nav ul li:hover {
+    background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+#nav ul li a {
+    text-decoration: none;
+}
+#nav input[type="checkbox"] {
+    display: none;
+}
+
+#nav-icon {
+    font-size: 28px;
+    float: right;
+    line-height: 40px;
+    color: #F44336;
+    display: none;
+}
+#menu:checked ~ ul {
+    animation: xuatHien 1s ease;
+    display: block;
+}
+
+
+/* End */
+
+.col-9 {
+    width: 66.66%;
+    float: left;
+}
+.col-3 {
+    width: 33.33%;
+    margin: 0;
+    float: right;
+}
+.breadcrumb {
+    float: left;
+}
+.breadcrumb li {
+    list-style: none;
+}
+@keyframes xuatHien {
+    0% {transform: translateX(100%);opacity: 0;}   
+    100% {transform: translateX(0%);opacity: 1;} 
+}
+.breadcrumb .start a {
+    font-weight: 700;
+    color: #9f224e;
+    text-decoration: none;
+    background: #eceeed;
+    border-left: 3px solid orange;
+    padding: 0 8px;
+    margin-left: 0;
+    z-index: 99;
+    margin: 5px 0;
+}
+.breadcrumb li a {
+    background: #d3d3d3;
+    padding: 0 8px 0 15px;
+    height: 26px;
+    display: block;
+    float: left;
+    font: 400 14px/25px arial;
+    white-space: nowrap;
+    position: relative;
+    color: #000;
+}
+.breadcrumb li a:after {
+    content: "";
+    position: absolute;
+    right: -13px;
+    top: 0;
+    border-left: 13px solid #eceeed;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    z-index: 999;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.thumb img {
+    max-width: 100%;
+}
+#big-news {
+    padding-right: 0.5em;
+}
+#bai-viet-gan, #su-kien {
+    position: relative;
+    float: left;
+}
+#danh-sach {
+    padding: .5em;
+    height: 350px;
+    margin-top: 2em;
+    overflow-y: auto;
+}
+.header-box {
+    position: absolute;
+    width: 100%;
+    line-height: 2em;
+    padding-left: .5em;
+    background: linear-gradient(to bottom, rgba(243,197,189,1) 0%,rgba(232,108,87,1) 50%,rgba(234,40,3,1) 51%,rgba(255,102,0,1) 75%,rgba(199,34,0,1) 100%);
+}
+#search-box {
+    margin-top: .2em;
+    float: right;
+}
+#su-kien {
+    margin-left: 0.5em;
+}
+.list-events {
+    margin-top: 2em;
+}
+.thumb-su-kien {
+    position: relative;
+    margin-right: 10px;
+    float: left;
+    width: 100px;
+    border: 2px solid red;
+}
+.thumb-su-kien img {
+    max-width: 100%;
+}
+.description {
+    padding-bottom: 0.17em;
+}
+
+@media (max-width: 576px) {
+    #nav {
+        background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    }
+    #nav ul {
+        display: none;
+    }
+    #nav ul li {
+        background: transparent;
+        display: block;
+        width: 100%;
+        height: 2em;
+        line-height: 2em;
+    }
+    #nav-icon {
+        display: block;
+    }
+    .col-9 {
+        width: 100%;
+    }
+    .col-3 {
+        width: 100%;
+    }
+    #big-news, #su-kien {
+        margin: 0;
+        padding: 0;
+    }
+    .list-events {
+        margin-left: .5em;
+        margin-right: .5em;
+    }
+    #search-box input {
+        width: 6em;
+    }
+}
+.view-all {
+    float: right;
+    border: 1px solid red;
+    padding: 0.2em;
+    border-radius: .5em;
+    margin-top: 1em;
+    text-decoration: none;
+}
+.view-all:hover {
+    background-color: #9f224e;
+    color: white;
+    transition: all .5s;
+}
+* {
+    
+}

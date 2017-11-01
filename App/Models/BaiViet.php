@@ -36,4 +36,15 @@ class BaiViet extends Model
         $stmt = $db->query('SELECT * FROM BaiViet');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public static function findOne($maBaiViet)
+    {
+        $sql = 'SELECT * FROM BaiViet
+                WHERE mabaiviet = :mabaiviet';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':mabaiviet', $maBaiViet, PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 }

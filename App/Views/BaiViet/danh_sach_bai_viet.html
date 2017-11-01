@@ -28,41 +28,47 @@ Danh sách hồ sơ
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
+
                     {% for baiViet in dsBaiViet %}
-                        {{ baiViet.MaBaiViet }} - {{baiViet.TieuDe }} <br>
-                        {{ baiViet.NoiDung }} <br>
+                    <div class="media">
+                        <div class="media-left"><a href="#"><img src="/images/anh1.jpg"
+                                                                 style="width: 64px; height: 64px;"> </a></div>
+                        <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe
+                            }} <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Chỉnh sửa</button><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
+                        </div>
+                    </div>
                     {% endfor %}
                     <!-- Small modal -->
                     <!--<br>-->
                     <!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalThemDanhMuc"><i class="fa fa-plus"></i>Thêm danh mục</button>-->
 
                     <!--<div class="modal fade" id="modalThemDanhMuc" tabindex="-1" role="dialog" aria-hidden="true">-->
-                        <!--<div class="modal-dialog modal-sm">-->
-                            <!--<div class="modal-content">-->
+                    <!--<div class="modal-dialog modal-sm">-->
+                    <!--<div class="modal-content">-->
 
-                                <!--<div class="modal-header">-->
-                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>-->
-                                    <!--</button>-->
-                                    <!--<h4 class="modal-title" id="myModalLabel2">Thêm danh mục</h4>-->
-                                <!--</div>-->
-                                <!--<div class="modal-body">-->
-                                    <!--<form action="/admin/loaitin/postThemLoaiTin" method="post" id="danh-muc">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<label for="tendanhmuc" class="form-control-label">Tên danh mục</label>-->
-                                            <!--<input type="text" id="tendanhmuc" name="tenLoaiTin" class="form-control">-->
+                    <!--<div class="modal-header">-->
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>-->
+                    <!--</button>-->
+                    <!--<h4 class="modal-title" id="myModalLabel2">Thêm danh mục</h4>-->
+                    <!--</div>-->
+                    <!--<div class="modal-body">-->
+                    <!--<form action="/admin/loaitin/postThemLoaiTin" method="post" id="danh-muc">-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tendanhmuc" class="form-control-label">Tên danh mục</label>-->
+                    <!--<input type="text" id="tendanhmuc" name="tenLoaiTin" class="form-control">-->
 
-                                            <!--<label for="mota" class="form-control-label">Mô tả</label>-->
-                                            <!--<input type="text" id="mota" name="mota" class="form-control">-->
-                                        <!--</div>-->
-                                    <!--</form>-->
-                                <!--</div>-->
-                                <!--<div class="modal-footer">-->
-                                    <!--<button class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                                    <!--<button class="btn btn-success" type="submit" form="danh-muc" value="Submit">Thêm</button>-->
-                                <!--</div>-->
+                    <!--<label for="mota" class="form-control-label">Mô tả</label>-->
+                    <!--<input type="text" id="mota" name="mota" class="form-control">-->
+                    <!--</div>-->
+                    <!--</form>-->
+                    <!--</div>-->
+                    <!--<div class="modal-footer">-->
+                    <!--<button class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+                    <!--<button class="btn btn-success" type="submit" form="danh-muc" value="Submit">Thêm</button>-->
+                    <!--</div>-->
 
-                            <!--</div>-->
-                        <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                     <!--&lt;!&ndash; /modals &ndash;&gt;-->
                 </div>

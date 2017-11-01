@@ -26,6 +26,9 @@ class BaiViet extends Controller
     public function getThemBaiViet(){
         View::renderTemplate('BaiViet/viet_bai.html',['dsLoaiTin' => LoaiTin::getAll()]);
     }
+    public function getSuaBaiViet(){
+        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html',['baiViet' => BaiVietModel::findOne(1),'dsLoaiTin' => LoaiTin::getAll()]);
+    }
     public function postThemBaiViet(){
         $post = new BaiVietModel($_POST);
         if ($post->save()){
