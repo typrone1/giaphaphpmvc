@@ -39,7 +39,8 @@ Xin chào
                                 </a>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false">
                                     <i class="fa fa-wrench"></i>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -61,7 +62,7 @@ Xin chào
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/ThemHoSo/create" method="post" id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                        <form action="/ThemHoSo/create" method="post" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh bố
@@ -89,18 +90,23 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="hoTen" required="required" class="form-control col-md-7 col-xs-12">
+                                    <input type="text" name="hoTen" 
+                                           class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
-                                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male" data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
+                                        <label class="btn btn-default" data-toggle-class="btn-primary"
+                                               data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="gender" value="male"
+                                                   data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                                         </label>
-                                        <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female" data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
+                                        <label class="btn btn-primary" data-toggle-class="btn-primary"
+                                               data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="gender" value="female"
+                                                   data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                                         </label>
                                     </div>
                                 </div>
@@ -110,7 +116,9 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="ngaySinh" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="ngaySinh"
+                                           class="date-picker form-control col-md-7 col-xs-12" 
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,7 +126,8 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                            type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,7 +135,9 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="doiThu" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="doiThu"
+                                           class="date-picker form-control col-md-7 col-xs-12" 
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -134,7 +145,9 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="conThu" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                                    <input id="birthday" name="conThu"
+                                           class="date-picker form-control col-md-7 col-xs-12" 
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -142,7 +155,8 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" type="text">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -150,7 +164,8 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" type="text">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -158,7 +173,14 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12" type="text">
+                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                           type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="hinhAnh" class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" class="form-control-file" name="hinhAnh" id="hinhAnh">
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
