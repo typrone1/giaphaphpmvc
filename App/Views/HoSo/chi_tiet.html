@@ -202,29 +202,87 @@ Danh sách hồ sơ
                             </form>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
-                            <div class="profile_img">
-                                <div id="crop-avatar">
-                                    <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"
-                                         title="Change the avatar">
-                                </div>
-                            </div>
-                            <h3>Nguyễn Thị A</h3>
-
-                            <ul class="list-unstyled user_data">
+                            <ul class="list-unstyled msg_list">
                                 <li>
-                                    <i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: 1/1/1911
-                                </li>
-
-                                <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i> Quê quán: Quảng Bình
-                                </li>
-
-                                <li class="m-top-xs">
-                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                    <a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>
+                                    <a>
+                                        <span class="image">
+                                          <img src="/images/img.jpg" alt="img">
+                                        </span>
+                                                        <span>
+                                          <span>John Smith</span>
+                                      
+                                        </span>
+                                                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                        <span class="image">
+                                          <img src="/images/img.jpg" alt="img">
+                                        </span>
+                                                        <span>
+                                          <span>John Smith</span>
+                                      
+                                        </span>
+                                                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                        <span class="image">
+                                          <img src="/images/img.jpg" alt="img">
+                                        </span>
+                                                        <span>
+                                          <span>John Smith</span>
+                                      
+                                        </span>
+                                                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                        </span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a>
+                                        <span class="image">
+                                          <img src="/images/img.jpg" alt="img">
+                                        </span>
+                                                        <span>
+                                          <span>John Smith</span>
+                                      
+                                        </span>
+                                                        <span class="message">
+                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                        </span>
+                                    </a>
                                 </li>
                             </ul>
+                            <!--<div class="profile_img">-->
+                                <!--<div id="crop-avatar">-->
+                                    <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
+                                    <!--<img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"-->
+                                         <!--title="Change the avatar">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<h3>Nguyễn Thị A</h3>-->
+
+                            <!--<ul class="list-unstyled user_data">-->
+                                <!--<li>-->
+                                    <!--<i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: 1/1/1911-->
+                                <!--</li>-->
+
+                                <!--<li>-->
+                                    <!--<i class="fa fa-briefcase user-profile-icon"></i> Quê quán: Quảng Bình-->
+                                <!--</li>-->
+
+                                <!--<li class="m-top-xs">-->
+                                    <!--<i class="fa fa-external-link user-profile-icon"></i>-->
+                                    <!--<a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>-->
+                                <!--</li>-->
+                            <!--</ul>-->
 
                             <a class="btn btn-success">
                                 <i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
@@ -277,7 +335,7 @@ Danh sách hồ sơ
                                     <div class="hopTo">
                                         Ông nội: <br>
                                         <span>Đời thứ: 10 - Con thứ: 3</span><br><a
-                                            href="">{{ hoSoOng.hoten }}</a>
+                                            href="/ho-so/{{ hoSoOng.MaHoSo }}">{{ hoSoOng.hoten }}</a>
                                     </div>
                                 </td>
                             </tr>
@@ -294,7 +352,7 @@ Danh sách hồ sơ
                                         Bố: <br>
                                         <span>Đời thứ: 10 - Con thứ: 3</span><br><a
 
-                                            href="">{{ hoSoBo.HoTen }}</a>
+                                            href="/ho-so/{{ hoSoBo.MaHoSo }}">{{ hoSoBo.HoTen }}</a>
                                     </div>
                                 </td>
                             </tr>
@@ -327,7 +385,7 @@ Danh sách hồ sơ
                                                     Anh em: <br>
                                                     <span>Đời thứ: 10 - Con thứ: 3</span><br><a
                                                         style="color: chocolate;"
-                                                        href="">{{ anhEm.HoTen }}</a>
+                                                        href="/ho-so/{{anhEm.MaHoSo}}">{{ anhEm.HoTen }}</a>
                                                 </div>
                                             </td>
                                             {% endfor %}
@@ -378,7 +436,7 @@ Danh sách hồ sơ
                                                 <div class="hopNho">
                                                     Con: <br>
                                                     <span>Đời thứ: 10 - Con thứ: 3</span><br><a
-                                                        href="">{{con.hoten}}</a>
+                                                        href="/ho-so/{{con.MaHoSo}}">{{con.hoten}}</a>
                                                 </div>
                                             </td>
                                             {% endfor %}

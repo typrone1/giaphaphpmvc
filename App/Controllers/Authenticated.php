@@ -9,11 +9,18 @@
 namespace App\Controllers;
 
 
+use App\Auth;
 use Core\Controller;
 
 abstract class Authenticated extends Controller
 {
     protected function before(){
         $this->requireLogin();
+    }
+    protected function yeuCauQuanTriVien(){
+        if (!Auth::isLoggedIn()){
+            $this->requireLogin();
+        }
+        $this->requireQuanTriVien();
     }
 }

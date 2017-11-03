@@ -47,7 +47,7 @@
 
     <div id="register" class="animate form registration_form">
         <section class="login_content">
-            <form action="/signup/create" method="post">
+            <form action="/signup/create" method="post" enctype="multipart/form-data">
                 <h1>Đăng ký thành viên</h1>
                 <div>
                     <input type="text" id="inputName" name="name" class="form-control" placeholder="Họ và tên"
@@ -61,6 +61,9 @@
                     <input type="password" id="inputPassword" name="password" class="form-control"
                            placeholder="Mật khẩu" required="" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
                            title="Minimum 6 chars, at least one letter and number"/>
+                </div>
+                <div>
+                    <input type="file" name="hinhAnh" class="form-control">
                 </div>
                 <div>
                     <input type="submit" value="Đăng ký" class="btn btn-default submit">

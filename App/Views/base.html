@@ -21,6 +21,7 @@
     <link href="/css/custom.min.css" rel="stylesheet">
     <link href="/css/switchery.min.css" rel="stylesheet">
     <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/css/pnotify.css" rel="stylesheet">
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -36,12 +37,23 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="/images/img.jpg" alt="..." class="img-circle profile_img">
+                        {% if current_user.HinhAnh %}
+                        <img src="/images/AnhDaiDien/{{current_user.HinhAnh}}" alt="..." class="img-circle profile_img">
+                        {% else %}
+                        <img src="/images/AnhDaiDien/camera.png" alt="..." class="img-circle profile_img">
+                        {% endif %}
+
                     </div>
+                    {% if current_user %}
                     <div class="profile_info">
                         <span>Xin chào,</span>
-                        <h2>Nguyễn Hữu Tý</h2>
+                        <h2>{{ current_user.name }}</h2>
+                        <a href="/logout">Đăng xuất</a>
                     </div>
+                    {% else %}
+                    <a href="/signup/new">Đăng ký</a> hoặc <a href="/login">Đăng nhập</a>.
+                    {% endif %}
+
                     <div class="clearfix"></div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -55,7 +67,7 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> Trang chủ <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index.html">Tin tức</a></li>
+                                    <li><a href="/user/home/index">Tin tức</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> Sơ đồ gia phả <span class="fa fa-chevron-down"></span></a>
@@ -153,7 +165,11 @@
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="/images/img.jpg" alt="">Nguyễn Hữu Tý
+                                {% if current_user.HinhAnh %}
+                                <img src="/images/AnhDaiDien/{{current_user.HinhAnh}}"> Nguyễn Hữu Tý
+                                {% else %}
+                                <img src="/images/AnhDaiDien/camera.png">
+                                {% endif %}
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -239,6 +255,8 @@
                 </nav>
             </div>
         </div>
+
+
         {% block body %}
         {% endblock %}
         <!-- footer content -->
@@ -265,9 +283,20 @@
 <!--<script src="/js/parsley.min.js"></script>-->
 <script src="/js/jquery.dataTables.min.js"></script>
 <script src="/js/dataTables.bootstrap.min.js"></script>
+<script src="/js/pnotify.js"></script>
 <!-- Custom Theme Scripts -->
 <script src="/js/app.js"></script>
 <script src="/js/custom.min.js"></script>
+{% for message in flash_messages %}
+<script>
+    new PNotify({
+        title: '{{message.body}}',
+        text: '{{message.body}}',
+        type: '{{message.type}}',
+        styling: 'bootstrap3'
+    });
+</script>
+{% endfor %}
 
 
 {% block footer %}

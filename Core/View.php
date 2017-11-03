@@ -147,7 +147,7 @@ class View
                     echo '<li><div class="dropdown">
                     <a href="#" class="dropbtn">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
                       <div class="dropdown-content">
-                        <a href="#"><i class="fa fa-edit"></i> Xem chi tiết</a>
+                        <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
                         <a href="#"><i class="fa fa-edit"></i> Xóa</a>
                         <a href="#"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
                       </div>
@@ -167,7 +167,6 @@ class View
                 $mahoso = $val['mahoso'];
                 self::inGiaPhaDangDung($data, $mahoso, $val['hoten']);
             }
-
         }
         if ($flag && $mahsbo != null) {
             echo "</li></ul>";

@@ -54,4 +54,12 @@ abstract class Controller{
             $this->redirect('/login');
         }
     }
+    public function requireQuanTriVien(){
+        $this->requireLogin();
+        if (!Auth::checkQTV()){
+            Flash::addMessage('Bạn không có quyền vào trang này', Flash::INFO);
+            Auth::rememberRequestedPage();
+            $this->redirect('/login');
+        }
+    }
 }

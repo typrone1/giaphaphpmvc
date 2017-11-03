@@ -14,12 +14,14 @@ use Core\Controller;
 
 class Home extends Controller
 {
+
     public function indexAction(){
 //        View::render('Home/index.php', ['name' => 'Ty']);
 //        View::renderTemplate('Home/index.html',['name'=>'Ty',
 //        'colours' => ['Red', 'Blue', 'Green']
 //        ]);
 //        Mail::send('typrone1@gmail.com','ty','pro','hello');
+        $this->requireLogin();
         View::renderTemplate('Home/index.html',[
             'user' => Auth::getUser()
         ]);

@@ -102,5 +102,13 @@ class Auth
         }
         setcookie('remember_me', '', time() - 3600);  // set to expire in the past
     }
+    public static function checkQTV(){
+        if (User::findByID($_SESSION['user_id'])->MaCapQuanTri==2){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
 }
