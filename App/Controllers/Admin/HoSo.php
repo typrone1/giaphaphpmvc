@@ -8,7 +8,9 @@
 
 namespace App\Controllers\Admin;
 
+use App\Auth;
 use App\Database\MySqlConnection;
+use App\Flash;
 use App\Models\HoSoNgoaiToc;
 use Core\Controller;
 use App\Database\Query\MySqlBuilder;
@@ -85,5 +87,14 @@ class HoSo extends Controller
         $maHoSo = $this->routeParams['id'];
         $result = HoSoModel::find($maHoSo);
         echo \GuzzleHttp\json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+    public function deleteHoSoAction(){
+        $mhs = $this->routeParams['id'];
+        if (!\App\Models\HoSo::find($mhs)->deleteHoSo()){
+            Flash::addMessage('Đã xóa thành công !');
+        } else {
+            Flash::addMessage('Xóa thất bại !');
+        }
+        $this->redirect('/giapha/giaPhaDangDung');
     }
 }

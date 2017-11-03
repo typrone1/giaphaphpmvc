@@ -5,7 +5,7 @@ Danh sách hồ sơ
 {% block body %}
 <style>
     .dropbtn {
-        color: white;
+        /*color: white;*/
         border: none;
         cursor: pointer;
     }
@@ -13,7 +13,7 @@ Danh sách hồ sơ
     /* The container <div> - needed to position the dropdown content */
     .dropdown {
         position: relative;
-        display: inline-block;
+        /*display: inline-block;*/
     }
 
     /* Dropdown Content (Hidden by Default) */
@@ -34,6 +34,13 @@ Danh sách hồ sơ
         text-decoration: none;
         display: block;
         padding: 0 0 0 1.5em !important;
+        line-height: 50px;
+        margin: 0;
+        padding: 0 4em;
+        list-style: none;
+        text-decoration: none;
+        color: #90A4AE;
+        font-weight: 100;
 
     }
 
@@ -207,6 +214,7 @@ Danh sách hồ sơ
     </div>
 </div>
 </div>
+</div>
 <!-- /page content -->
 
 {% endblock %}
@@ -219,14 +227,13 @@ Danh sách hồ sơ
             var id = $(this).data('id');
             $.get("/admin/ho-so/" + id + "/getHoSoData", function (data, status) {
                 data = JSON.parse(data);
-                $("#hoten").html(
-                    "<b>Họ tên:</b>" + data.HoTen);
-                $("#ngaysinh").html("<b>Ngày sinh: </b>" + data.NgaySinh);
-                $("#gioitinh").html("<b>Giới tính: </b>" + data.GioiTinh);
-                $("#doithu").html("<b>Đời thứ: </b>" + data.DoiThu);
-                $("#conthu").html("<b>Con thứ: </b>" + data.ConThu);
-                $("#quequan").html("<b>Quê quán: </b>" + data.QueQuan);
-                $("#btnUpdate").attr("href", base_url + "/ho-so/" + data.MaHoSo);
+                $("#hoten").val(data.HoTen);
+                $("#ngaysinh").val(data.NgaySinh);
+                $("#gioitinh").val(data.GioiTinh);
+                $("#doithu").val(data.DoiThu);
+                $("#conthu").val(data.ConThu);
+                $("#quequan").val(data.QueQuan);
+//                $("#btnUpdate").attr("href", base_url + "/ho-so/" + data.MaHoSo);
             });
         }, null);
 

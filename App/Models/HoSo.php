@@ -168,5 +168,12 @@ class HoSo extends Model
         $stmt = $db->query($sql);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-
+    public function deleteHoSo(){
+        $sql = 'DELETE FROM HoSo
+                WHERE mahoso = :mahoso';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':mahoso', $this->MaHoSo, PDO::PARAM_STR);
+        $stmt->execute();
+    }
 }

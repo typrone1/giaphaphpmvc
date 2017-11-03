@@ -142,13 +142,22 @@ class View
                     echo '
                     <div class="' . $temp . '">
                     <input type="checkbox" id="' . $idName . '" checked/>
-                    <img src="/images/Arrow.png" class="arrow"><label for="' . $idName . '">' . $val['mahoso'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label>';
+                    <div class="dropdown">';
+                    if ($flag2)
+                    echo '<img src="/images/Arrow.png" class="arrow">'
+                    ; echo '<label for="' . $idName . '" class="dropbtn">' . $val['mahoso'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label><div class="dropdown-content">
+                        <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
+                        <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
+                        <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
+            data-target="#chinhSuaNhanh" data-id="'.$val['mahoso'].'"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
+                      </div></div>';
+
                 } else {
                     echo '<li><div class="dropdown">
                     <a href="#" class="dropbtn">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
                       <div class="dropdown-content">
                         <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
-                        <a href="#"><i class="fa fa-edit"></i> Xóa</a>
+                        <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
                         <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
             data-target="#chinhSuaNhanh" data-id="'.$val['mahoso'].'"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
                       </div>
