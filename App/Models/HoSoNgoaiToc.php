@@ -47,4 +47,10 @@ class HoSoNgoaiToc extends Model
             $this->errors[] = 'Name is required';
         }
     }
+    public static function getAll()
+    {
+        $db = static::getDB();
+        $stmt = $db->query('SELECT * FROM hosongoaitoc');
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

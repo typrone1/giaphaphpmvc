@@ -70,8 +70,15 @@ Xin chào
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control" name="maHoSoBo">
-                                        <option>Chọn mã hồ sơ bố</option>
-                                        <option value="{{maHoSoBo}}" selected>{{maHoSoBo}}</option>
+
+                                        {% for hoSo in dsHoSo %}
+                                            {% if maHoSoBo == hoSo.MaHoSo %}
+                                            <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                            {% else %}
+                                            <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                            {% endif %}
+                                        {% endfor %}
+
                                     </select>
                                 </div>
                             </div>
@@ -81,7 +88,9 @@ Xin chào
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control">
-                                        <option>Chọn nhánh mẹ</option>
+                                        {% for hoSo in dsHoSoNgoaiToc %}
+                                        <option value="{{hoSo.MaHoSoNT}}">{{hoSo.HoTen}}</option>
+                                        {% endfor %}
                                     </select>
                                 </div>
                             </div>

@@ -149,7 +149,8 @@ class View
                       <div class="dropdown-content">
                         <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
                         <a href="#"><i class="fa fa-edit"></i> Xóa</a>
-                        <a href="#"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
+                        <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
+            data-target="#chinhSuaNhanh" data-id="'.$val['mahoso'].'"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
                       </div>
                     </div>';
                     if ($flag2 != true) {

@@ -9,6 +9,7 @@
 namespace App\Controllers;
 
 
+use App\Controllers\Admin\HoSoNgoaiToc;
 use App\Flash;
 use App\Models\HoSo;
 use Core\Controller;
@@ -18,7 +19,7 @@ class ThemHoSo extends Controller
 {
     public function index(){
         $this->requireQuanTriVien();
-        View::renderTemplate('ThemHoSo/index.html');
+        View::renderTemplate('ThemHoSo/index.html', ['dsHoSo' => HoSo::getAll(), 'dsHoSoNgoaiToc' => \App\Models\HoSoNgoaiToc::getAll()]);
     }
 
     public function createAction(){

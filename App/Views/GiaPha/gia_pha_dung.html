@@ -24,7 +24,7 @@ Danh sách hồ sơ
         min-width: 160px;
         top: 2em;
         left: 199px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 9999;
     }
 
@@ -38,7 +38,9 @@ Danh sách hồ sơ
     }
 
     /* Change color of dropdown links on hover */
-    .dropdown-content a:hover {background-color: #f1f1f1}
+    .dropdown-content a:hover {
+        background-color: #f1f1f1
+    }
 
     /* Show the dropdown menu on hover */
     .dropdown:hover .dropdown-content {
@@ -88,12 +90,146 @@ Danh sách hồ sơ
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;"
+                     id="chinhSuaNhanh">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span
+                                        aria-hidden="true">×</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Chỉnh sửa hồ sơ</h4></div>
+                            <div class="modal-body">
+                                <h4 style="text-align: center">Chỉnh sửa nhanh</h4>
+                                <form action="#" class="form-horizontal form-label-left">
+                                    <div class="form-group"><label for="hoten"
+                                                                   class="control-label col-md-3 col-sm-3 col-xs-12">Họ
+                                        và tên</label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12"><input id="hoten"
+                                                                                        class="form-control col-md-7 col-xs-12"
+                                                                                        type="text" name="hoten"
+                                                                                        value="{{hoSo.HoTen}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div id="gender" class="btn-group" data-toggle="buttons"><label
+                                                    class="btn btn-default" data-toggle-class="btn-primary"
+                                                    data-toggle-passive-class="btn-default"> <input type="radio"
+                                                                                                    name="gender"
+                                                                                                    value="male"
+                                                                                                    data-parsley-multiple="gender">
+                                                &nbsp; Nam &nbsp; </label> <label class="btn btn-primary"
+                                                                                  data-toggle-class="btn-primary"
+                                                                                  data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="gender" value="female"
+                                                       data-parsley-multiple="gender"> &nbsp; Nữ &nbsp; </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh <span
+                                            class="required">*</span> </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12"><input id="ngaysinh"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="date"
+                                                                                        value="{{hoSo.NgaySinh}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Quê quán <span
+                                            class="required">*</span> </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12"><input id="birthday"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.QueQuan}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Đời thứ <span
+                                            class="required">*</span> </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12"><input id="doithu"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.DoiThu}}">
+                                        </div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ <span
+                                                class="required">*</span> </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12"><input id="conthu"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.ConThu}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Email <span
+                                            class="required"></span> </label>
+                                        <div class="col-md-9 col-sm-9 col-xs-12"><input id="birthday"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.Email}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group"><label
+                                            class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ liên hệ <span
+                                            class="required"></span> </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12"><input id="birthday"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.DiaChi}}">
+                                        </div>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT <span
+                                                class="required"></span> </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12"><input id="birthday"
+                                                                                        class="date-picker form-control col-md-7 col-xs-12"
+                                                                                        required="required"
+                                                                                        type="text"
+                                                                                        value="{{hoSo.SDT}}"></div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                <button type="button" id="btnUpdate" class="btn btn-primary">Lưu thay đổi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 </div>
-</div>
 <!-- /page content -->
 
+{% endblock %}
+{% block footer %}
+<script>
+    var base_url = window.location.origin;
+    $(document).ready(function () {
+        $(".chinhSuaNhanh").click(function (event) {
+            event.preventDefault();
+            var id = $(this).data('id');
+            $.get("/admin/ho-so/" + id + "/getHoSoData", function (data, status) {
+                data = JSON.parse(data);
+                $("#hoten").html(
+                    "<b>Họ tên:</b>" + data.HoTen);
+                $("#ngaysinh").html("<b>Ngày sinh: </b>" + data.NgaySinh);
+                $("#gioitinh").html("<b>Giới tính: </b>" + data.GioiTinh);
+                $("#doithu").html("<b>Đời thứ: </b>" + data.DoiThu);
+                $("#conthu").html("<b>Con thứ: </b>" + data.ConThu);
+                $("#quequan").html("<b>Quê quán: </b>" + data.QueQuan);
+                $("#btnUpdate").attr("href", base_url + "/ho-so/" + data.MaHoSo);
+            });
+        }, null);
+
+    });
+</script>
 {% endblock %}

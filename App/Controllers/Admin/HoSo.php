@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 use App\Database\MySqlConnection;
+use App\Models\HoSoNgoaiToc;
 use Core\Controller;
 use App\Database\Query\MySqlBuilder;
 use Core\View;
@@ -78,6 +79,11 @@ class HoSo extends Controller
 
     public function themConAction()
     {
-        View::renderTemplate('ThemHoSo/index.html', ['maHoSoBo' => $this->routeParams['mahoso']]);
+        View::renderTemplate('ThemHoSo/index.html', ['dsHoSo' => \App\Models\HoSo::getAll(), 'dsHoSoNgoaiToc' => HoSoNgoaiToc::getAll(), 'maHoSoBo' => $this->routeParams['mahoso']]);
+    }
+    public function getHoSoData(){
+        $maHoSo = $this->routeParams['id'];
+        $result = HoSoModel::find($maHoSo);
+        echo \GuzzleHttp\json_encode($result,JSON_UNESCAPED_UNICODE);
     }
 }
