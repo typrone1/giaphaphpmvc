@@ -51,6 +51,8 @@ $router->add('ho-so/{mahoso:[\da-f]+}', ['controller' => 'ChiTietHoSo', 'action'
 $router->add('ho-so/{mahoso:[\da-f]+}/them-con', ['controller' => 'HoSo', 'action' => 'themCon', 'namespace' => 'Admin']);
 $router->add('ho-so/{mahoso:[\da-f]+}/edit', ['controller' => 'ChiTietHoSo', 'action' => 'edit']);
 $router->add('danh-sach-ho-so', ['controller' => 'TestPhanTrang', 'action' => 'index']);
+$router->add('pha-do-dung', ['controller' => 'PhaDo', 'action' => 'index', 'namespace' => 'User']);
+$router->add('pha-do-cay', ['controller' => 'PhaDo', 'action' => 'phaDoCay', 'namespace' => 'User']);
 $router->add('{controller}/{action}');
 $router->add('{controller}/{id:\d+}/{action}');
 //$router->add('admin/{action}/{controller}');
@@ -58,6 +60,8 @@ $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 
 $router->add('user/{controller}/{action}', ['namespace' => 'User']);
 $router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);
+
+$router->add('bai-viet/{id:\d+}', ['namespace' => 'User', 'controller' => 'BaiViet', 'action' => 'xemChiTietBaiViet' ]);
 $router->dispatch($_SERVER['QUERY_STRING']);
 ////Test request match URL
 //

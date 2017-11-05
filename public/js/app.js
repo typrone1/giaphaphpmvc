@@ -5,9 +5,9 @@
  */
 $('.box-item button').click(function(){
     if (this.innerHTML == '-'){
-        this.innerHTML = "<i class='fa fa-usb'></i>";
+        this.innerHTML = "+";
     }else {
-        this.innerHTML = "<i class='fa fa-subscript'></i>";
+        this.innerHTML = "-";
     }
     $(this).parent().parent().find('ul').toggle();
 });

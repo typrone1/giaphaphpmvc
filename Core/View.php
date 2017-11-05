@@ -38,8 +38,12 @@ class View
             $function2 = new Twig_SimpleFunction('inGiaPhaDangDung', function () {
                 self::showGiaPha2();
             });
+            $rutGonHTML = new Twig_SimpleFunction('rutGonHTML', function($string){
+                return Html2Text::convert($string);
+            });
             $twig->addFunction($function);
             $twig->addFunction($function2);
+            $twig->addFunction($rutGonHTML);
 //            $twig->addGlobal('session', $_SESSION);
 //            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
             $twig->addGlobal('current_user', Auth::getUser());
@@ -145,7 +149,7 @@ class View
                     <div class="dropdown">';
                     if ($flag2)
                     echo '<img src="/images/Arrow.png" class="arrow">'
-                    ; echo '<label for="' . $idName . '" class="dropbtn">' . $val['mahoso'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label><div class="dropdown-content">
+                    ; echo '<label for="' . $idName . '" class="dropbtn">Đời thứ: ' . $val['mahoso'] .', Con thứ: '.$val['mahoso']. " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label><div class="dropdown-content">
                         <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
                         <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
                         <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
@@ -154,7 +158,7 @@ class View
 
                 } else {
                     echo '<li><div class="dropdown">
-                    <a href="#" class="dropbtn">' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
+                    <a href="#" class="dropbtn">Đời thứ: '. $val['mahoso'] .', Con thứ: '. $val['mahoso'] .' - '. $val['hoten'] . " - " . $val['hotenvo'] . '</a>
                       <div class="dropdown-content">
                         <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
                         <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>

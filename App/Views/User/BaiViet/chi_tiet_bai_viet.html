@@ -1,0 +1,34 @@
+{% extends "base_user.html" %}
+{% block title %}
+Trang chủ
+{% endblock %}
+{% block body %}
+<section class="content clearfix">
+    <div class="container">
+        <div class="search-bar clearfix">
+            <ul class="breadcrumb left clearfix">
+                <li class="start">
+                    <h4>
+                        <a href="javascript:void(0);" title="Trang nhất">Chi tiết bài viết</a>
+                    </h4>
+                </li>
+            </ul>
+            <div id="search-box">
+                <input type="text" name="keywords">
+                <input type="button" value="Tìm kiếm">
+            </div>
+        </div>
+        <div class="col-9">
+            <h5>{{baiViet.TieuDe}}</h5>
+            <small><i>Nguyễn Hữu Tý</i> - Thứ hai, 20/11/2017</small>
+            <div class="thumb">
+                <img src="/images/anh1.jpg" alt="">
+            </div>
+            <div>
+                {{baiViet.NoiDung | raw }}
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

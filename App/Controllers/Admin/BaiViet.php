@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 
+use App\Flash;
 use Core\Controller;
 use Core\View;
 use App\Models\BaiViet as BaiVietModel;
@@ -27,12 +28,21 @@ class BaiViet extends Controller
         View::renderTemplate('BaiViet/viet_bai.html',['dsLoaiTin' => LoaiTin::getAll()]);
     }
     public function getSuaBaiViet(){
-        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html',['baiViet' => BaiVietModel::findOne(1),'dsLoaiTin' => LoaiTin::getAll()]);
+        $id = $this->routeParams['id'];
+        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html',['baiViet' => BaiVietModel::findOne($id),'dsLoaiTin' => LoaiTin::getAll()]);
     }
     public function postThemBaiViet(){
         $post = new BaiVietModel($_POST);
         if ($post->save()){
-            echo "Them thanh cong";
+            Flash::addMessage("Thêm thành công");
+            $this->redirect('/admin/baiviet/getThemBaiViet');
+        } else {
+            Flash::addMessage("Thêm không công thành công", Flash::WARNING);
+            foreach ($post->errors as $error){
+                Flash::addMessage($error, Flash::WARNING);
+            }
+            View::renderTemplate('BaiViet/viet_bai.html', ['dsLoaiTin' => LoaiTin::getAll(), 'post' => $post]);
         }
+
     }
 }

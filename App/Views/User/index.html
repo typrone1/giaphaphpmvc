@@ -19,88 +19,44 @@ Trang chủ
             </div>
         </div>
         <div class="col-9">
-
+            {% for baiViet in dsBaiViet|slice(0, 1) %}
             <div class="col-9">
                 <div id="big-news">
                     <div class="thumb">
-                        <img src="/images/anh1.jpg" alt="">
+                        <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                        {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                        <img src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                        {% else %}
+                        <img src="/images/AnhBaiViet/camera.png" alt="">
+                        {% endif %}
+                        </a>
                     </div>
-                    <h5>Ông Trần Hồng Hà: Thiệt hại do mưa lũ một phần vì dự báo chưa chính xác</h5>
+                    <h5><a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a></h5>
                     <small>
-                        <i>Nguyễn Hữu Tý</i> - Thứ hai, 20/11/2017</small>
-                    <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
+                        <i>Nguyễn Hữu Tý</i> - Thứ hai, 20/11/2017
+                    </small>
+                    <p>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                 </div>
-
             </div>
+            {% endfor %}
+
             <div class="col-3" id="bai-viet-gan">
                 <div class="header-box">
                     <h4>
                         <i class="fa fa-address-book"></i> Bài viết gần đây</h4>
                 </div>
                 <div id="danh-sach">
+                    {% for baiViet in dsBaiViet|slice(1, dsBaiViet|length ) %}
                     <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
+                        <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                                <h5>{{baiViet.TieuDe}}</h5>
                             </a>
                         </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
+                        <p>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                         <hr>
                     </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
-                    <div class="article">
-                        <a href="#">
-                            <a href="#">
-                                <h5>Xin chào</h5>
-                            </a>
-                        </a>
-                        <p>Bộ Tài nguyên đang bổ sung khoảng 3.000 điểm dự báo mưa, đạt 40-100 km2 có một trạm.</p>
-                        <hr>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <a href="#" class="view-all">Xem tất cả
@@ -114,48 +70,25 @@ Trang chủ
                         <i class="fa fa-address-book"></i> Sự kiện - Tin tức</h4>
                 </div>
                 <article class="list-events">
+                    {% for baiViet in dsBaiViet|slice(0, 3) %}
                     <div class="event">
                         <h5 class="title-events">
-                            <a href="#">
-                                Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra </a>
+                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a>
                         </h5>
                         <div class="thumb-su-kien">
-                            <a>
-                                <img src="/images/anh1.jpg" alt="Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra">
+                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                                {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                                <img style="float: left; height: 64px; width: 64px" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                                {% else %}
+                                <img style="float: left; height: 64px; width: 64px" src="/images/AnhBaiViet/camera.png" alt="">
+                                {% endif %}
                             </a>
                         </div>
-                        <p class="description">
-                            Các cửa hàng của Khaisilk ở trung tâm TP HCM bị lực lượng chức năng đồng loạt kiểm tra. Các cửa hàng của Khaisilk ở tru</p>
+                        <p class="description">{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                         <hr>
                     </div>
-                    <div class="event">
-                        <h5 class="title-events">
-                            <a href="#">
-                                Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra </a>
-                        </h5>
-                        <div class="thumb-su-kien">
-                            <a>
-                                <img src="/images/anh1.jpg" alt="Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra">
-                            </a>
-                        </div>
-                        <p class="description">
-                            Các cửa hàng của Khaisilk ở trung tâm TP HCM bị lực lượng chức năng đồng loạt kiểm tra. Các cửa hàng của Khaisilk ở tru</p>
-                        <hr>
-                    </div>
-                    <div class="event">
-                        <h5 class="title-events">
-                            <a href="#">
-                                Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra </a>
-                        </h5>
-                        <div class="thumb-su-kien">
-                            <a>
-                                <img src="/images/anh1.jpg" alt="Ba cửa hàng Khaisilk ở Sài Gòn bị kiểm tra">
-                            </a>
-                        </div>
-                        <p class="description">
-                            Các cửa hàng của Khaisilk ở trung tâm TP HCM bị lực lượng chức năng đồng loạt kiểm tra. Các cửa hàng của Khaisilk ở tru</p>
-                        <hr>
-                    </div>
+                    {% endfor %}
+
                 </article>
                 <a href="#" class="view-all">Xem tất cả
                     <i class="fa fa-arrow-right"></i>

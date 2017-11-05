@@ -28,7 +28,7 @@ Chỉnh sửa bài viết
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
-                    <form action="/admin/baiviet/postThemBaiViet" method="post" class="form-horizontal form-label-left">
+                    <form action="/admin/baiviet/postThemBaiViet" method="post" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn loại tin
@@ -37,7 +37,12 @@ Chỉnh sửa bài viết
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select class="form-control" name="maLoaiTin">
                                     {% for loaiTin in dsLoaiTin %}
-                                        <option value="{{ loaiTin.MaLoaiTin }}">{{loaiTin.TenLoaiTin}}</option>
+                                        {% if loaiTin.MaLoaiTin == baiViet.MaLoaiTin %}
+                                            <option value="{{ loaiTin.MaLoaiTin }} selected">{{loaiTin.TenLoaiTin}}</option>
+                                        {% else %}
+                                            <option value="{{ loaiTin.MaLoaiTin }}">{{loaiTin.TenLoaiTin}}</option>
+                                        {% endif %}
+
                                     {% endfor %}
 
                                 </select>
@@ -59,7 +64,12 @@ Chỉnh sửa bài viết
                                 <textarea name="noiDung" style="width: 100%" rows="10">{{baiViet.NoiDung |raw}}</textarea>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label for="hinhAnh" class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" class="form-control-file" name="hinhAnh" id="hinhAnh">
+                            </div>
+                        </div>
                         <div class="ln_solid"></div>
                         <div class="form-group">
                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">

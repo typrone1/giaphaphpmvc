@@ -31,10 +31,16 @@ Danh sách hồ sơ
 
                     {% for baiViet in dsBaiViet %}
                     <div class="media">
-                        <div class="media-left"><a href="#"><img src="/images/anh1.jpg"
+                        {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                            <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}"
                                                                  style="width: 64px; height: 64px;"> </a></div>
+                        {% else %}
+                            <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/camera.png"
+                                                                 style="width: 64px; height: 64px;"> </a></div>
+                        {% endif %}
+
                         <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe
-                            }} <button class="btn btn-primary btn-sm"><i class="fa fa-edit"></i> Chỉnh sửa</button><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
+                            }} <a class="btn btn-primary btn-sm" href="/admin/baiviet/{{ baiViet.MaBaiViet }}/getSuaBaiViet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
                         </div>
                     </div>
                     {% endfor %}

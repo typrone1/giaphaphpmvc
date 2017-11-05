@@ -29,8 +29,6 @@
 }
 /* Navbar */
 #nav {
-    overflow: hidden;
-    background-color: cyan;
     position: relative;
 }
 #nav ul {
@@ -85,8 +83,8 @@
     list-style: none;
 }
 @keyframes xuatHien {
-    0% {transform: translateX(100%);opacity: 0;}   
-    100% {transform: translateX(0%);opacity: 1;} 
+    0% {transform: translateX(100%);opacity: 0;}
+    100% {transform: translateX(0%);opacity: 1;}
 }
 .breadcrumb .start a {
     font-weight: 700;
@@ -95,7 +93,6 @@
     background: #eceeed;
     border-left: 3px solid orange;
     padding: 0 8px;
-    margin-left: 0;
     z-index: 99;
     margin: 5px 0;
 }
@@ -224,5 +221,5 @@
     transition: all .5s;
 }
 * {
-    
+
 }
