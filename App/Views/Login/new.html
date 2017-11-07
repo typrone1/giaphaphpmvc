@@ -4,10 +4,12 @@
 
 {% block body %}
 <div class="login_wrapper">
+
     <div class="animate form login_form">
         <section class="login_content">
             <form action="/login/create" method="post">
                 <h1>Đăng nhập</h1>
+                {{ output | raw }}
                 <div>
                     <input type="text" class="form-control" placeholder="Email" required="" id="inputEmail"
                            name="email"/>

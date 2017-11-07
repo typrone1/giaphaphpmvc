@@ -59,7 +59,7 @@ abstract class Controller{
         if (!Auth::checkQTV()){
             Flash::addMessage('Bạn không có quyền vào trang này', Flash::INFO);
             Auth::rememberRequestedPage();
-            $this->redirect('/login');
+            $this->redirect('/');
         }
     }
 }

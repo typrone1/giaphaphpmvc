@@ -91,6 +91,7 @@ Xin chào
                                         {% for hoSo in dsHoSoNgoaiToc %}
                                         <option value="{{hoSo.MaHoSoNT}}">{{hoSo.HoTen}}</option>
                                         {% endfor %}
+                                        <option>Con nhận nuôi</option>
                                     </select>
                                 </div>
                             </div>
@@ -99,7 +100,7 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="hoTen" 
+                                    <input type="text" name="hoTen"
                                            class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
@@ -125,9 +126,12 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="ngaySinh"
-                                           class="date-picker form-control col-md-7 col-xs-12" 
-                                           type="text">
+                                    <div class="input-group date" id="myDatepicker2">
+                                        <input type="text" name="ngaySinh" class="form-control">
+                                        <span class="input-group-addon">
+                               <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -145,7 +149,7 @@ Xin chào
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="birthday" name="doiThu"
-                                           class="date-picker form-control col-md-7 col-xs-12" 
+                                           class="date-picker form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -155,7 +159,7 @@ Xin chào
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="birthday" name="conThu"
-                                           class="date-picker form-control col-md-7 col-xs-12" 
+                                           class="date-picker form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -211,4 +215,12 @@ Xin chào
 </div>
 <!-- /page content -->
 
+{% endblock %}
+
+{% block footer %}
+<script>
+    $('#myDatepicker2').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+</script>
 {% endblock %}

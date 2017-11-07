@@ -13,6 +13,7 @@ use App\Mail;
 use Core\Model;
 use App\Token;
 use Core\View;
+use mysqli;
 use PDO;
 
 class User extends Model
@@ -465,6 +466,52 @@ password_reset_hash =:token_hash';
         $stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
         $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
         $stmt->execute();
+    }
+
+    function checkUser($userData = array())
+    {
+        $dbHost = "localhost";
+        $dbUsername = "root";
+        $dbPassword = "";
+        $dbName = "mvc";
+        $userTbl = 'users';
+        if (!isset($this->db)) {
+            // Connect to the database
+            $conn = new mysqli($dbHost, $dbUsername, $dbPassword, $dbName);
+            if ($conn->connect_error) {
+                die("Failed to connect with MySQL: " . $conn->connect_error);
+            } else {
+                $this->db = $conn;
+            }
+        }
+        if (!empty($userData)) {
+            // Check whether user data already exists in database
+            $prevQuery = "SELECT * FROM users WHERE oauth_uid = " . $userData['oauth_uid'];
+            $this->db->query("SET NAMES utf8");
+            $prevResult = $this->db->query($prevQuery);
+            if ($prevResult->num_rows > 0) {
+                // Update user data if already exists
+                $query = "UPDATE " . $userTbl . " SET name ='" . $userData['first_name'] . "' WHERE oauth_uid = '" . $userData['oauth_uid'] . "'";
+                $update = $this->db->query($query);
+            } else {
+                // Insert user data
+                $sql = 'INSERT INTO users (name, email, password_hash, oauth_uid)
+                VALUES (:name, :email, 1, :oauth_uid)';
+                $db = static::getDB();
+                $stmt = $db->prepare($sql);
+                $stmt->bindValue(':name', $userData['first_name'] . " " . $userData['last_name'], PDO::PARAM_STR);
+                $stmt->bindValue(':email', $userData['email'], PDO::PARAM_STR);
+                $stmt->bindValue(':oauth_uid', $userData['oauth_uid'], PDO::PARAM_STR);
+                $stmt->execute();
+            }
+
+            // Get user data from the database
+            $result = $this->db->query($prevQuery);
+            $userData = $result->fetch_assoc();
+
+        }
+        // Return user data
+        return $userData;
     }
 
 }
