@@ -36,4 +36,10 @@ class LoaiTin extends Model
         $stmt = $db->query('SELECT * FROM LoaiTin');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public static function getAllPostByCategory($category)
+    {
+        $db = static::getDB();
+        $stmt = $db->query('SELECT * FROM baiviet WHERE MaLoaiTin = '.$category);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
 }

@@ -23,6 +23,8 @@
     <link href="/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="/css/pnotify.css" rel="stylesheet">
     <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    {% block external_css %}
+    {% endblock %}
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -90,7 +92,7 @@
                                     <li><a href="/admin/baiviet/getThemBaiViet">Viết bài</a></li>
                                     <li><a href="/admin/baiviet/getDanhSachBaiViet">Danh sách bài viết</a></li>
                                     <li><a href="/admin/loaitin/index">Cập nhật danh mục</a></li>
-                                    <li><a href="tables_dynamic.html">Thông báo việc tộc</a></li>
+                                    <li><a href="/xem-lich">Xem lịch</a></li>
                                 </ul>
                             </li>
                         </ul>

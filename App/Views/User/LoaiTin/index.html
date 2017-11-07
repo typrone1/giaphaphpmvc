@@ -1,0 +1,60 @@
+{% extends "base_user.html" %}
+{% block title %}
+Trang chủ
+{% endblock %}
+{% block css %}
+<link href="/css/styles.css" rel="stylesheet">
+<style>
+    button {
+        margin: .5em;
+        width: 2em;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<section class="content clearfix">
+    <div class="container">
+        <div class="search-bar clearfix">
+            <ul class="breadcrumb left clearfix">
+                <li class="start">
+                    <h4>
+                        <a href="javascript:void(0);" title="Trang nhất">Danh sách bài viết</a>
+                    </h4>
+                </li>
+            </ul>
+            <div id="search-box">
+                <input type="text" name="keywords">
+                <input type="button" value="Tìm kiếm">
+            </div>
+        </div>
+        <div>
+            <div style="height: 100px; text-align: center; background-image: url('/images/anh1.jpg'); line-height: 100px; margin-bottom: 2em;">
+                <h3><i class="fa fa-address-book"></i> Bài viết theo loại tin</h3>
+            </div>
+            <div>
+                {% for baiViet in dsBaiViet|slice(0, dsBaiViet|length ) %}
+                <div>
+                    {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                    <img style="height: 75px; width: 75px" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                    {% else %}
+                    <img style="height: 75px; width: 75px" src="/images/AnhBaiViet/camera.png" alt="">
+                    {% endif %}
+                    <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                        <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                            <h5>{{baiViet.TieuDe}}</h5>
+                        </a>
+                    </a>
+                    <p>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 500) ~ '...' }}</p>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="divtrang" style="text-align: center">{{urlPagination | raw }}</div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

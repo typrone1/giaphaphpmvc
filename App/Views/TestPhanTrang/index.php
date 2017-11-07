@@ -44,7 +44,6 @@ function phan_trang($tenCot, $tenBang, $dieuKien, $soLuongSP, $trang, $dieuKienT
                 <div class="clearfix"></div>
                 <?php
                 $trang=0;
-                $trang=0;
                 if(isset($_GET["trang"]))
                     $trang=$_GET["trang"];
                 $laysp = phan_trang("*", "hoso", "", 5, $trang, "","test-phan-trang/index");

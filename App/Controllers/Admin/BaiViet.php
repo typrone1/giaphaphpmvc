@@ -43,6 +43,8 @@ class BaiViet extends Controller
             }
             View::renderTemplate('BaiViet/viet_bai.html', ['dsLoaiTin' => LoaiTin::getAll(), 'post' => $post]);
         }
-
+    }
+    public function xemLichAction(){
+        View::renderTemplate('Lich/index.html');
     }
 }
