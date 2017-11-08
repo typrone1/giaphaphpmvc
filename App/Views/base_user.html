@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/font-awesome.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    {% block external_css %}{% endblock %}
     <style>
         #nav ul li {
             position: relative;
@@ -45,12 +46,21 @@
 <header>
     <div class="container">
         <div id="banner">
-            <div id="tai-khoan">
 
-                <a href="#">
+            <div id="tai-khoan">
+                {% if current_user %}
+                <div class="profile_info">
+                    <span>Xin chào,</span>
+                    <h2>{{ current_user.name }}</h2>
+                    <a href="/logout">Đăng xuất</a>
+                </div>
+                {% else %}
+                <a href="/login">
                     <i class="fa fa-apple" aria-hidden="true"></i>Đăng nhập</a> |
-                <a href="#">
+                <a href="/signup/new">
                     <i class="fa fa-long-arrow-right"></i>Đăng ký</a>
+                {% endif %}
+
             </div>
             <h1>Gia phả họ Nguyễn</h1>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi dicta earum explicabo natus sapiente

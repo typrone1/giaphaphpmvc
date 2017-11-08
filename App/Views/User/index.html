@@ -2,7 +2,16 @@
 {% block title %}
 Trang chủ
 {% endblock %}
+{% block external_css %}
+<script src="/js/amlich-hnd.js" type="text/javascript"></script>
+<style>
+    table {
+        width: 100%;
+    }
+</style>
+{% endblock %}
 {% block body %}
+
 <section class="content clearfix">
     <div class="container">
         <div class="search-bar clearfix">
@@ -63,7 +72,97 @@ Trang chủ
                 <i class="fa fa-arrow-right"></i>
             </a>
         </div>
-        <div class="col-3">
+        <div class="col-3 clearfix">
+            <script>
+                var mockData = [{
+                    "ngayGio": "2015-11-29"
+                },
+                    {
+                        "ngayGio": "2017-09-20"
+                    },
+                    {
+                        "ngayGio": "2014-06-15"
+                    },
+                    {
+                        "ngayGio": "2015-01-10"
+                    },
+                    {
+                        "ngayGio": "2015-02-23"
+                    }
+                ];
+                setOutputSize("small");
+                showVietCal();
+            </script>
+            <table align="center" cellspacing="1" border="0">
+
+                <tr>
+                    <td align="center">
+                        <div id="lich"></div>
+                        <script language="JavaScript">
+                            document.getElementById('lich').innerHTML = printSelectedMonth();
+                        </script>
+
+                    </td>
+                </tr>
+
+                <tr>
+                    <td align="center">
+                        <form name="SelectMonth" action="">
+                            Th&aacute;ng
+                            <select name="month">
+                                <option value="1">1
+                                <option value="2">2
+                                <option value="3">3
+                                <option value="4">4
+                                <option value="5">5
+                                <option value="6">6
+                                <option value="7">7
+                                <option value="8">8
+                                <option value="9">9
+                                <option value="10">10
+                                <option value="11">11
+                                <option value="12">12
+                            </select> &#160;&#160;&#160;&#160; N&#x103;m
+                            <INPUT NAME="year" size=4 value="2005"> &#160;
+
+                            <p>
+
+                                <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng" onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));"> &#160;&#160;
+                        </form>
+
+                        <script type="text/javascript">
+
+
+                            for (var i = mockData.length - 1; i >= 0; i--) {
+                                var timestamp = Date.parse(mockData[i].ngayGio)
+                                if (isNaN(timestamp) == false) {
+                                    var d = new Date(timestamp);
+                                    console.log(d.getDate() + "/" + d.getMonth());
+                                }
+                            }
+
+                            getSelectedMonth();
+                            document.SelectMonth.month.value = currentMonth;
+                            document.SelectMonth.year.value = currentYear;
+
+                            function viewMonth(mm, yy) {
+                                window.location = window.location.pathname + '?yy=' + yy + '&mm=' + mm;
+                            }
+
+                            // function viewYear(yy) {
+                            // 	var loc = 'currentyear.html?yy=' + yy;
+                            // 	var win2702 = window.open(loc, "win2702", "menubar=yes,scrollbars=yes,resizable=yes");
+                            // }
+                        </script>
+
+                    </td>
+                </tr>
+
+            </table>
+
+
+        </div>
+        <div>
             <div id="su-kien">
                 <div class="header-box">
                     <h4>
@@ -78,9 +177,9 @@ Trang chủ
                         <div class="thumb-su-kien">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                                 {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                                <img style="float: left; height: 64px; width: 64px" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                                <img style="min-width: 100%; height: 100%" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
                                 {% else %}
-                                <img style="float: left; height: 64px; width: 64px" src="/images/AnhBaiViet/camera.png" alt="">
+                                <img style="min-width: 100%; height: 100%" src="/images/AnhBaiViet/camera.png" alt="">
                                 {% endif %}
                             </a>
                         </div>

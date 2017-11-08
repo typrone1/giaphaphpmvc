@@ -152,9 +152,6 @@
     margin-top: .2em;
     float: right;
 }
-#su-kien {
-    margin-left: 0.5em;
-}
 .list-events {
     margin-top: 2em;
 }
@@ -163,13 +160,14 @@
     margin-right: 10px;
     float: left;
     width: 100px;
+    height: 60px;
     border: 2px solid red;
 }
 .thumb-su-kien img {
     max-width: 100%;
 }
 .description {
-    padding-bottom: 0.17em;
+    padding-bottom: 2.17em;
 }
 
 @media (max-width: 576px) {
@@ -222,4 +220,8 @@
 }
 * {
 
+}
+
+.event {
+    height: 6em;
 }
