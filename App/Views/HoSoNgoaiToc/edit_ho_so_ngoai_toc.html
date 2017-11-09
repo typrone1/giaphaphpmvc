@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% block title %}
+Danh sách hồ sơ
+{% endblock %}
+{% block body %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Chỉnh sửa hồ sơ ngoại tộc</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>User Report
+                            <small>Activity report</small>
+                        </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="col-md-3 col-sm-3 col-xs-6 profile_left">
+                            <div class="profile_img">
+                                <div id="crop-avatar">
+                                    <!-- Current avatar -->
+                                    <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"
+                                         title="Change the avatar">
+                                </div>
+                            </div>
+                            <h3>{{ hoSo.HoTen}}</h3>
+
+                            <ul class="list-unstyled user_data">
+                                <li>
+                                    <i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: {{hoSo.NgaySinh}}
+                                </li>
+
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i> Quê quán: {{hoSo.QueQuan}}
+                                </li>
+
+                                <li class="m-top-xs">
+                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                    <a href="#" target="_blank">giapha.com</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="profile_title">
+                                <div class="col-md-12">
+                                    <h2>Thông tin cá nhân</h2>
+                                </div>
+
+                            </div>
+                            <br>
+                            <form id="demo-form2" class="form-horizontal form-label-left">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Hồ sơ phụ thuộc
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.MaHoSoNT}}">
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên chồng(vợ)
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSoPhuThuoc.HoTen}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên bố
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.HoTenBo}}">
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên mẹ
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.HoTenMe}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="middle-name"
+                                           class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
+                                               name="middle-name" value="{{hoSo.HoTen}}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Giới tính</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div id="gender" class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-default" data-toggle-class="btn-primary"
+                                                   data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="gender" value="male"
+                                                       data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
+                                            </label>
+                                            <label class="btn btn-primary" data-toggle-class="btn-primary"
+                                                   data-toggle-passive-class="btn-default">
+                                                <input type="radio" name="gender" value="female"
+                                                       data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="date" value="{{hoSo.NgaySinh}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Quê quán
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.QueQuan}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Đời thứ
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.DoiThu}}" >
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ
+                                        <span class="required">*</span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.ConThu}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.Email}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ liên hệ
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.DiaChi}}">
+                                    </div>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
+                                        <span class="required"></span>
+                                    </label>
+                                    <div class="col-md-3 col-sm-3 col-xs-12">
+                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.SDT}}">
+                                    </div>
+                                </div>
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        <button class="btn btn-primary" type="reset">Reset</button>
+                                        <button type="submit" class="btn btn-success">Thêm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6">
+                            {% for vo in dsVo %}
+                            {% if vo.hinhanh is not null and vo.hinhanh != '' %}
+                            <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="width: 100%">
+                            {% endif %}
+                            <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
+                            <p>Năm sinh: {{ vo.ngaysinh }}</p>
+                            <p>Quê quán: {{vo.quequan }}</p>
+                            <p>Mất ngày: {{vo.ngaymat }}</p>
+                            <p>Nơi mất: </p>
+                            <p>Nơi an táng: {{vo.noiantang}}</p>
+                            <p>Sinh hạ:</p>
+                            <a class="btn btn-success">
+                                <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa hồ sơ</a>
+                            <br/>
+                            <ol>
+                                {% for con in dsCon %}
+                                {% if con.mahosome == vo.mahosont %}
+                                <li><a class="btn btn-link" href="#">Con thứ: {{con.conthu}} - {{con.hoten}}</a></li>
+                                {% endif %}
+                                {% endfor %}
+                            </ol>
+                            {% endfor %}
+                            <!--<div class="profile_img">-->
+                            <!--<div id="crop-avatar">-->
+                            <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
+                            <!--<img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"-->
+                            <!--title="Change the avatar">-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<h3>Nguyễn Thị A</h3>-->
+
+                            <!--<ul class="list-unstyled user_data">-->
+                            <!--<li>-->
+                            <!--<i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: 1/1/1911-->
+                            <!--</li>-->
+
+                            <!--<li>-->
+                            <!--<i class="fa fa-briefcase user-profile-icon"></i> Quê quán: Quảng Bình-->
+                            <!--</li>-->
+
+                            <!--<li class="m-top-xs">-->
+                            <!--<i class="fa fa-external-link user-profile-icon"></i>-->
+                            <!--<a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>-->
+                            <!--</li>-->
+                            <!--</ul>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /page content -->
+
+{% endblock %}

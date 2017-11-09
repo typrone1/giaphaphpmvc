@@ -41,6 +41,7 @@ class HoSoNgoaiToc extends Model
             return $stmt->execute();
         }
     }
+
     public function validate()
     {
         if ($this->hoTen == '') {
@@ -52,5 +53,20 @@ class HoSoNgoaiToc extends Model
         $db = static::getDB();
         $stmt = $db->query('SELECT * FROM hosongoaitoc');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    public static function find($maHoSo)
+    {
+        $sql = 'SELECT * FROM HoSoNgoaiToc
+                WHERE mahoso = :mahoso';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+
+        $stmt->execute();
+
+        return $stmt->fetch();
     }
 }

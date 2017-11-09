@@ -202,64 +202,28 @@ Danh sách hồ sơ
                             </form>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
-                            <ul class="list-unstyled msg_list">
-                                <li>
-                                    <a>
-                                        <span class="image">
-                                          <img src="/images/img.jpg" alt="img">
-                                        </span>
-                                                        <span>
-                                          <span>John Smith</span>
-                                      
-                                        </span>
-                                                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                        <span class="image">
-                                          <img src="/images/img.jpg" alt="img">
-                                        </span>
-                                                        <span>
-                                          <span>John Smith</span>
-                                      
-                                        </span>
-                                                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                        <span class="image">
-                                          <img src="/images/img.jpg" alt="img">
-                                        </span>
-                                                        <span>
-                                          <span>John Smith</span>
-                                      
-                                        </span>
-                                                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a>
-                                        <span class="image">
-                                          <img src="/images/img.jpg" alt="img">
-                                        </span>
-                                                        <span>
-                                          <span>John Smith</span>
-                                      
-                                        </span>
-                                                        <span class="message">
-                                          Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
+                            {% for vo in dsVo %}
+                                {% if vo.hinhanh is not null and vo.hinhanh != '' %}
+                                <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="width: 100%">
+                                {% endif %}
+                                <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
+                                <p>Năm sinh: {{ vo.ngaysinh }}</p>
+                                <p>Quê quán: {{vo.quequan }}</p>
+                                <p>Mất ngày: {{vo.ngaymat }}</p>
+                                <p>Nơi mất: </p>
+                                <p>Nơi an táng: {{vo.noiantang}}</p>
+                                <p>Sinh hạ:</p>
+                                <a class="btn btn-success" href="/ho-so-ngoai-toc/{{vo.mahoso}}">
+                                    <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa hồ sơ</a>
+                                <br/>
+                                <ol>
+                                    {% for con in dsCon %}
+                                    {% if con.mahosome == vo.mahosont %}
+                                        <li><a class="btn btn-link" href="#">Con thứ: {{con.conthu}} - {{con.hoten}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ol>
+                            {% endfor %}
                             <!--<div class="profile_img">-->
                                 <!--<div id="crop-avatar">-->
                                     <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
@@ -284,9 +248,6 @@ Danh sách hồ sơ
                                 <!--</li>-->
                             <!--</ul>-->
 
-                            <a class="btn btn-success">
-                                <i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
-                            <br/>
                         </div>
                     </div>
                 </div>

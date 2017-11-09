@@ -45,12 +45,12 @@ class ChiTietHoSo extends Controller
                 }
             }
             $dsVo = $builder
-                ->select('mahoso', 'hoten')
+                ->select('mahoso', 'hoten', 'ngaysinh', 'mahosont', 'hinhanh')
                 ->where('mahoso', $maHoSo)
                 ->from('hosongoaitoc')
                 ->all();
             $dsCon = $builder
-                ->select('mahoso', 'hoten')
+                ->select('mahoso', 'hoten', 'mahosome', 'conthu')
                 ->where('mahosobo', $maHoSo)
                 ->from('hoso')
                 ->all();

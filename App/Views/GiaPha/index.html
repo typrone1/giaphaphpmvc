@@ -2,6 +2,8 @@
 {% block title %}
 Danh sách hồ sơ
 {% endblock %}
+{% block external_css %}
+{% endblock %}
 {% block body %}
 <!-- page content -->
 <div class="right_col" role="main">
@@ -36,8 +38,8 @@ Danh sách hồ sơ
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div style="overflow-y: hidden">
-                            <div class="tree">
+                        <div style="overflow-y: hidden" class="zoomViewport">
+                            <div class="tree zoomContainer" >
                                 {{ inGiaPhaDangCay() }}
                             </div>
                         </div>
