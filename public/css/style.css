@@ -17,10 +17,12 @@
 #banner #tai-khoan {
     position: absolute;
     top: 0;
+    text-align: center;
     right: 1em;
-    background: orange;
+    background: #ffc300;
     padding: .5em;
     border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.24);
 }
 #banner h1 {
     font-style: italic;
@@ -35,18 +37,16 @@
     width: 100%;
     float: left;
 }
-#nav ul li {
+#menu-top ul li {
     background: linear-gradient(to bottom, rgba(254,252,234,1) 0%,rgba(241,218,54,1) 100%);
     display: inline-block;
     width: 5.5em;
     text-align: center;
     line-height: 2em;
 }
-#nav ul li:hover {
+#menu-top ul li:hover {
     background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-}
-#nav ul li a {
-    text-decoration: none;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.24);
 }
 #nav input[type="checkbox"] {
     display: none;
@@ -59,7 +59,7 @@
     color: #F44336;
     display: none;
 }
-#menu:checked ~ ul {
+#menu:checked ~ #menu-top ul {
     animation: xuatHien 1s ease;
     display: block;
 }
@@ -91,7 +91,7 @@
     color: #9f224e;
     text-decoration: none;
     background: #eceeed;
-    border-left: 3px solid orange;
+    border-left: 3px solid #ffc300;
     padding: 0 8px;
     z-index: 99;
     margin: 5px 0;
@@ -130,6 +130,7 @@
 }
 #big-news {
     padding-right: 0.5em;
+    margin-left: .5em;
 }
 #bai-viet-gan, #su-kien {
     position: relative;
@@ -174,10 +175,10 @@
     #nav {
         background: linear-gradient(to bottom, rgba(230,240,163,1) 0%,rgba(210,230,56,1) 50%,rgba(195,216,37,1) 51%,rgba(219,240,67,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
-    #nav ul {
+    #menu-top ul {
         display: none;
     }
-    #nav ul li {
+    #menu-top ul li {
         background: transparent;
         display: block;
         width: 100%;
@@ -221,7 +222,7 @@
 * {
 
 }
-
 .event {
     height: 6em;
+    margin-left: .5em;
 }
