@@ -11,19 +11,11 @@ Lịch
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Lịch</h3>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Xem Lịch
+                        <h2>Lịch ngày giỗ
                             <small>(Âm lịch + Dương lịch)</small>
                         </h2>
                         <div class="clearfix"></div>
@@ -53,9 +45,11 @@ Lịch
 
                             <tr>
                                 <td align="center">
-
+                                    <div class="cal1">
+                                        <div id="lich" class="clndr"></div>
+                                    </div>
                                     <script language="JavaScript">
-                                        document.writeln(printSelectedMonth());
+                                        document.getElementById('lich').innerHTML = printSelectedMonth();
                                     </script>
 
                                 </td>
@@ -84,7 +78,6 @@ Lịch
                                         <p>
 
                                             <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng" onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));"> &#160;&#160;
-                                            <input type="button" value="Xem l&#x1ECB;ch n&#x0103;m" onClick="javascript:viewYear(parseInt(year.value));">
                                     </form>
 
                                     <script type="text/javascript">

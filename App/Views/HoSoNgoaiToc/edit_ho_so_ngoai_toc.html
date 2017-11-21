@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Danh sách hồ sơ
+Hồ sơ ngoại tộc
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -8,7 +8,7 @@ Danh sách hồ sơ
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Chỉnh sửa hồ sơ ngoại tộc</h3>
+                <h3>Hồ sơ ngoại tộc</h3>
             </div>
         </div>
 
@@ -19,13 +19,12 @@ Danh sách hồ sơ
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>User Report
-                            <small>Activity report</small>
+                        <h2>Chi tiết hồ sơ
                         </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-sm-3 col-xs-6 profile_left">
+                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
@@ -43,15 +42,10 @@ Danh sách hồ sơ
                                 <li>
                                     <i class="fa fa-briefcase user-profile-icon"></i> Quê quán: {{hoSo.QueQuan}}
                                 </li>
-
-                                <li class="m-top-xs">
-                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                    <a href="#" target="_blank">giapha.com</a>
-                                </li>
                             </ul>
                         </div>
 
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-9 col-sm-9 col-xs-12">
                             <div class="profile_title">
                                 <div class="col-md-12">
                                     <h2>Thông tin cá nhân</h2>
@@ -65,14 +59,14 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.MaHoSoNT}}">
                                     </div>
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên chồng(vợ)
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên chồng (vợ)
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSoPhuThuoc.HoTen}}">
                                     </div>
                                 </div>
@@ -81,14 +75,14 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.HoTenBo}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên mẹ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.HoTenMe}}">
                                     </div>
                                 </div>
@@ -124,7 +118,7 @@ Danh sách hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="date" value="{{hoSo.NgaySinh}}">
                                     </div>
                                 </div>
@@ -133,7 +127,7 @@ Danh sách hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.QueQuan}}">
                                     </div>
                                 </div>
@@ -142,14 +136,14 @@ Danh sách hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.DoiThu}}" >
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.ConThu}}">
                                     </div>
                                 </div>
@@ -158,7 +152,7 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.Email}}">
                                     </div>
                                 </div>
@@ -167,14 +161,14 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.DiaChi}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.SDT}}">
                                     </div>
                                 </div>
@@ -210,37 +204,12 @@ Danh sách hồ sơ
                                 {% endfor %}
                             </ol>
                             {% endfor %}
-                            <!--<div class="profile_img">-->
-                            <!--<div id="crop-avatar">-->
-                            <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
-                            <!--<img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"-->
-                            <!--title="Change the avatar">-->
-                            <!--</div>-->
-                            <!--</div>-->
-                            <!--<h3>Nguyễn Thị A</h3>-->
-
-                            <!--<ul class="list-unstyled user_data">-->
-                            <!--<li>-->
-                            <!--<i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: 1/1/1911-->
-                            <!--</li>-->
-
-                            <!--<li>-->
-                            <!--<i class="fa fa-briefcase user-profile-icon"></i> Quê quán: Quảng Bình-->
-                            <!--</li>-->
-
-                            <!--<li class="m-top-xs">-->
-                            <!--<i class="fa fa-external-link user-profile-icon"></i>-->
-                            <!--<a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>-->
-                            <!--</li>-->
-                            <!--</ul>-->
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- /page content -->
 

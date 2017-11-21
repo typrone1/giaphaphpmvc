@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Xin chào
+Cấp quyền quản trị
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -8,7 +8,7 @@ Xin chào
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Hồ Sơ</h3>
+                <h3>Cấp quyền quản trị</h3>
             </div>
         </div>
 
@@ -17,12 +17,6 @@ Xin chào
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Phân quyền
-                            <small>Users</small>
-                        </h2>
-                        <div class="clearfix"></div>
-                    </div>
                     <div class="x_content">
                         <form action="/admin/thanhvien/capQuyen" method="post" class="form-horizontal form-label-left">
                             <div class="form-group">
@@ -50,7 +44,7 @@ Xin chào
                                     </div>
                                     <div class="">
                                         <label>
-                                            <input type="checkbox" class="js-switch" disabled="disabled"/> Thêm hồ sơ
+                                            <input type="checkbox" class="js-switch"/> Thêm hồ sơ
                                         </label>
                                     </div>
                                 </div>

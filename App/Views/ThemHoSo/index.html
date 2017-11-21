@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Xin chào
+Thêm hồ sơ
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -10,54 +10,13 @@ Xin chào
             <div class="title_left">
                 <h3>Hồ Sơ</h3>
             </div>
-
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Thêm hồ sơ
-                            <small>Thêm thông tin chi tiết</small>
-                        </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Settings 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="close-link">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            </li>
-                        </ul>
+                        <h2>Thêm hồ sơ</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -65,11 +24,11 @@ Xin chào
                         <form action="/ThemHoSo/create" method="post" class="form-horizontal form-label-left" enctype="multipart/form-data">
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh bố
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn nhánh bố
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="maHoSoBo">
+                                    <select class="form-control" name="maHoSoBo" id="getHoSoMe">
 
                                         {% for hoSo in dsHoSo %}
                                             {% if maHoSoBo == hoSo.MaHoSo %}
@@ -83,20 +42,19 @@ Xin chào
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh mẹ
-                                    <span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn nhánh mẹ
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control">
+                                    <select class="form-control" id="maHoSoMe">
                                         {% for hoSo in dsHoSoNgoaiToc %}
                                         <option value="{{hoSo.MaHoSoNT}}">{{hoSo.HoTen}}</option>
                                         {% endfor %}
-                                        <option>Con nhận nuôi</option>
+                                        <option>Con nuôi</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Họ và tên
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -139,7 +97,7 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                    <input class="form-control col-md-7 col-xs-12"
                                             type="text">
                                 </div>
                             </div>
@@ -148,8 +106,8 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="doiThu"
-                                           class="date-picker form-control col-md-7 col-xs-12"
+                                    <input name="doiThu"
+                                           class="form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -158,8 +116,8 @@ Xin chào
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" name="conThu"
-                                           class="date-picker form-control col-md-7 col-xs-12"
+                                    <input name="conThu"
+                                           class="form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -168,7 +126,7 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                    <input class="form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -177,7 +135,7 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                    <input class="form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -186,7 +144,7 @@ Xin chào
                                     <span class="required"></span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                    <input class="form-control col-md-7 col-xs-12"
                                            type="text">
                                 </div>
                             </div>
@@ -212,7 +170,6 @@ Xin chào
         </div>
     </div>
 </div>
-</div>
 <!-- /page content -->
 
 {% endblock %}
@@ -222,5 +179,22 @@ Xin chào
     $('#myDatepicker2').datetimepicker({
         format: 'DD/MM/YYYY'
     });
+    let getHoSoMe = document.querySelector('#getHoSoMe');
+    let maHoSoMe = document.querySelector('#maHoSoMe');
+    getHoSoMe.addEventListener('change', function () {
+        let id = this.value;
+        $.get("/ho-so-ngoai-toc/list/" + id, function (data, status) {
+            data = JSON.parse(data);
+            while(maHoSoMe.hasChildNodes()) {
+                maHoSoMe.removeChild(maHoSoMe.lastChild);
+            }
+            data.map(function (data) {
+                var option = document.createElement('option');
+                option.value = data.MaHoSoNT;
+                option.textContent = data.HoTen;
+                maHoSoMe.appendChild(option);
+            })
+        });
+    })
 </script>
 {% endblock %}

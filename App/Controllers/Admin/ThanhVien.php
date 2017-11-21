@@ -41,7 +41,7 @@ class ThanhVien extends Authenticated
     {
         if (User::findByID($_POST['id'])->updateProfile($_POST)) {
 
-            Flash::addMessage('Changes saved');
+            Flash::addMessage('Cập nhật thành công');
 
             $this->redirect('/admin/thanhvien/'.$_POST['id'].'/chinhsua');
 

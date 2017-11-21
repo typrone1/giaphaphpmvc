@@ -7,9 +7,10 @@
 
     <div class="animate form login_form">
         <section class="login_content">
+
             <form action="/login/create" method="post">
                 <h1>Đăng nhập</h1>
-                {{ output | raw }}
+
                 <div>
                     <input type="text" class="form-control" placeholder="Email" required="" id="inputEmail"
                            name="email"/>
@@ -18,29 +19,29 @@
                     <input type="password" class="form-control" placeholder="Mật khẩu" required="" id="inputPassword"
                            name="password"/>
                 </div>
-                <div>
+                <div class="pull-left">
                     <input type="checkbox" name="remember_me" {% if remember_me %} checked="checked" {% endif %}}> Nhớ
                     mật khẩu
                 </div>
-                <div>
-                    <input type="submit" value="Đăng nhập" class="btn btn-default submit">
-                    <a class="reset_pass" href="#">Quên mật khẩu?</a>
-                </div>
-
                 <div class="clearfix"></div>
 
+                <div class="pull-right">
+                    <input type="submit" value="Đăng nhập" class="btn btn-default submit">
+                </div>
+                <a class="reset_pass pull-right" href="#">Quên mật khẩu?</a>
+                {{ output | raw }}
+                <div class="clearfix"></div>
                 <div class="separator">
                     <p class="change_link">Bạn chưa có tài khoản?
                         <a href="#signup" class="to_register"> Tạo tài khoản </a>
                     </p>
-
                     <div class="clearfix"></div>
                     <br/>
-
                     <div>
                         <h1>
-                            <i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                        <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            Quản lý Gia phả Online
+                        </h1>
+                        <img src="/images/PA1057_gia-pha.png" alt="" style="width: 20%">
                     </div>
                 </div>
             </form>
@@ -67,24 +68,24 @@
                 <div>
                     <input type="file" name="hinhAnh" class="form-control">
                 </div>
-                <div>
+                <br>
+                <div class="pull-right">
                     <input type="submit" value="Đăng ký" class="btn btn-default submit">
                 </div>
 
                 <div class="clearfix"></div>
 
                 <div class="separator">
-                    <p class="change_link">Đã là thành viên ?
-                        <a href="#signin" class="to_register"> Đăng nhập ngay </a>
+                    <p class="change_link">Bạn là thành viên?
+                        <a href="#signin" class="to_register"> Đăng nhập</a>
                     </p>
-
                     <div class="clearfix"></div>
                     <br/>
-
                     <div>
                         <h1>
-                            <i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                        <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            Quản lý Gia phả Online
+                        </h1>
+                        <img src="/images/PA1057_gia-pha.png" alt="" style="width: 20%">
                     </div>
                 </div>
             </form>

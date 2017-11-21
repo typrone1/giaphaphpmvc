@@ -94,7 +94,7 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li><div class="box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">'  . $val['mahoso'] . '– <i class="fa fa-male" aria-hidden="true"></i> ' . $val['hoten']
+                echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">'  . $val['mahoso'] . '– <i class="fa fa-male" aria-hidden="true"></i> ' . $val['hoten']
                     .'(<i class="fa fa-female" aria-hidden="true"></i>' . $val['hotenvo'] . ")" . '</a><br>Đời: <b>'.$val['doithu'].'</b>, Con thứ: <b>'.$val['conthu'].'</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: '.$val['ngaysinh'].'<br>Ngày kỵ: '.$val['ngaymat'].'<br><button class="mo-rong" href="javascript:function() { return false; }">-</button></div>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);

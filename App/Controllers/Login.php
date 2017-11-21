@@ -116,7 +116,7 @@ class Login extends Controller
             $loginURL = $helper->getLoginUrl($redirectURL, $fbPermissions);
 
             // Render facebook login button
-            $output = '<a href="' . htmlspecialchars($loginURL) . '"><img src="/images/loginfb.png">Facebook Login</a>';
+            $output = '<a href="' . htmlspecialchars($loginURL) . '"><img src="/images/loginfb.png">Đăng nhập bằng tài khoản Facebook</a>';
         }
 
         View::renderTemplate('Login/new.html', ['loginURL' => $loginURL, 'logoutURL' => $logoutURL, 'output' => $output]);

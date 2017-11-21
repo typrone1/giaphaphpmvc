@@ -5,7 +5,7 @@
  * this copyright notice appears in all copies.
  */
 
-var ABOUT = "\u00C2m l\u1ECBch Vi\u1EC7t Nam - Version 0.8"+"\n\u00A9 2004 H\u1ED3 Ng\u1ECDc \u0110\u1EE9c [http://come.to/duc]";
+var ABOUT = "";
 var TK19 = new Array(
 	0x30baa3, 0x56ab50, 0x422ba0, 0x2cab61, 0x52a370, 0x3c51e8, 0x60d160, 0x4ae4b0, 0x376926, 0x58daa0,
 	0x445b50, 0x3116d2, 0x562ae0, 0x3ea2e0, 0x28e2d2, 0x4ec950, 0x38d556, 0x5cb520, 0x46b690, 0x325da4,
@@ -436,25 +436,25 @@ function printSelectedYear() {
 function printStyle() {
 	var fontSize = PRINT_OPTS.fontSize;
 	var res = "";
-	res += '<style type="text/css">\n';
-	res += '<!--\n';
-	//res += '  body {margin:0}\n';
-	res += '  .tennam {text-align:center; font-size:150%; line-height:120%; font-weight:bold; color:#000000; background-color: #CCCCCC}\n';
-	res += '  .thang {font-size: '+fontSize+'; padding:1; line-height:100%; font-family:Tahoma,Verdana,Arial; table-layout:fixed}\n';
-	res += '  .tenthang {text-align:center; font-size:125%; line-height:100%; font-weight:bold; color:#330033; background-color: #CCFFCC}\n';
-	res += '  .navi-l {text-align:center; font-size:75%; line-height:100%; font-family:Verdana,Times New Roman,Arial; font-weight:bold; color:red; background-color: #CCFFCC}\n';
-	res += '  .navi-r {text-align:center; font-size:75%; line-height:100%; font-family:Verdana,Arial,Times New Roman; font-weight:bold; color:#330033; background-color: #CCFFCC}\n';
-	res += '  .ngaytuan {width:14%; text-align:center; font-size:125%; line-height:100%; color:#330033; background-color: #FFFFCC}\n';
-	res += '  .ngaythang {background-color:#FDFDF0}\n';
-	res += '  .homnay {background-color:#FFF000}\n';
-	res += '  .tet {background-color:#FFCC99}\n';
-	res += '  .am {text-align:right;font-size:75%;line-height:100%;color:blue}\n';
-	res += '  .am2 {text-align:right;font-size:75%;line-height:100%;color:#004080}\n';
-	res += '  .t2t6 {text-align:left;font-size:125%;color:black}\n';
-	res += '  .t7 {text-align:left;font-size:125%;line-height:100%;color:green}\n';
-	res += '  .cn {text-align:left;font-size:125%;line-height:100%;color:red}\n';
-	res += '-->\n';
-	res += '</style>\n';
+	// res += '<style type="text/css">\n';
+	// res += '<!--\n';
+	// //res += '  body {margin:0}\n';
+	// res += '  .tennam {text-align:center; font-size:150%; line-height:120%; font-weight:bold; color:#000000; background-color: #CCCCCC}\n';
+	// res += '  .thang {font-size: '+fontSize+'; padding:1; line-height:100%; font-family:Tahoma,Verdana,Arial; table-layout:fixed}\n';
+	// res += '  .tenthang {text-align:center; font-size:125%; line-height:100%; font-weight:bold; color:#330033; background-color: #CCFFCC}\n';
+	// res += '  .navi-l {text-align:center; font-size:75%; line-height:100%; font-family:Verdana,Times New Roman,Arial; font-weight:bold; color:red; background-color: #CCFFCC}\n';
+	// res += '  .navi-r {text-align:center; font-size:75%; line-height:100%; font-family:Verdana,Arial,Times New Roman; font-weight:bold; color:#330033; background-color: #CCFFCC}\n';
+	// res += '  .ngaytuan {width:14%; text-align:center; font-size:125%; line-height:100%; color:#330033; background-color: #FFFFCC}\n';
+	// res += '  .ngaythang {background-color:#FDFDF0}\n';
+	// res += '  .homnay {background-color:#FFF000}\n';
+	// res += '  .tet {background-color:#FFCC99}\n';
+	// res += '  .am {text-align:right;font-size:75%;line-height:100%;color:blue}\n';
+	// res += '  .am2 {text-align:right;font-size:75%;line-height:100%;color:#004080}\n';
+	// res += '  .t2t6 {text-align:left;font-size:125%;color:black}\n';
+	// res += '  .t7 {text-align:left;font-size:125%;line-height:100%;color:green}\n';
+	// res += '  .cn {text-align:left;font-size:125%;line-height:100%;color:red}\n';
+	// res += '-->\n';
+	// res += '</style>\n';
 	return res;
 }
 
@@ -467,8 +467,14 @@ function printTable(mm, yy) {
 	var MonthHead = mm + "/" + yy;
 	var LunarHead = getYearCanChi(ld1.year);
 	var res = "";
-	res += ('<table class="thang" border="2" cellpadding="1" cellspacing="1" width="'+PRINT_OPTS.tableWidth+'">\n');
-	res += printHead(mm, yy);
+    res += printHead(mm, yy);
+	res += ('<table class="thang clndr-table" border="1" cellpadding="1" cellspacing="1" width="'+PRINT_OPTS.tableWidth+'">\n');
+	// res += printHead(mm, yy);
+    res += ('<tr onClick="alertAbout();"  class="header-days">\n');
+    for(var i=0;i<=6;i++) {
+        res += ('<td class="ngaytuan header-day">'+DAYNAMES[i]+'</td>\n');
+    }
+    res += ('<\/tr>\n');
 	for (i = 0; i < 6; i++) {
 		res += ("<tr>\n");
 		for (j = 0; j < 7; j++) {
@@ -514,28 +520,25 @@ function getNextYearLink(mm, yy) {
 function printHead(mm, yy) {
 	var res = "";
 	var monthName = mm+"/"+yy;
-	//res += ('<tr><td colspan="7" class="tenthang" onClick="showMonthSelect();">'+monthName+'</td></tr>\n');
-	res += ('<tr><td colspan="2" class="navi-l">'+getPrevYearLink(mm, yy)+' &nbsp;'+getPrevMonthLink(mm, yy)+'</td>\n');
-	//res += ('<td colspan="1" class="navig"><a href="'+getPrevMonthLink(mm, yy)+'"><img src="left1.gif" alt="Prev"></a></td>\n');
-	res += ('<td colspan="3" class="tenthang" onClick="showMonthSelect();">'+monthName+'</td>\n');
-	//res += ('<td colspan="1" class="navi-r"><a href="'+getNextMonthLink(mm, yy)+'"><img src="right1.gif" alt="Next"></a></td>\n');
-	res += ('<td colspan="2" class="navi-r">'+getNextMonthLink(mm, yy)+' &nbsp;'+getNextYearLink(mm, yy)+'</td></tr>\n');
-	//res += ('<tr><td colspan="7" class="tenthang"><a href="'+getNextMonthLink(mm, yy)+'"><img src="right.gif" alt="Next"></a></td></tr>\n');
-	res += ('<tr onClick="alertAbout();">\n');
-	for(var i=0;i<=6;i++) {
-		res += ('<td class=ngaytuan>'+DAYNAMES[i]+'</td>\n');
-	}
-	res += ('<\/tr>\n');
+	// res += ('<tr><td colspan="7" class="tenthang" onClick="showMonthSelect();">'+monthName+'</td></tr>\n');
+	// res += ('<tr><td colspan="2" class="navi-l ">'+getPrevYearLink(mm, yy)+' &nbsp;'+getPrevMonthLink(mm, yy)+'</td>\n');
+	// //res += ('<td colspan="1" class="navig"><a href="'+getPrevMonthLink(mm, yy)+'"><img src="left1.gif" alt="Prev"></a></td>\n');
+	// res += ('<td colspan="3" class="tenthang" onClick="showMonthSelect();">'+monthName+'</td>\n');
+	// //res += ('<td colspan="1" class="navi-r"><a href="'+getNextMonthLink(mm, yy)+'"><img src="right1.gif" alt="Next"></a></td>\n');
+	// res += ('<td colspan="2" class="navi-r">'+getNextMonthLink(mm, yy)+' &nbsp;'+getNextYearLink(mm, yy)+'</td></tr>\n');
+	// //res += ('<tr><td colspan="7" class="tenthang"><a href="'+getNextMonthLink(mm, yy)+'"><img src="right.gif" alt="Next"></a></td></tr>\n');
+    res += '<div class="clndr-controls"><div class="month">'+getPrevYearLink(mm, yy)+'&nbsp;'+getPrevMonthLink(mm, yy)+monthName+getNextMonthLink(mm, yy)+' &nbsp;'+getNextYearLink(mm, yy)+'</div></div>';
 	return res;
 }
 
 function printEmptyCell() {
-		return '<td class=ngaythang><div class=cn>&nbsp;</div> <div class=am>&nbsp;</div></td>\n';
+		return '<td class="ngaythang day"><div class=cn>&nbsp;</div> <div class=am>&nbsp;</div></td>\n';
 }
 
 function printCell(lunarDate, solarDate, solarMonth, solarYear) {
+	cssDay = 'calendar-day-'+solarYear+"-"+solarMonth+"-"+solarDate;
 	var cellClass, solarClass, lunarClass, solarColor;
-	cellClass = "ngaythang";
+	cellClass = "ngaythang day "+cssDay;
 	solarClass = "t2t6";
 	lunarClass = "am";
 	solarColor = "black";
@@ -548,7 +551,7 @@ function printCell(lunarDate, solarDate, solarMonth, solarYear) {
 		solarColor = "green";
 	}
 	if (solarDate == today.getDate() && solarMonth == today.getMonth()+1 && solarYear == today.getFullYear()) {
-		cellClass = "homnay";
+		cellClass = "homnay day today event";
 	}
 	if (lunarDate.day == 1 && lunarDate.month == 1) {
 		cellClass = "tet";
@@ -570,7 +573,7 @@ function printCell(lunarDate, solarDate, solarMonth, solarYear) {
 				ngayGio = "Giỗ";
 				console.log(ngayGio);
 			}
-			
+
 		}
 	}
 	var res = "";
@@ -578,7 +581,7 @@ function printCell(lunarDate, solarDate, solarMonth, solarYear) {
 	args += ("," + lunarDate.jd + "," + solarDate + "," + solarMonth + "," + solarYear);
 	res += ('<td class="'+cellClass+'"');
 	if (lunarDate != null) res += (' title="'+getDayName(lunarDate)+'" onClick="alertDayInfo('+args+');"');
-	res += (' <div style=color:'+solarColor+' class="'+solarClass+'">'+solarDate+''+(ngayGio?ngayGio:'')+''+'</div> <div class="'+lunarClass+'">'+lunar+'</div></td>\n');
+	res += (' <div style=color:'+solarColor+' class="'+solarClass+'">'+solarDate+''+(ngayGio?ngayGio:'')+''+'</div> <div class="'+lunarClass+' day-contents">'+lunar+'</div></td>\n');
 	return res;
 }
 

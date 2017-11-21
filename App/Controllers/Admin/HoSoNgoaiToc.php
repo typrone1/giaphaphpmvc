@@ -33,4 +33,9 @@ class HoSoNgoaiToc extends Controller
             echo "Tạo thất bại";
         }
     }
+    function getListVoByID(){
+        $maHoSo = $this->routeParams['mahoso'];
+        $result = \App\Models\HoSoNgoaiToc::findByChong($maHoSo);
+        echo \GuzzleHttp\json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
 }

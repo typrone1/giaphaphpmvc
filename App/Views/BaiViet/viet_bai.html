@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Danh sách hồ sơ
+Viết bài
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -10,21 +10,8 @@ Danh sách hồ sơ
             <div class="title_left">
                 <h3>Thêm bài viết mới</h3>
             </div>
-
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                    </div>
-                </div>
-            </div>
         </div>
-
         <div class="clearfix"></div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
@@ -73,20 +60,12 @@ Danh sách hồ sơ
                                 <button type="submit" class="btn btn-success">Thêm</button>
                             </div>
                         </div>
-                        <button class="btn btn-default source" onclick="new PNotify({
-                          title: 'Regular Success',
-                          text: 'That thing that you were trying to do worked!',
-                          type: 'success',
-                          styling: 'bootstrap3'
-                          });">Success</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</div>
-<!-- /page content -->
 <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
 <script>CKEDITOR.replace( 'noiDung' );</script>
 {% endblock %}

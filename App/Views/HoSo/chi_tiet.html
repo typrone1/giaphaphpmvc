@@ -1,70 +1,43 @@
 {% extends "base.html" %}
 {% block title %}
-Danh sách hồ sơ
+Chi tiết hồ sơ
 {% endblock %}
 {% block body %}
 <!-- page content -->
 <div class="right_col" role="main">
-    <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Danh sách Hồ sơ</h3>
-            </div>
-
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Go!</button>
-                  </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="clearfix"></div>
-
+    <div>
         <div class="row">
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>User Report
-                            <small>Activity report</small>
-                        </h2>
+                        <h2>Chi tiết hồ sơ</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-sm-3 col-xs-6 profile_left">
+                        <div class="col-md-3 col-xs-12">
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
                                     <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"
-                                         title="Change the avatar">
+                                         title="">
                                 </div>
                             </div>
                             <h3>{{ hoSo.HoTen}}</h3>
-
                             <ul class="list-unstyled user_data">
                                 <li>
-                                    <i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: {{hoSo.NgaySinh}}
+                                    <i class="fa fa-certificate"></i> Ngày sinh: {{hoSo.NgaySinh}}
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i> Quê quán: {{hoSo.QueQuan}}
+                                    <i class="fa fa-address-card"></i> Quê quán:
                                 </li>
 
-                                <li class="m-top-xs">
-                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                    <a href="#" target="_blank">giapha.com</a>
+                                <li>
+                                    <i class="fa fa-address-card"></i> Địa chỉ:
                                 </li>
                             </ul>
 
-                            <a class="btn btn-success">
-                                <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa hồ sơ</a>
-                            <br/>
-                            <a class="btn btn-success" href="/Admin/HoSoNgoaiToc/{{hoSo.MaHoSo}}/themVoChong">
+                            <a class="btn btn-danger" href="/Admin/HoSoNgoaiToc/{{hoSo.MaHoSo}}/themVoChong">
                                 <i class="fa fa-edit m-right-xs"></i>Thêm vợ/ chồng</a>
                             <br/>
                             <a class="btn btn-success" href="/ho-so/{{hoSo.MaHoSo}}/them-con">
@@ -77,14 +50,13 @@ Danh sách hồ sơ
                                 <div class="col-md-12">
                                     <h2>Thông tin cá nhân</h2>
                                 </div>
-
                             </div>
                             <br>
-                            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left"
+                            <form class="form-horizontal form-label-left"
                                   novalidate="">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh
-                                        bố
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Bố
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
@@ -92,17 +64,12 @@ Danh sách hồ sơ
                                             <option>{{hoSo.MaHoSoBo}}</option>
                                         </select>
                                     </div>
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chọn nhánh
-                                        mẹ
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Mẹ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <select class="form-control">
                                             <option>{{hoSo.MaHoSoMe}}</option>
-                                            <option>Option one</option>
-                                            <option>Option two</option>
-                                            <option>Option three</option>
-                                            <option>Option four</option>
                                         </select>
                                     </div>
                                 </div>
@@ -147,7 +114,7 @@ Danh sách hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.QueQuan}}">
                                     </div>
                                 </div>
@@ -156,8 +123,8 @@ Danh sách hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.DoiThu}}" >
+                                        <input class="form-control col-md-7 col-xs-12"
+                                               required="required" type="text" value="{{hoSo.DoiThu}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ
                                         <span class="required">*</span>
@@ -172,7 +139,7 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.Email}}">
                                     </div>
                                 </div>
@@ -181,73 +148,63 @@ Danh sách hồ sơ
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.DiaChi}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12"
                                                required="required" type="text" value="{{hoSo.SDT}}">
+                                    </div>
+                                </div>
+                                <div class="bg-danger" style="border-radius: 5px; padding: 1em">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-6">Ngày mất:</div>
+                                            <div class="col-sm-6">Nơi mất:</div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">Ngày kỵ:</div>
+                                            <div class="col-sm-6">Nơi an táng:</div>
+                                            <div class="col-sm-6">Người kỵ:</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button class="btn btn-primary" type="reset">Reset</button>
-                                        <button type="submit" class="btn btn-success">Thêm</button>
+                                        <button type="submit" class="btn btn-success">Cập nhật thông tin</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             {% for vo in dsVo %}
-                                {% if vo.hinhanh is not null and vo.hinhanh != '' %}
-                                <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="width: 100%">
+                            {% if vo.hinhanh is not null and vo.hinhanh != '' %}
+                            <div style="width: 150px; max-height: 150px">
+                                <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="max-width: 100%">
+                            </div>
+                            {% endif %}
+                            <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
+                            <p>Năm sinh: {{ vo.ngaysinh }}</p>
+                            <p>Quê quán: {{vo.quequan }}</p>
+                            <p>Ngày mất : {{vo.ngaymat }}</p>
+                            <p>Nơi mất: </p>
+                            <p>Nơi an táng: {{vo.noiantang}}</p>
+                            <p>Sinh hạ:</p>
+                            <ol>
+                                {% for con in dsCon %}
+                                {% if con.mahosome == vo.mahosont %}
+                                <li><a class="btn btn-link" href="#">Con thứ: {{con.conthu}} - {{con.hoten}}</a></li>
                                 {% endif %}
-                                <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
-                                <p>Năm sinh: {{ vo.ngaysinh }}</p>
-                                <p>Quê quán: {{vo.quequan }}</p>
-                                <p>Mất ngày: {{vo.ngaymat }}</p>
-                                <p>Nơi mất: </p>
-                                <p>Nơi an táng: {{vo.noiantang}}</p>
-                                <p>Sinh hạ:</p>
-                                <a class="btn btn-success" href="/ho-so-ngoai-toc/{{vo.mahoso}}">
-                                    <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa hồ sơ</a>
-                                <br/>
-                                <ol>
-                                    {% for con in dsCon %}
-                                    {% if con.mahosome == vo.mahosont %}
-                                        <li><a class="btn btn-link" href="#">Con thứ: {{con.conthu}} - {{con.hoten}}</a></li>
-                                        {% endif %}
-                                    {% endfor %}
-                                </ol>
+                                {% endfor %}
+                            </ol>
+                            <a class="btn btn-success btn-sm" href="/ho-so-ngoai-toc/{{vo.mahoso}}">
+                                <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>
                             {% endfor %}
-                            <!--<div class="profile_img">-->
-                                <!--<div id="crop-avatar">-->
-                                    <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
-                                    <!--<img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"-->
-                                         <!--title="Change the avatar">-->
-                                <!--</div>-->
-                            <!--</div>-->
-                            <!--<h3>Nguyễn Thị A</h3>-->
-
-                            <!--<ul class="list-unstyled user_data">-->
-                                <!--<li>-->
-                                    <!--<i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: 1/1/1911-->
-                                <!--</li>-->
-
-                                <!--<li>-->
-                                    <!--<i class="fa fa-briefcase user-profile-icon"></i> Quê quán: Quảng Bình-->
-                                <!--</li>-->
-
-                                <!--<li class="m-top-xs">-->
-                                    <!--<i class="fa fa-external-link user-profile-icon"></i>-->
-                                    <!--<a href="http://www.kimlabs.com/profile/" target="_blank">www.kimlabs.com</a>-->
-                                <!--</li>-->
-                            <!--</ul>-->
-
                         </div>
                     </div>
                 </div>
@@ -255,35 +212,8 @@ Danh sách hồ sơ
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Daily active users
-                            <small>Sessions</small>
+                        <h2>Sơ đồ gia đình
                         </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Settings 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="close-link">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            </li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" style="overflow: hidden">
@@ -342,7 +272,8 @@ Danh sách hồ sơ
                                                 style="vertical-align:middle;">
                                                 <div align="center"><img
                                                         src="/images/down.gif"></div>
-                                                <div class="hopNho" style="{% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
+                                                <div class="hopNho"
+                                                     style="{% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
                                                     Anh em: <br>
                                                     <span>Đời thứ: 10 - Con thứ: 3</span><br><a
                                                         style="color: chocolate;"
@@ -355,15 +286,15 @@ Danh sách hồ sơ
                                             {% set viTri = 0 %}
                                             {% set break = 0 %}
                                             {% set position = 0 %}
-                                                {% for anhEm in dsAnhEm if break == 0 %}
-                                                    {% set viTri = viTri+1 %}
-                                                    {% if anhEm.MaHoSo == hoSo.MaHoSo %}
-                                                        {% set break = 1 %}
-                                                        {% set position = viTri %}
-                                                    {% else %}
-                                                        <td></td>
-                                                    {% endif %}
-                                                {% endfor %}
+                                            {% for anhEm in dsAnhEm if break == 0 %}
+                                            {% set viTri = viTri+1 %}
+                                            {% if anhEm.MaHoSo == hoSo.MaHoSo %}
+                                            {% set break = 1 %}
+                                            {% set position = viTri %}
+                                            {% else %}
+                                            <td></td>
+                                            {% endif %}
+                                            {% endfor %}
 
                                             <td align="center" valign="middle"><img src="/images/down.gif"></td>
 
@@ -391,7 +322,7 @@ Danh sách hồ sơ
                                         <tr>
                                             {% for con in dsCon %}
                                             <td width="{{percent}}%" align="center" valign="top"
-                                                style="vertical-align:middle; height: 200px; float: left">
+                                                style="vertical-align:middle; min-height: 200px; float: left">
                                                 <div align="center"><img
                                                         src="/images/down.gif"></div>
                                                 <div class="hopNho">
@@ -414,35 +345,8 @@ Danh sách hồ sơ
             <div class="col-md-6 col-sm-6 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Daily active users
-                            <small>Sessions</small>
+                        <h2><i class="fa fa-graduation-cap"></i> Học vấn
                         </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Settings 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="close-link">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            </li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -451,71 +355,17 @@ Danh sách hồ sơ
                                 <div class="block">
                                     <div class="tags">
                                         <a href="" class="tag">
-                                            <span>Entertainment</span>
+                                            <span>1997-2002</span>
                                         </a>
                                     </div>
                                     <div class="block_content">
                                         <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+                                            <a>Học THPT</a>
                                         </h2>
                                         <div class="byline">
-                                            <span>13 hours ago</span> by
-                                            <a>Jane Smith</a>
+                                            <span>tại </span>
+                                            <a>Trường THPT số 1 Quảng Trạch</a>
                                         </div>
-                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
-                                            They were
-                                            where you met the producers that could fund your project, and if
-                                            the buyers liked your flick, they’d pay to Fast-forward and…
-                                            <a>Read&nbsp;More</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="tags">
-                                        <a href="" class="tag">
-                                            <span>Entertainment</span>
-                                        </a>
-                                    </div>
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>13 hours ago</span> by
-                                            <a>Jane Smith</a>
-                                        </div>
-                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
-                                            They were
-                                            where you met the producers that could fund your project, and if
-                                            the buyers liked your flick, they’d pay to Fast-forward and…
-                                            <a>Read&nbsp;More</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="block">
-                                    <div class="tags">
-                                        <a href="" class="tag">
-                                            <span>Entertainment</span>
-                                        </a>
-                                    </div>
-                                    <div class="block_content">
-                                        <h2 class="title">
-                                            <a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-                                        </h2>
-                                        <div class="byline">
-                                            <span>13 hours ago</span> by
-                                            <a>Jane Smith</a>
-                                        </div>
-                                        <p class="excerpt">Film festivals used to be do-or-die moments for movie makers.
-                                            They were
-                                            where you met the producers that could fund your project, and if
-                                            the buyers liked your flick, they’d pay to Fast-forward and…
-                                            <a>Read&nbsp;More</a>
-                                        </p>
                                     </div>
                                 </div>
                             </li>
@@ -528,125 +378,11 @@ Danh sách hồ sơ
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>
-                            <i class="fa fa-align-left"></i> Collapsible / Accordion
-                            <small>Sessions</small>
+                            <i class="fa fa-align-left"></i> Lịch sử công tác
                         </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li>
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="#">Settings 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="close-link">
-                                    <i class="fa fa-close"></i>
-                                </a>
-                            </li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
-                        <!-- start accordion -->
-                        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <a class="panel-heading collapsed" role="tab" id="headingOne" data-toggle="collapse"
-                                   data-parent="#accordion" href="#collapseOne"
-                                   aria-expanded="false" aria-controls="collapseOne">
-                                    <h4 class="panel-title">Collapsible Group Items #1</h4>
-                                </a>
-                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingOne" aria-expanded="false"
-                                     style="height: 0px;">
-                                    <div class="panel-body">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>First Name</th>
-                                                <th>Last Name</th>
-                                                <th>Username</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td>Larry</td>
-                                                <td>the Bird</td>
-                                                <td>@twitter</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse"
-                                   data-parent="#accordion" href="#collapseTwo"
-                                   aria-expanded="false" aria-controls="collapseTwo">
-                                    <h4 class="panel-title">Collapsible Group Items #2</h4>
-                                </a>
-                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingTwo" aria-expanded="false">
-                                    <div class="panel-body">
-                                        <p>
-                                            <strong>Collapsible Item 2 data</strong>
-                                        </p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                        richardson ad squid. 3 wolf moon officia aute,
-                                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                        eiusmod. Brunch 3 wolf moon tempor,
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse"
-                                   data-parent="#accordion" href="#collapseThree"
-                                   aria-expanded="false" aria-controls="collapseThree">
-                                    <h4 class="panel-title">Collapsible Group Items #3</h4>
-                                </a>
-                                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                                     aria-labelledby="headingThree" aria-expanded="false">
-                                    <div class="panel-body">
-                                        <p>
-                                            <strong>Collapsible Item 3 data</strong>
-                                        </p>
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                                        richardson ad squid. 3 wolf moon officia aute,
-                                        non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum
-                                        eiusmod. Brunch 3 wolf moon tempor
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of accordion -->
-
 
                     </div>
                 </div>

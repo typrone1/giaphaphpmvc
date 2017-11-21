@@ -30,7 +30,7 @@ class Users extends Authenticated {
     {
         if ($this->user->updateProfile($_POST)) {
 
-            Flash::addMessage('Changes saved');
+            Flash::addMessage('Cập nhật thành công');
 
             $this->redirect('/admin/users/chinhsua');
 

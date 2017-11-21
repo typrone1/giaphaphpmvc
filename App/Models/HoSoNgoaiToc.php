@@ -57,16 +57,28 @@ class HoSoNgoaiToc extends Model
     public static function find($maHoSo)
     {
         $sql = 'SELECT * FROM HoSoNgoaiToc
-                WHERE mahoso = :mahoso';
+                WHERE mahosont = :mahosont';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
-        $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
+        $stmt->bindValue(':mahosont', $maHoSo, PDO::PARAM_STR);
 
         $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
 
         $stmt->execute();
 
         return $stmt->fetch();
+    }
+
+    public static function findByChong($maHoSo)
+    {
+        $sql = 'SELECT * FROM HoSoNgoaiToc
+                WHERE mahoso = :mahoso';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
