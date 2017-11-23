@@ -1,6 +1,6 @@
 {% extends "base_user.html" %}
 {% block title %}
-Trang chủ
+Phả đồ
 {% endblock %}
 {% block css %}
 <link href="/css/styles.css" rel="stylesheet">
@@ -29,7 +29,7 @@ Trang chủ
         </div>
         <div style="overflow-y: hidden">
             <div class="tree">
-                {{ inGiaPhaDangCay() }}
+                {{ inGiaPhaDangCay(null) }}
             </div>
         </div>
     </div>

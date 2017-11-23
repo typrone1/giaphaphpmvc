@@ -14,7 +14,7 @@ Chi tiết hồ sơ
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-xs-3">
+                        <div class="col-md-3 col-xs-12">
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
@@ -25,27 +25,32 @@ Chi tiết hồ sơ
                             <h3>{{ hoSo.HoTen}}</h3>
                             <ul class="list-unstyled user_data">
                                 <li>
-                                    <i class="fa fa-certificate"></i> Ngày sinh: {{hoSo.NgaySinh}}
+                                    <i class="fa fa-birthday-cake"></i> Ngày sinh: {{hoSo.NgaySinh}}
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-address-card"></i> Quê quán:
+                                    <i class="fa fa-map-o"></i> Quê quán:
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-address-card"></i> Địa chỉ:
+                                    <i class="fa fa-map-marker"></i> Địa chỉ:
                                 </li>
                             </ul>
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col-md-6"><a class="btn btn-danger" style="width: 100%" href="/Admin/HoSoNgoaiToc/{{hoSo.MaHoSo}}/themVoChong">
+                                        <i class="fa fa-edit m-right-xs"></i> Thêm vợ/ chồng</a>
+                                        <br/></div>
+                                    <div class="col-md-6"><a class="btn btn-success" style="width: 100%" href="/ho-so/{{hoSo.MaHoSo}}/them-con">
+                                        <i class="fa fa-child m-right-xs"></i> Thêm con</a>
+                                        <br/></div>
+                                </div>
+                            </div>
 
-                            <a class="btn btn-danger" href="/Admin/HoSoNgoaiToc/{{hoSo.MaHoSo}}/themVoChong">
-                                <i class="fa fa-edit m-right-xs"></i>Thêm vợ/ chồng</a>
-                            <br/>
-                            <a class="btn btn-success" href="/ho-so/{{hoSo.MaHoSo}}/them-con">
-                                <i class="fa fa-edit m-right-xs"></i>Thêm con</a>
-                            <br/>
+
                         </div>
 
-                        <div class="col-md-6 col-sm-6 col-xs-3">
+                        <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="profile_title">
                                 <div class="col-md-12">
                                     <h2>Thông tin cá nhân</h2>
@@ -60,15 +65,15 @@ Chi tiết hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <select class="form-control">
-                                            <option>{{hoSo.MaHoSoBo}}</option>
+                                        <select class="form-control" disabled>
+                                            <option>{{hoSoBo.HoTen}}</option>
                                         </select>
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Mẹ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <select class="form-control">
+                                        <select class="form-control" disabled>
                                             <option>{{hoSo.MaHoSoMe}}</option>
                                         </select>
                                     </div>

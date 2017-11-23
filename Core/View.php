@@ -38,11 +38,15 @@ class View
             $function2 = new Twig_SimpleFunction('inGiaPhaDangDung', function ($nutGoc) {
                 self::showGiaPha2($nutGoc);
             });
+            $giaPhaNguoiDung = new Twig_SimpleFunction('giaPhaNguoiDung', function () {
+                self::inGiaPhaNguoiDung();
+            });
             $rutGonHTML = new Twig_SimpleFunction('rutGonHTML', function ($string) {
                 return Html2Text::convert($string);
             });
             $twig->addFunction($function);
             $twig->addFunction($function2);
+            $twig->addFunction($giaPhaNguoiDung);
             $twig->addFunction($rutGonHTML);
 //            $twig->addGlobal('session', $_SESSION);
 //            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
@@ -79,6 +83,46 @@ class View
         self::inGiaPhaDangDung($data, $nutGoc);
     }
 
+    public static function inGiaPhaNguoiDung()
+    {
+        $data = HoSo::getDuLieuGiaPha();
+        self::giaPhaNguoiDung($data, null, true);
+    }
+
+    static function giaPhaNguoiDung($data, $maHoSoBo = null, $init = false){
+        $flag = false;
+        foreach ($data as $val) {
+            if ($val['mahosobo'] == $maHoSoBo) {
+                $flag = true;
+                break;
+            }
+        }
+        if ($flag) {
+            if ($init == true) {
+                echo '<ul id="treeMenu">';
+            } else {
+                echo '<ul>';
+            }
+        }
+        foreach ($data as $val) {
+            $parent = $val['mahosobo'];
+            if ($parent == $maHoSoBo) {
+                $gioiTinh = $val['gioitinh'] == 0 ? '♂' : '♀';
+                echo '
+                <li>
+                    <a href="/ho-so/' . $val['mahoso'] . '" target="_self">
+                        <span> Đ: '. $val['doithu'].', C: '. $val['conthu'].' - '. $val['hoten'].' '.$gioiTinh.'
+                            <i style="color:red"></i>
+                        </span>
+                    </a>';
+                $maHoSo = $val['mahoso'];
+                self::giaPhaNguoiDung($data, $maHoSo);
+            }
+        }
+        if ($flag) {
+            echo "</li></ul>";
+        }
+    }
     static function inGiaPha($data, $mahsbo = null)
     {
         $flag = false;
@@ -94,8 +138,12 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">' . $val['hoten'] . '- ('
-                    . $val['hotenvo'] . ")" . '</a><br>Đời: <b>' . $val['doithu'] . '</b>, Con thứ: <b>' . $val['conthu'] . '</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: ' . $val['ngaysinh'] . '<br>Ngày mất: ' . $val['ngaymat'] . '<br><button class="mo-rong" href="javascript:function() { return false; }">-</button></div>';
+                echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="dropdown box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">' . $val['hoten'] . '- ('
+                    . $val['hotenvo'] . ")" . '</a><br>Đời: <b>' . $val['doithu'] . '</b>, Con thứ: <b>' . $val['conthu'] . '</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: ' . $val['ngaysinh'] . '<br>Ngày mất: ' . $val['ngaymat'] . '<br><button class="mo-rong" href="javascript:function() { return false; }">-</button><div class="dropdown-content">
+    <a href="#">Thêm con</a>
+    <a href="/detail">Chỉnh sửa</a>
+    <a href="#">Xóa</a>
+</div></div>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
             }
@@ -158,7 +206,7 @@ class View
 
                 } else {
                     echo '<li><div class="dropdown">
-                    <a href="#" class="dropbtn">Đời thứ: ' . $val['doithu'] . ', Con thứ: ' . $val['conthu'] . ' - ' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
+                    <a href="/ho-so/' . $val['mahoso'] . '" class="dropbtn">Đời thứ: ' . $val['doithu'] . ', Con thứ: ' . $val['conthu'] . ' - ' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
                       <div class="dropdown-content">
                         <a href="/ho-so/' . $val['mahoso'] . '"><i class="fa fa-edit"></i> Xem chi tiết</a>
                         <a href="/admin/hoso/' . $val['mahoso'] . '/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
