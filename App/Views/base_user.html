@@ -11,36 +11,6 @@
     <link rel="stylesheet" href="/css/style.css">
     {% block external_css %}{% endblock %}
     <style>
-        /*#nav ul li {*/
-            /*position: relative;*/
-        /*}*/
-
-        /*#nav ul li > ul {*/
-            /*position: absolute;*/
-            /*top: 2em;*/
-            /*width: 10em;*/
-            /*left: 0;*/
-            /*z-index: 9999;*/
-        /*}*/
-        /*#nav ul li a {*/
-            /*display: block;*/
-        /*}*/
-        /*#nav ul li ul {*/
-            /*display: none;*/
-        /*}*/
-        /*#nav ul li>a:hover~ul {*/
-            /*display: block;*/
-        /*}*/
-
-        /*#nav ul li > ul li {*/
-            /*width: 100%;*/
-        /*}*/
-
-        /*#nav ul li > ul li a {*/
-            /*z-index: 9999;*/
-            /*padding-left: .2em;*/
-            /*text-align: left;*/
-        /*}*/
         #menu-top ul {
         }
         #menu-top li {
@@ -89,7 +59,8 @@
                 <div class="profile_info">
                     <span>Xin chào,</span>
                     <h2>{{ current_user.name }}</h2>
-                    <a href="/logout">Đăng xuất</a>
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </div>
                 {% else %}
                 <a href="/login">
@@ -100,8 +71,7 @@
 
             </div>
             <h1>Gia phả họ Nguyễn</h1>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Modi dicta earum explicabo natus sapiente
-                officia
+            <p>Nơi lưu giữ nguồn cội
             </p>
         </div>
         <nav id="nav" class="clearfix">

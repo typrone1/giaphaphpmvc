@@ -56,7 +56,8 @@ class HoSo extends Model
 
     public static function findAllByParent($maHoSoBo)
     {
-        $ketnoi = mysqli_connect("localhost", "root", "",'mvc');
+        $array = [];
+        $ketnoi = mysqli_connect("localhost", "root", "",'giaphadb');
         mysqli_query($ketnoi, "set names utf8");
         $sql = 'SELECT * FROM HoSo ';
         if (!isset($maHoSoBo)){
@@ -144,10 +145,10 @@ class HoSo extends Model
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':hoTen', $this->hoTen, PDO::PARAM_STR);
             $stmt->bindValue(':ngaySinh', $this->ngaySinh);
-            $stmt->bindValue(':gioiTinh', 'Nam', PDO::PARAM_STR);
+            $stmt->bindValue(':gioiTinh', $this->gioiTinh, PDO::PARAM_STR);
             $stmt->bindValue(':doiThu', $this->doiThu, PDO::PARAM_INT);
             $stmt->bindValue(':conThu', $this->conThu, PDO::PARAM_INT);
-            $stmt->bindValue(':maHoSoBo', $this->maHoSoBo?$this->maHoSoBo: null, PDO::PARAM_INT);
+            $stmt->bindValue(':maHoSoBo', isset($this->maHoSoBo)?$this->maHoSoBo: null, PDO::PARAM_INT);
             $stmt->bindValue(':hinhAnh', $fileNewName, PDO::PARAM_STR);
             return $stmt->execute();
         }
@@ -175,5 +176,16 @@ class HoSo extends Model
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':mahoso', $this->MaHoSo, PDO::PARAM_STR);
         $stmt->execute();
+    }
+    public static function findByChi($chiThu)
+    {
+        $sql = 'SELECT * FROM HoSo
+                WHERE ChiThu = :chiThu';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':chiThu', $chiThu, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+        return $stmt->fetch();
     }
 }

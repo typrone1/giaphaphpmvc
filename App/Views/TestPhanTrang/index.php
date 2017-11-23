@@ -5,7 +5,7 @@ $ketnoi = ($GLOBALS["db"] = mysqli_connect("localhost", "root", ""));
 if (!$ketnoi)
     echo "Kết nối thất bại";
 
-mysqli_select_db($ketnoi, 'mvc');
+mysqli_select_db($ketnoi, 'giaphadb');
 mysqli_query($GLOBALS["db"], "set names utf8");
 
 function phan_trang($tenCot, $tenBang, $dieuKien, $soLuongSP, $trang, $dieuKienTrang, $url)

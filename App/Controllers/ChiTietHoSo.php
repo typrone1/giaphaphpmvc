@@ -24,7 +24,7 @@ class ChiTietHoSo extends Controller
         } else {
             $maHoSo = $this->routeParams['mahoso'];
             $connection = new MySqlConnection([
-                'dbname' => 'mvc',
+                'dbname' => 'giaphadb',
                 'hostname' => '127.0.0.1',
                 'username' => 'root',
                 'password' => '',
@@ -38,19 +38,19 @@ class ChiTietHoSo extends Controller
                 $hoSoBo = HoSo::find($hoSo->MaHoSoBo) != false ? HoSo::find($hoSo->MaHoSoBo) : null;
                 if (isset($hoSoBo->MaHoSoBo)) {
                     $hoSoOng = $builder
-                        ->select('mahoso', 'hoten')
+                        ->select('mahoso', 'hoten', 'doithu', 'conthu')
                         ->where('mahoso', $hoSoBo->MaHoSoBo)
                         ->from('hoso')
                         ->first();
                 }
             }
             $dsVo = $builder
-                ->select('mahoso', 'hoten', 'ngaysinh', 'mahosont', 'hinhanh')
+                ->select('mahoso', 'hoten', 'ngaysinh', 'mahosont', 'hinhanh', 'doithu', 'conthu')
                 ->where('mahoso', $maHoSo)
                 ->from('hosongoaitoc')
                 ->all();
             $dsCon = $builder
-                ->select('mahoso', 'hoten', 'mahosome', 'conthu')
+                ->select('mahoso', 'hoten', 'mahosome', 'doithu', 'conthu')
                 ->where('mahosobo', $maHoSo)
                 ->from('hoso')
                 ->all();

@@ -174,18 +174,18 @@ Trang chủ
                         <h5 class="title-events">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a>
                         </h5>
-                        <div class="thumb-su-kien">
+                        <div class="thumb-su-kien" style="float: left">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                                 {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                                <img style="min-width: 100%; height: 100%" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                                <img style="min-width: 100%; height: 100%; float: left" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
                                 {% else %}
-                                <img style="min-width: 100%; height: 100%" src="/images/AnhBaiViet/camera.png" alt="">
+                                <img style="min-width: 100%; height: 100%; float: left" src="/images/AnhBaiViet/camera.png" alt="">
                                 {% endif %}
                             </a>
                         </div>
                         <p class="description">{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
-                        <hr>
                     </div>
+                    <div class="clearfix"></div>
                     {% endfor %}
 
                 </article>

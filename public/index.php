@@ -42,6 +42,7 @@ $router = new Core\Router();
 //
 $router->add('', ['controller' => 'Home', 'action' => 'index']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
+$router->add('giapha/phadochi/{chi:\d+}', ['controller' => 'GiaPha', 'action' => 'phaDoChi']);
 $router->add('login/', ['controller' => 'Login', 'action' => 'new']);
 $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
 $router->add('xem-lich', ['controller' => 'BaiViet', 'action' => 'XemLich', 'namespace' => 'Admin']);
@@ -64,6 +65,7 @@ $router->add('admin/{controller}/{action}', ['namespace' => 'Admin']);
 $router->add('user/{controller}/{action}/{id:\d+}', ['namespace' => 'User']);
 $router->add('user/{controller}/{action}', ['namespace' => 'User']);
 $router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);
+$router->add('tra-cuu-xung-ho', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'traCuuXungHo']);
 
 $router->add('bai-viet/{id:\d+}', ['namespace' => 'User', 'controller' => 'BaiViet', 'action' => 'xemChiTietBaiViet' ]);
 $router->dispatch($_SERVER['QUERY_STRING']);

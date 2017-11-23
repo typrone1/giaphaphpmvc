@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}
+Tra cứu xưng hô
+{% endblock %}
+{% block external_css %}
+<link rel="stylesheet" href="/css/selectize.bootstrap3.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jqueryui.js"></script>
+<script src="/js/selectize.min.js"></script>
+{% endblock %}
+{% block body %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Tra cứu xưng hô</h3>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Tra cứu xưng hô</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div>
+                            <div class="container">
+                                <form action="/admin/hoso/postTraCuuXungHoAction" method="get">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="control-group">
+                                                <label for="doi-tuong-1">Chọn đối tượng 1:</label>
+                                                <select id="doi-tuong-1" name="doiTuong1" placeholder="Nhập tên...">
+                                                    <option value="">Vui lòng chọn...</option>
+                                                    {% for hoSo in dsHoSo %}
+                                                        {% if doiTuong1 == hoSo.MaHoSo %}
+                                                        <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                                        {% else %}
+                                                        <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="control-group">
+                                                <label for="doi-tuong-2">Chọn đối tượng 2:</label>
+                                                <select id="doi-tuong-2" name="doiTuong2" placeholder="Nhập tên...">
+                                                    <option value="">Vui lòng chọn...</option>
+                                                    {% for hoSo in dsHoSo %}
+                                                        {% if doiTuong2 == hoSo.MaHoSo %}
+                                                        <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                                        {% else %}
+                                                        <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h1>Kết quả</h1>
+                                        {% if result %}
+                                            <p>{{ result | raw }}</p>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $('#doi-tuong-1').selectize();
+                            $('#doi-tuong-2').selectize();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+{% endblock %}
+{% block footer %}
+
+{% endblock %}

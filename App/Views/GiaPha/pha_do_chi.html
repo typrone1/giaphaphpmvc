@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Phả đồ dạng cây
+Chi ông {{hoSo.HoTen}}
 {% endblock %}
 {% block external_css %}
 {% endblock %}
@@ -19,14 +19,14 @@ Phả đồ dạng cây
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Phả đồ dạng cây
+                        <h2>Chi ông {{hoSo.HoTen}}
                         </h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <div style="overflow-y: hidden" class="zoomViewport">
                             <div class="tree zoomContainer" style="overflow: hidden;">
-                                {{ inGiaPhaDangCay(null) }}
+                                {{ inGiaPhaDangCay(hoSo.MaHoSo) }}
                             </div>
                         </div>
                     </div>

@@ -25,9 +25,9 @@
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.24);
 }
 #banner h1 {
+    margin-bottom: .2em;
     font-style: italic;
-    margin-bottom: 1em;
-    color: yellow;
+    color: red;
 }
 /* Navbar */
 #nav {
@@ -143,6 +143,7 @@
     overflow-y: auto;
 }
 .header-box {
+    font-size: 1.2em;
     position: absolute;
     width: 100%;
     line-height: 2em;
@@ -154,21 +155,24 @@
     float: right;
 }
 .list-events {
-    margin-top: 2em;
+    margin-top: 3em;
 }
 .thumb-su-kien {
     position: relative;
     margin-right: 10px;
     float: left;
-    width: 100px;
-    height: 60px;
-    border: 2px solid red;
+    width: 20%;
+    height: 100px;
+    border: 1px solid red;
 }
 .thumb-su-kien img {
     max-width: 100%;
 }
 .description {
-    padding-bottom: 2.17em;
+    padding-top: 0.2em;
+    width: 78%;
+    float: left;
+    display: block;
 }
 
 @media (max-width: 576px) {
@@ -210,19 +214,45 @@
     float: right;
     border: 1px solid red;
     padding: 0.2em;
-    border-radius: .5em;
+    border-radius: 0.2em;
     margin-top: 1em;
+    color: red;
+    font-weight: bold;
     text-decoration: none;
 }
 .view-all:hover {
-    background-color: #9f224e;
+    transition: all .1s;
+    background-color: grey;
     color: white;
-    transition: all .5s;
+    border: 1px solid black;
 }
-* {
 
+#banner p {font-size: 1.2em;padding-left: 9em;font-style: italic;}
+* {
 }
-.event {
-    height: 6em;
-    margin-left: .5em;
+
+#danh-sach a {
+    font-size: 1.2em;
+    color: #333;
+    font-family: Arial;
+}
+
+.title-events a {
+    font-size: 1.2em;
+    color: #333;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#su-kien {
+    width: 66.66%;
+}
+a {
+    text-decoration: none;
+}
+
+#big-news a {
+    font-family: Arial;
+    font-size: 1.4em;
+    color: #333;
 }

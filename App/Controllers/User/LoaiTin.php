@@ -34,7 +34,7 @@ class LoaiTin extends Controller
         $ketnoi = mysqli_connect("localhost", "root", "");
         if (!$ketnoi)
             echo "Kết nối thất bại";
-        mysqli_select_db($ketnoi, 'mvc');
+        mysqli_select_db($ketnoi, 'giaphadb');
         mysqli_query($ketnoi, "set names utf8");
         $spbatdau = $trang * $soLuongSP;
 

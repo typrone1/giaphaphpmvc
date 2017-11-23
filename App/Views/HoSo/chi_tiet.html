@@ -14,7 +14,7 @@ Chi tiết hồ sơ
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-xs-12">
+                        <div class="col-md-3 col-xs-3">
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
@@ -45,7 +45,7 @@ Chi tiết hồ sơ
                             <br/>
                         </div>
 
-                        <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="col-md-6 col-sm-6 col-xs-3">
                             <div class="profile_title">
                                 <div class="col-md-12">
                                     <h2>Thông tin cá nhân</h2>
@@ -225,8 +225,8 @@ Chi tiết hồ sơ
 
                                     <div class="hopTo">
                                         Ông nội: <br>
-                                        <span>Đời thứ: 10 - Con thứ: 3</span><br><a
-                                            href="/ho-so/{{ hoSoOng.MaHoSo }}">{{ hoSoOng.hoten }}</a>
+                                        <span>Đời thứ: {{ hoSoOng.doithu }} - Con thứ: {{ hoSoOng.conthu }}</span><br><a
+                                            href="/ho-so/{{ hoSoOng.mahoso }}">{{ hoSoOng.hoten }}</a>
                                     </div>
                                 </td>
                             </tr>
@@ -241,7 +241,7 @@ Chi tiết hồ sơ
                                 <td colspan="3" align="center" valign="middle">
                                     <div class="hopTo">
                                         Bố: <br>
-                                        <span>Đời thứ: 10 - Con thứ: 3</span><br><a
+                                        <span>Đời thứ: {{ hoSoBo.DoiThu }} - Con thứ: {{ hoSoBo.ConThu }}</span><br><a
 
                                             href="/ho-so/{{ hoSoBo.MaHoSo }}">{{ hoSoBo.HoTen }}</a>
                                     </div>
@@ -275,7 +275,7 @@ Chi tiết hồ sơ
                                                 <div class="hopNho"
                                                      style="{% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
                                                     Anh em: <br>
-                                                    <span>Đời thứ: 10 - Con thứ: 3</span><br><a
+                                                    <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
                                                         style="color: chocolate;"
                                                         href="/ho-so/{{anhEm.MaHoSo}}">{{ anhEm.HoTen }}</a>
                                                 </div>
@@ -327,8 +327,8 @@ Chi tiết hồ sơ
                                                         src="/images/down.gif"></div>
                                                 <div class="hopNho">
                                                     Con: <br>
-                                                    <span>Đời thứ: 10 - Con thứ: 3</span><br><a
-                                                        href="/ho-so/{{con.MaHoSo}}">{{con.hoten}}</a>
+                                                    <span>Đời thứ: {{con.doithu}} - Con thứ: {{con.conthu}}</span><br><a
+                                                        href="/ho-so/{{con.mahoso}}">{{con.hoten}}</a>
                                                 </div>
                                             </td>
                                             {% endfor %}

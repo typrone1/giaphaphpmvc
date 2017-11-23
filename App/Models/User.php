@@ -473,7 +473,7 @@ password_reset_hash =:token_hash';
         $dbHost = "localhost";
         $dbUsername = "root";
         $dbPassword = "";
-        $dbName = "mvc";
+        $dbName = "giaphadb";
         $userTbl = 'users';
         if (!isset($this->db)) {
             // Connect to the database

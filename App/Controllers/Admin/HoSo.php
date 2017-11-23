@@ -35,50 +35,6 @@ class HoSo extends Controller
 
     }
 
-//    public function getSoDoGiaPhaAction()
-//    {
-////        $maHoSo = $this->routeParams['maHoSo'];
-//        $maHoSo = 9;
-//        $connection = new MySqlConnection([
-//            'dbname' => 'mvc',
-//            'hostname' => '127.0.0.1',
-//            'username' => 'root',
-//            'password' => '',
-//        ]);
-//        $builder = new MySqlBuilder($connection);
-//        $hoSoOng = null;
-//        $hoSoBo = null;
-//        $hoSo = HoSoModel::find($maHoSo);
-//        if (isset($hoSo)) {
-//            $hoSoBo = HoSoModel::find($hoSo->MaHoSoBo);
-//
-//            if (isset($hoSoBo)) {
-//                $hoSoOng = $builder
-//                    ->select('mahoso', 'hoten')
-//                    ->where('mahoso', $hoSoBo->MaHoSoBo)
-//                    ->from('hoso')
-//                    ->first();
-//            }
-//
-//        }
-//        $dsVo = $builder
-//            ->select('mahoso', 'hoten', 'ngaysinh')
-//            ->where('mahoso', $maHoSo)
-//            ->from('hosongoaitoc')
-//            ->all();
-//        $dsCon = $builder
-//            ->select('mahoso', 'hoten')
-//            ->where('mahosobo', $maHoSo)
-//            ->from('hoso')
-//            ->all();
-//        $dsAnhEm = $builder
-//            ->select('mahoso', 'hoten')
-//            ->where('mahosobo', $hoSo->MaHoSoBo)
-//            ->from('hoso')
-//            ->all();
-//        View::renderTemplate('HoSo/xem_quan_he.html', ['hoSoOng' => $hoSoOng, 'hoSoBo' => $hoSoBo, 'dsAnhEm' => $dsAnhEm, 'dsCon' => $dsCon, 'dsVo' => $dsVo]);
-//    }
-
     public function themConAction()
     {
         View::renderTemplate('ThemHoSo/index.html', ['dsHoSo' => \App\Models\HoSo::getAll(), 'dsHoSoNgoaiToc' => HoSoNgoaiToc::getAll(), 'maHoSoBo' => $this->routeParams['mahoso']]);
@@ -98,5 +54,65 @@ class HoSo extends Controller
             Flash::addMessage('Xóa thất bại !');
         }
         $this->redirect('/giapha/giaPhaDangDung');
+    }
+    public function traCuuXungHoAction(){
+        View::renderTemplate('TraCuuXungHo/index.html', ['dsHoSo' => HoSoModel::getAll()]);
+    }
+    public function postTraCuuXungHoAction(){
+        $dt1 = $_GET['doiTuong1'];
+        $dt2 = $_GET['doiTuong2'];
+        $mangCungNhanh = [['anh ruột', 'em ruột'],
+            ['cha', 'con']
+            ,['ông nội', 'cháu nội']
+            ,['ông cố', 'cháu cố']];
+        $mangKhacNhanh = [['anh', 'em'],
+            ['chú/bác', 'cháu']
+            ,['ông', 'cháu']
+            ,['cố', 'cháu cố']];
+        $object1 = self::findObject($dt1);
+        $object2 = self::findObject($dt2);
+        $mangQuanHe = [];
+        if ($this->isCungMotNhanh($object1->MaHoSo, $object2->MaHoSo)) {
+            $mangQuanHe = $mangCungNhanh;
+        }
+        else {
+            $mangQuanHe = $mangKhacNhanh;
+        }
+        $khoangCach = abs($object1->DoiThu - $object2->DoiThu);
+        $khoangCach = min($khoangCach, sizeof($mangQuanHe)-1);
+        $giaTri = $mangQuanHe[$khoangCach];
+        $obj = $object1->DoiThu > $object2->DoiThu ? $object1 : $object2;
+        $objOld = $object1->DoiThu <= $object2->DoiThu ? $object1 : $object2;
+        $result = $objOld->HoTen." là <b>".$giaTri[0]."</b> ".$obj->HoTen."</b>";
+        View::renderTemplate('TraCuuXungHo/index.html', ['dsHoSo' => HoSoModel::getAll(), 'doiTuong1' => $object1->MaHoSo, 'doiTuong2' => $object2->MaHoSo, 'result' => $result]);
+    }
+    function isCungMotNhanh($keyID1, $keyID2){
+        $object1 = self::findObject($keyID1);
+        $object2 = self::findObject($keyID2);
+        $obj = $object1->DoiThu > $object2->DoiThu ? $object1 : $object2;
+        $objOld = $object1->DoiThu <= $object2->DoiThu ? $object1 : $object2;
+        if ($object1->MaHoSoBo === $object2->MaHoSoBo) {
+            return true;
+        }
+        while ($obj->DoiThu >= $objOld->DoiThu) {
+            $obj = $this->getBoOfId($obj->MaHoSo);
+            try {
+                if ($obj->MaHoSo === $object1->MaHoSo  || $obj->MaHoSo === $object2->MaHoSo) {
+                    return true;
+                }
+            }
+            catch (\Exception $exception){
+                return false;
+            }
+
+        }
+        return false;
+    }
+    function findObject($keyID) {
+        return HoSoModel::find($keyID);
+    }
+    function getBoOfId($keyID) {
+        $object = self::findObject($keyID);
+        return self::findObject($object->MaHoSoBo);
     }
 }

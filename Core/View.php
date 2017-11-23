@@ -32,13 +32,13 @@ class View
             $loader = new \Twig_Loader_Filesystem('../App/Views');
             $twig = new \Twig_Environment($loader);
 //            Them tinh nang twig
-            $function = new Twig_SimpleFunction('inGiaPhaDangCay', function () {
-                self::showGiaPha();
+            $function = new Twig_SimpleFunction('inGiaPhaDangCay', function ($nutGoc) {
+                self::showGiaPha($nutGoc);
             });
-            $function2 = new Twig_SimpleFunction('inGiaPhaDangDung', function () {
-                self::showGiaPha2();
+            $function2 = new Twig_SimpleFunction('inGiaPhaDangDung', function ($nutGoc) {
+                self::showGiaPha2($nutGoc);
             });
-            $rutGonHTML = new Twig_SimpleFunction('rutGonHTML', function($string){
+            $rutGonHTML = new Twig_SimpleFunction('rutGonHTML', function ($string) {
                 return Html2Text::convert($string);
             });
             $twig->addFunction($function);
@@ -67,16 +67,16 @@ class View
         return $twig->render($template, $args);
     }
 
-    public static function showGiaPha()
+    public static function showGiaPha($nutGoc)
     {
         $data = HoSo::getDuLieuGiaPha();
-        self::inGiaPha($data, null);
+        self::inGiaPha($data, $nutGoc);
     }
 
-    public static function showGiaPha2()
+    public static function showGiaPha2($nutGoc)
     {
         $data = HoSo::getDuLieuGiaPha();
-        self::inGiaPhaDangDung($data, null);
+        self::inGiaPhaDangDung($data, $nutGoc);
     }
 
     static function inGiaPha($data, $mahsbo = null)
@@ -94,8 +94,8 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">'  . $val['mahoso'] . '– <i class="fa fa-male" aria-hidden="true"></i> ' . $val['hoten']
-                    .'(<i class="fa fa-female" aria-hidden="true"></i>' . $val['hotenvo'] . ")" . '</a><br>Đời: <b>'.$val['doithu'].'</b>, Con thứ: <b>'.$val['conthu'].'</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: '.$val['ngaysinh'].'<br>Ngày kỵ: '.$val['ngaymat'].'<br><button class="mo-rong" href="javascript:function() { return false; }">-</button></div>';
+                echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="box-item zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/ho-so/' . $val['mahoso'] . '">' . $val['hoten'] . '- ('
+                    . $val['hotenvo'] . ")" . '</a><br>Đời: <b>' . $val['doithu'] . '</b>, Con thứ: <b>' . $val['conthu'] . '</b><br><img src="/images/anh1.jpg" style="width: 40px; height: 30px"><br>Ngày sinh: ' . $val['ngaysinh'] . '<br>Ngày mất: ' . $val['ngaymat'] . '<br><button class="mo-rong" href="javascript:function() { return false; }">-</button></div>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
             }
@@ -139,7 +139,7 @@ class View
                         $temp = "item";
                     }
 
-                    $idName = isset($mahsbo) ? $mahsbo : $random_id = rand(0,1000);;
+                    $idName = isset($mahsbo) ? $mahsbo : $random_id = rand(0, 1000);;
                     if ($flag && $mahsbo != null) {
                         echo "<li>";
                     }
@@ -148,22 +148,22 @@ class View
                     <input type="checkbox" id="' . $idName . '" checked/>
                     <div class="dropdown">';
                     if ($flag2)
-                    echo '<img src="/images/Arrow.png" class="arrow">'
-                    ; echo '<label for="' . $idName . '" class="dropbtn">Đời thứ: ' . $val['mahoso'] .', Con thứ: '.$val['mahoso']. " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label><div class="dropdown-content">
-                        <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
-                        <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
+                        echo '<img src="/images/Arrow.png" class="arrow">';
+                    echo '<label for="' . $idName . '" class="dropbtn">Đời thứ: ' . $val['doithu'] . ', Con thứ: ' . $val['conthu'] . " - " . $val['hoten'] . " - " . $val['hotenvo'] . '</label><div class="dropdown-content">
+                        <a href="/ho-so/' . $val['mahoso'] . '"><i class="fa fa-edit"></i> Xem chi tiết</a>
+                        <a href="/admin/hoso/' . $val['mahoso'] . '/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
                         <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
-            data-target="#chinhSuaNhanh" data-id="'.$val['mahoso'].'"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
+            data-target="#chinhSuaNhanh" data-id="' . $val['mahoso'] . '"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
                       </div></div>';
 
                 } else {
                     echo '<li><div class="dropdown">
-                    <a href="#" class="dropbtn">Đời thứ: '. $val['mahoso'] .', Con thứ: '. $val['mahoso'] .' - '. $val['hoten'] . " - " . $val['hotenvo'] . '</a>
+                    <a href="#" class="dropbtn">Đời thứ: ' . $val['doithu'] . ', Con thứ: ' . $val['conthu'] . ' - ' . $val['hoten'] . " - " . $val['hotenvo'] . '</a>
                       <div class="dropdown-content">
-                        <a href="/ho-so/'.$val['mahoso'].'"><i class="fa fa-edit"></i> Xem chi tiết</a>
-                        <a href="/admin/hoso/'.$val['mahoso'].'/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
+                        <a href="/ho-so/' . $val['mahoso'] . '"><i class="fa fa-edit"></i> Xem chi tiết</a>
+                        <a href="/admin/hoso/' . $val['mahoso'] . '/deleteHoSo"><i class="fa fa-edit"></i> Xóa</a>
                         <a href="#" class="chinhSuaNhanh" data-toggle="modal" 
-            data-target="#chinhSuaNhanh" data-id="'.$val['mahoso'].'"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
+            data-target="#chinhSuaNhanh" data-id="' . $val['mahoso'] . '"><i class="fa fa-edit"></i> Chỉnh sửa nhanh</a>
                       </div>
                     </div>';
                     if ($flag2 != true) {

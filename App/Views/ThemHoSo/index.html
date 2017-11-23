@@ -21,7 +21,8 @@ Thêm hồ sơ
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/ThemHoSo/create" method="post" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                        <form action="/ThemHoSo/create" method="post" class="form-horizontal form-label-left"
+                              enctype="multipart/form-data">
 
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn nhánh bố
@@ -31,11 +32,15 @@ Thêm hồ sơ
                                     <select class="form-control" name="maHoSoBo" id="getHoSoMe">
 
                                         {% for hoSo in dsHoSo %}
-                                            {% if maHoSoBo == hoSo.MaHoSo %}
-                                            <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
-                                            {% else %}
-                                            <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})</option>
-                                            {% endif %}
+                                        {% if maHoSoBo == hoSo.MaHoSo %}
+                                        <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời
+                                            thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
+                                        </option>
+                                        {% else %}
+                                        <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ
+                                            :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
+                                        </option>
+                                        {% endif %}
                                         {% endfor %}
 
                                     </select>
@@ -47,9 +52,9 @@ Thêm hồ sơ
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select class="form-control" id="maHoSoMe">
                                         {% for hoSo in dsHoSoNgoaiToc %}
+                                        <option></option>
                                         <option value="{{hoSo.MaHoSoNT}}">{{hoSo.HoTen}}</option>
                                         {% endfor %}
-                                        <option>Con nuôi</option>
                                     </select>
                                 </div>
                             </div>
@@ -68,12 +73,12 @@ Thêm hồ sơ
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary"
                                                data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="male"
-                                                   data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
+                                            <input type="radio" name="gioiTinh" value="1"
+                                                   data-parsley-multiple="gender" checked> &nbsp; Nam &nbsp;
                                         </label>
                                         <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="gender" value="female"
+                                            <input type="radio" name="gioiTinh" value="0"
                                                    data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                                         </label>
                                     </div>
@@ -98,7 +103,7 @@ Thêm hồ sơ
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input class="form-control col-md-7 col-xs-12"
-                                            type="text">
+                                           type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -108,7 +113,7 @@ Thêm hồ sơ
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="doiThu"
                                            class="form-control col-md-7 col-xs-12"
-                                           type="text">
+                                           type="text" id="doiThu">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -118,7 +123,7 @@ Thêm hồ sơ
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="conThu"
                                            class="form-control col-md-7 col-xs-12"
-                                           type="text">
+                                           type="text" value="1">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -181,11 +186,17 @@ Thêm hồ sơ
     });
     let getHoSoMe = document.querySelector('#getHoSoMe');
     let maHoSoMe = document.querySelector('#maHoSoMe');
+    let doiThu = document.querySelector('#doiThu');
     getHoSoMe.addEventListener('change', function () {
+        let myString = $("#getHoSoMe option:selected").text();
+        ;
+        let myRegexp = /\d(?= Con thứ)/g;
+        let match = myRegexp.exec(myString);
+        doiThu.value = parseInt(match[0]) + 1;
         let id = this.value;
         $.get("/ho-so-ngoai-toc/list/" + id, function (data, status) {
             data = JSON.parse(data);
-            while(maHoSoMe.hasChildNodes()) {
+            while (maHoSoMe.hasChildNodes()) {
                 maHoSoMe.removeChild(maHoSoMe.lastChild);
             }
             data.map(function (data) {
@@ -196,5 +207,6 @@ Thêm hồ sơ
             })
         });
     })
+
 </script>
 {% endblock %}

@@ -16,7 +16,7 @@ class Config
      * Database name
      * @var string
      */
-    const DB_NAME = 'mvc';
+    const DB_NAME = 'giaphadb';
     /**
      * Database user
      * @var string
