@@ -207,7 +207,7 @@ Chi tiết hồ sơ
                                 {% endif %}
                                 {% endfor %}
                             </ol>
-                            <a class="btn btn-success btn-sm" href="/ho-so-ngoai-toc/{{vo.mahoso}}">
+                            <a class="btn btn-success btn-sm" href="/ho-so-ngoai-toc/{{vo.mahosont}}">
                                 <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa</a>
                             {% endfor %}
                         </div>
@@ -278,11 +278,11 @@ Chi tiết hồ sơ
                                                 <div align="center"><img
                                                         src="/images/down.gif"></div>
                                                 <div class="hopNho"
-                                                     style="{% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
+                                                     style="max-height: 105px; {% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
                                                     Anh em: <br>
                                                     <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
                                                         style="color: chocolate;"
-                                                        href="/ho-so/{{anhEm.MaHoSo}}">{{ anhEm.HoTen }}</a>
+                                                        href="/ho-so/{{anhEm.MaHoSo}}"><b>{{ anhEm.HoTen }}</b></a>
                                                 </div>
                                             </td>
                                             {% endfor %}

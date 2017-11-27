@@ -3,6 +3,7 @@ session_start();
 ob_start();
 ini_set('session.cookie_lifetime',864000); // 10 days
 
+require_once '../Classes/PHPExcel.php';
 // Da co Autoload
 //include 'app/Database/Query/SqlClauses.php';
 //include 'app/Database/Query/BaseSqlBuilder.php';

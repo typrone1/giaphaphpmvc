@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/font-awesome.css">
     <link rel="stylesheet" href="/css/normalize.css">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/clndr.css">
     {% block external_css %}
     {% endblock %}
     <style>
@@ -115,7 +116,8 @@
                 <div class="profile_info">
                     <span>Xin chào,</span>
                     <h2>{{ current_user.name }}</h2>
-                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <a href="/"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang quản trị</a>
+                    |
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </div>
                 {% else %}

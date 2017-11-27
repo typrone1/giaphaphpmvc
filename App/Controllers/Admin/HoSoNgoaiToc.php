@@ -20,8 +20,8 @@ class HoSoNgoaiToc extends Controller
     }
     public function editHoSoNgoaiTocAction(){
         $maHoSo = $this->routeParams['mahoso'];
-        $hoSo = \App\Models\HoSoNgoaiToc::find($maHoSo);
-        $hoSoPhuThuoc =  HoSo::find($hoSo->MaHoSoNT);
+        $hoSo = HoSoNgoaiTocModel::find($maHoSo);
+        $hoSoPhuThuoc =  HoSo::find($hoSo->MaHoSo);
         View::renderTemplate('HoSoNgoaiToc/edit_ho_so_ngoai_toc.html', ['hoSo' => $hoSo ,'hoSoPhuThuoc' => $hoSoPhuThuoc]);
     }
     public function postThemHoSoNTAction(){

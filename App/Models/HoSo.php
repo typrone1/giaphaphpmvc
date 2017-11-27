@@ -163,7 +163,7 @@ class HoSo extends Model
 
     public static function getDuLieuGiaPha()
     {
-        $sql = 'SELECT hoso.mahoso,hoso.hoten,hosongoaitoc.hoten as hotenvo, mahosobo,hoso.ngaysinh,hoso.ngaymat, hoso.doithu, hoso.conthu, hoso.gioitinh FROM hoso LEFT JOIN
+        $sql = 'SELECT hoso.mahoso, hoso.mahosome,hoso.hoten,hosongoaitoc.hoten as hotenvo, hoso.quequan, mahosobo,hoso.ngaysinh,hoso.ngaymat, hoso.doithu, hoso.conthu, hoso.gioitinh FROM hoso LEFT JOIN
  hosongoaitoc ON hosongoaitoc.mahoso = hoso.mahoso GROUP by hoso.mahoso';
         $db = static::getDB();
         $stmt = $db->query($sql);

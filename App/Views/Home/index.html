@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block title %}
-Xin chào
+Trang quản trị
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -8,7 +8,7 @@ Xin chào
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Plain Page</h3>
+                <h3>Trang quản trị</h3>
             </div>
 
             <div class="title_right">
@@ -29,37 +29,231 @@ Xin chào
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Plain Page</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a>
-                                    </li>
-                                    <li><a href="#">Settings 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a>
-                            </li>
-                        </ul>
+                        <h2>Giới thiệu</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        {% for message in flash_messages %}
-                        <div class="alert alert-{{message.type}}">
-                            {{message.body}}
+                        <div class="col-lg-12">
+                            {% for message in flash_messages %}
+                            <!--<div class="alert alert-{{message.type}}">-->
+                            <!--{{message.body}}-->
+                            <!--</div>-->
+                            <div class="alert alert-info alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <i class="fa fa-info-circle"></i> <strong>{{message.body}}</strong>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+
                         Chào mừng bạn đến với Website Gia phả Họ Nguyễn
+                        <div class="row">
+
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-drivers-license-o fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">150</div>
+                                                <div>Hồ sơ!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="/admin/hoso/index">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Xem chi tiết</span>
+                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-green">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-tasks fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">3</div>
+                                                <div>Danh mục bài viết!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="/admin/loaitin/index">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Xem chi tiết</span>
+                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-yellow">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-user-o fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">10</div>
+                                                <div>Thành viên!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="/admin/thanhvien/index">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Xem chi tiết</span>
+                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6">
+                                <div class="panel panel-red">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <i class="fa fa-newspaper-o fa-5x"></i>
+                                            </div>
+                                            <div class="col-xs-9 text-right">
+                                                <div class="huge">13</div>
+                                                <div>Bài viết!</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="/admin/baiviet/getDanhSachBaiViet">
+                                        <div class="panel-footer">
+                                            <span class="pull-left">Xem chi tiết</span>
+                                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Thống kê tỉ lệ giới tính</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div id="canvas-holder" style="width:50%">
+                            <canvas id="chart-area" width="300" height="300"/>
+                        </div>
+                        <button id="randomizeData">Randomize Data</button>
+                        <button id="addDataset">Add Dataset</button>
+                        <button id="removeDataset">Remove Dataset</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bell fa-fw"></i> Bảng thông báo
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-user-o fa-fw"></i> 2 hồ sơ được thêm mới
+                                <span class="pull-right text-muted small"><em>4 phút trước</em>
+                                    </span>
+                            </a>
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-user-o fa-fw"></i> 3 thành viên được thêm mới
+                                <span class="pull-right text-muted small"><em>12 phút trước</em>
+                                    </span>
+                            </a>
+                        </div>
+                        <!-- /.list-group -->
+                        <a href="#" class="btn btn-default btn-block">Xem tất cả thông báo</a>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
             </div>
         </div>
     </div>
 </div>
 <!-- /page content -->
+{% endblock %}
+{% block footer %}
+<script src="/js/Chart.bundle.min.js"></script>
+<script>
+    var randomScalingFactor = function () {
+        return Math.round(Math.random() * 100);
+    };
+    var randomColorFactor = function () {
+        return Math.round(Math.random() * 255);
+    };
+    var randomColor = function (opacity) {
+        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+    };
+
+    var config = {
+        type: 'pie',
+        data: {
+            datasets: [{
+                data: [
+                    randomScalingFactor(),
+                    randomScalingFactor(),
+                ],
+                backgroundColor: [
+                    "#F7464A",
+                    "#46BFBD"
+                ],
+            }],
+            labels: [
+                "Nam",
+                "Nữ"
+            ]
+        },
+        options: {
+            responsive: true
+        }
+    };
+
+    window.onload = function () {
+        var ctx = document.getElementById("chart-area").getContext("2d");
+        window.myPie = new Chart(ctx, config);
+    };
+
+    $('#randomizeData').click(function () {
+        $.each(config.data.datasets, function (i, piece) {
+            $.each(piece.data, function (j, value) {
+                config.data.datasets[i].data[j] = randomScalingFactor();
+                config.data.datasets[i].backgroundColor[j] = randomColor(0.7);
+            });
+        });
+        window.myPie.update();
+    });
+
+    $('#addDataset').click(function () {
+        var newDataset = {
+            backgroundColor: [randomColor(0.7), randomColor(0.7), randomColor(0.7), randomColor(0.7), randomColor(0.7)],
+            data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+        };
+
+        config.data.datasets.push(newDataset);
+        window.myPie.update();
+    });
+
+    $('#removeDataset').click(function () {
+        config.data.datasets.splice(0, 1);
+        window.myPie.update();
+    });
+</script>
 {% endblock %}
