@@ -27,7 +27,8 @@
 #banner h1 {
     margin-bottom: .2em;
     font-style: italic;
-    color: red;
+    text-transform: uppercase;
+    text-shadow: 9px 8px 0 rgba(0,0,0,0.15);
 }
 /* Navbar */
 #nav {
@@ -170,7 +171,7 @@
 }
 .description {
     padding-top: 0.2em;
-    width: 78%;
+    width: 77%;
     float: left;
     display: block;
 }
@@ -216,7 +217,6 @@
 a {
     text-decoration: none;
 }
-
 #big-news a {
     font-family: Arial;
     font-size: 1.4em;
@@ -261,5 +261,9 @@ a {
     }
     .cal1 {
         width: 100% !important;
+    }
+    #banner p {
+        text-align: center;
+        padding: 0;
     }
 }

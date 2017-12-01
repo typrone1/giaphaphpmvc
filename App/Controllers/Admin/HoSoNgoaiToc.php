@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 
+use App\Flash;
 use App\Models\HoSo;
 use Core\Controller;
 use Core\View;
@@ -27,10 +28,12 @@ class HoSoNgoaiToc extends Controller
     public function postThemHoSoNTAction(){
         $hsnt = new HoSoNgoaiTocModel($_POST);
         if ($hsnt->save()) {
-            $this->redirect('/ho-so/'.$hsnt->maHoSo);
+            Flash::addMessage('Thông vợ thành công!');
+            $this->redirect('/admin/ho-so/'.$hsnt->maHoSo);
         }
         else {
-            echo "Tạo thất bại";
+            Flash::addMessage('Thông hồ sơ thất bại!');
+            $this->redirect('/admin/ho-so/'.$hsnt->maHoSo);
         }
     }
     function getListVoByID(){

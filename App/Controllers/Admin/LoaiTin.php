@@ -9,9 +9,9 @@
 namespace App\Controllers\Admin;
 
 
+use App\Flash;
 use Core\Controller;
 use Core\View;
-
 class LoaiTin extends Controller
 {
     public function indexAction(){
@@ -20,10 +20,12 @@ class LoaiTin extends Controller
     public function postThemLoaiTin(){
         $loaiTin = new \App\Models\LoaiTin($_POST);
         if ($loaiTin->save()){
-            echo "Them thanh cong";
+            Flash::addMessage('Thêm thành công');
+            $this->redirect('/admin/loai-tin');
         }
         else {
-            echo "Them that bai";
+            Flash::addMessage('Thêm không thành công', Flash::WARNING);
+            $this->redirect('/admin/loai-tin');
         }
     }
 }

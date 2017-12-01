@@ -1,8 +1,0 @@
-[21-Sep-2017 18:31:37 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
-Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('posts/index2')
-#1 {main}
-Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122
-[21-Sep-2017 18:31:38 Europe/Berlin] Uncaught exception: 'Exception' with message 'No route matched.'
-Stack trace: #0 C:\xampp\htdocs\giapha\public\index.php(38): Core\Router->dispatch('favicon.ico')
-#1 {main}
-Thrown in 'C:\xampp\htdocs\giapha\Core\Router.php' on line 122

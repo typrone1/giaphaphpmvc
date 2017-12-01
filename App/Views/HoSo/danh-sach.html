@@ -51,10 +51,11 @@ Quản lý hồ sơ
                             </thead>
                             <tbody>
 
-
+                            {% set i = 0 %}
                             {% for hoSo in dsHoSo %}
+                            {% set i = i+1 %}
                             <tr>
-                                <td>1</td>
+                                <td>{{i}}</td>
                                 <td>
                                     <ul class="list-inline">
                                         <li>
@@ -64,7 +65,7 @@ Quản lý hồ sơ
                                 </td>
                                 <td>{{ hoSo.MaHoSo }}
                                 </td>
-                                <td>{{ hoSo.HoTen }} <br> <small>Khởi tạo 01.01.2015</small></td>
+                                <td>{{ hoSo.HoTen }} <br> <small>Khởi tạo 02.01.2018</small></td>
                                 <td>{{ hoSo.DoiThu }}</td>
                                 <td>{{ hoSo.ConThu }}</td>
                                 <td>{{ hoSo.NgaySinh }}</td>
@@ -73,7 +74,7 @@ Quản lý hồ sơ
                                     <button type="button" class="btn btn-success btn-xs">Hiển thị</button>
                                 </td>
                                 <td>
-                                    <a href="/ho-so/{{ hoSo.MaHoSo }}" class="btn btn-primary btn-xs"><i class="fa fa-chain"></i> Xem chi tiết </a>
+                                    <a href="/admin/ho-so/{{hoSo.MaHoSo}}" class="btn btn-primary btn-xs"><i class="fa fa-chain"></i> Xem chi tiết </a>
                                     <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
                                     <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                 </td>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}
+Cài đặt
+{% endblock %}
+{% block body %}
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Cài đặt</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form action="#" class="form-horizontal form-label-left">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Chế độ dành cho nhà phát triển: </label>
+                                <div class="col-md-9 col-sm-9 col-xs-12">
+                                    <select class="form-control">
+                                        <option>Tắt</option>
+                                        <option>Bật</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">Lưu lại</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+{% endblock %}

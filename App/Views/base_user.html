@@ -116,15 +116,15 @@
                 <div class="profile_info">
                     <span>Xin chào,</span>
                     <h2>{{ current_user.name }}</h2>
-                    <a href="/"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang quản trị</a>
+                    <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang quản trị</a>
                     |
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </div>
                 {% else %}
                 <a href="/login">
-                    <i class="fa fa-apple" aria-hidden="true"></i>Đăng nhập</a> |
-                <a href="/signup/new">
-                    <i class="fa fa-long-arrow-right"></i>Đăng ký</a>
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</a> |
+                <a href="/login#signup">
+                    <i class="fa fa-address-book-o"></i> Đăng ký</a>
                 {% endif %}
 
             </div>
@@ -138,7 +138,7 @@
             <div id="menu-top">
                 <ul>
                     <li>
-                        <a href="/user/home/index">
+                        <a href="/">
                             <i class="fa fa-home"></i>Trang chủ</a>
                     </li>
                     <li>
@@ -177,7 +177,7 @@
 
 <footer style="background-color: #1b6d85; height: 50px; margin-top: 2em">
     <div class="container">
-        <p style="line-height: 50px; color: #FFFFFF; float: none">C - Gia phả Họ Nguyễn Hữu 2017</p>
+        <p style="line-height: 50px; color: #FFFFFF; float: none; padding-left: .5em">C - Gia phả Họ Nguyễn Hữu 2017</p>
     </div>
 </footer>
 <script src="/js/jquery.min.js"></script>

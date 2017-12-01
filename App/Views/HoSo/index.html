@@ -21,7 +21,7 @@ Thêm hồ sơ
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/ThemHoSo/create" method="post" class="form-horizontal form-label-left"
+                        <form action="/admin/ho-so/postThemHoSoAction" method="post" class="form-horizontal form-label-left"
                               enctype="multipart/form-data">
 
                             <div class="form-group">
@@ -194,7 +194,7 @@ Thêm hồ sơ
         let match = myRegexp.exec(myString);
         doiThu.value = parseInt(match[0]) + 1;
         let id = this.value;
-        $.get("/ho-so-ngoai-toc/list/" + id, function (data, status) {
+        $.get("/admin/ho-so-ngoai-toc/list/" + id, function (data, status) {
             data = JSON.parse(data);
             while (maHoSoMe.hasChildNodes()) {
                 maHoSoMe.removeChild(maHoSoMe.lastChild);

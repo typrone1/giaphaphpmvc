@@ -14,16 +14,12 @@ use Core\View;
 
 class Users extends Authenticated {
     public function indexAction(){
-        echo "Index";
+        View::renderTemplate('ThanhVien/thong_tin_tai_khoan.html',['account' => $this->user]);
     }
     protected function before()
     {
         parent::before();
         $this->user = Auth::getUser();
-    }
-
-    public function chinhSuaAction(){
-        View::renderTemplate('ThanhVien/chinh_sua_thong_tin.html',['account' => $this->user]);
     }
 
     public function updateProfileAction()
@@ -32,12 +28,13 @@ class Users extends Authenticated {
 
             Flash::addMessage('Cập nhật thành công');
 
-            $this->redirect('/admin/users/chinhsua');
+            $this->redirect('/admin/thong-tin-tai-khoan');
 
         } else {
-            View::renderTemplate('ThanhVien/chinh_sua_thong_tin.html', [
+            View::renderTemplate('ThanhVien/thong_tin_tai_khoan.html', [
                 'account' => $this->user
             ]);
         }
     }
+
 }

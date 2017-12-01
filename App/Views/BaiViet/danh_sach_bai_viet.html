@@ -25,7 +25,7 @@ Danh sách bài viết
                                                                  style="width: 64px; height: 64px;"> </a></div>
                         {% endif %}
                         <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe
-                            }} <a class="btn btn-primary btn-sm" href="/admin/baiviet/{{ baiViet.MaBaiViet }}/getSuaBaiViet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
+                            }} <a class="btn btn-primary btn-sm" href="/admin/bai-viet/{{ baiViet.MaBaiViet }}/get-sua-bai-viet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
                         </div>
                     </div>
                     <hr>

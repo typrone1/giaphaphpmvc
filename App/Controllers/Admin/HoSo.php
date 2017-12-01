@@ -19,9 +19,53 @@ use App\Models\HoSo as HoSoModel;
 
 class HoSo extends Controller
 {
+    public function getChiTietHoSoAction()
+    {
+        $hoSo = HoSoModel::find($this->routeParams['mahoso']);
+        if (empty($hoSo)) {
+            echo "Hồ sơ không tồn tại";
+        } else {
+            $maHoSo = $this->routeParams['mahoso'];
+            $connection = new MySqlConnection([
+                'dbname' => 'giaphadb',
+                'hostname' => '127.0.0.1',
+                'username' => 'root',
+                'password' => '',
+            ]);
+            $builder = new MySqlBuilder($connection);
+            $hoSoOng = null;
+            $hoSoBo = null;
+            $dsAnhEm = null;
+            $hoSo = HoSoModel::find($maHoSo);
+            if (isset($hoSo)) {
+                $hoSoBo = HoSoModel::find($hoSo->MaHoSoBo) != false ? HoSoModel::find($hoSo->MaHoSoBo) : null;
+                if (isset($hoSoBo->MaHoSoBo)) {
+                    $hoSoOng = $builder
+                        ->select('mahoso', 'hoten', 'doithu', 'conthu')
+                        ->where('mahoso', $hoSoBo->MaHoSoBo)
+                        ->from('hoso')
+                        ->first();
+                }
+            }
+            $dsVo = $builder
+                ->select('mahoso', 'hoten', 'ngaysinh', 'mahosont', 'hinhanh', 'doithu', 'conthu')
+                ->where('mahoso', $maHoSo)
+                ->from('hosongoaitoc')
+                ->all();
+            $dsCon = $builder
+                ->select('mahoso', 'hoten', 'mahosome', 'doithu', 'conthu')
+                ->where('mahosobo', $maHoSo)
+                ->from('hoso')
+                ->all();
+
+            $dsAnhEm = HoSoModel::findAllByParent($hoSo->MaHoSoBo);
+            View::renderTemplate('HoSo/chi_tiet.html', ['hoSo' => $hoSo, 'hoSoOng' => $hoSoOng, 'hoSoBo' => $hoSoBo, 'dsAnhEm' => $dsAnhEm, 'dsCon' => $dsCon, 'dsVo' => $dsVo]);
+        }
+
+    }
     public function indexAction()
     {
-        View::renderTemplate('DanhSachHoSo/index.html', [
+        View::renderTemplate('HoSo/danh-sach.html', [
             'dsHoSo' => HoSoModel::getAll()
         ]);
     }
@@ -37,7 +81,7 @@ class HoSo extends Controller
 
     public function themConAction()
     {
-        View::renderTemplate('ThemHoSo/index.html', ['dsHoSo' => \App\Models\HoSo::getAll(), 'dsHoSoNgoaiToc' => HoSoNgoaiToc::getAll(), 'maHoSoBo' => $this->routeParams['mahoso']]);
+        View::renderTemplate('HoSo/index.html', ['dsHoSo' => \App\Models\HoSo::getAll(), 'dsHoSoNgoaiToc' => HoSoNgoaiToc::getAll(), 'maHoSoBo' => $this->routeParams['mahoso']]);
     }
 
 
@@ -58,7 +102,7 @@ class HoSo extends Controller
     public function traCuuXungHoAction(){
         View::renderTemplate('TraCuuXungHo/index.html', ['dsHoSo' => HoSoModel::getAll()]);
     }
-    public function postTraCuuXungHoAction(){
+    public function getTraCuuXungHoAction(){
         $dt1 = $_GET['doiTuong1'];
         $dt2 = $_GET['doiTuong2'];
         $mangCungNhanh = [['anh ruột', 'em ruột'],
@@ -115,4 +159,21 @@ class HoSo extends Controller
         $object = self::findObject($keyID);
         return self::findObject($object->MaHoSoBo);
     }
+    public function themHoSoAction(){
+        $this->requireQuanTriVien();
+        View::renderTemplate('HoSo/index.html', ['dsHoSo' => HoSoModel::getAll(), 'dsHoSoNgoaiToc' => HoSoNgoaiToc::getAll()]);
+    }
+
+    public function postThemHoSoAction(){
+        $hoSo = new HoSoModel($_POST);
+        if ($hoSo->save()) {
+            Flash::addMessage('Thêm mới hồ sơ thành công');
+            $this->redirect('/admin/ho-so/them-ho-so');
+        }
+        else {
+            Flash::addMessage('Thêm hồ sơ không thành công, vui lòng thử lại sau!', Flash::WARNING);
+            $this->redirect('/admin/ho-so/them-ho-so');
+        }
+    }
+
 }

@@ -18,7 +18,7 @@ class PhaDo extends Controller
     protected function indexAction(){
         View::renderTemplate('user/phado/pha_do_dung.html');
     }
-    protected function phaDoCayAction(){
+    protected function xemPhaDoCayAction(){
         View::renderTemplate('user/phado/pha_do_cay.html');
     }
 

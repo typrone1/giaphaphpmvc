@@ -43,7 +43,7 @@ class ThanhVien extends Authenticated
 
             Flash::addMessage('Cập nhật thành công');
 
-            $this->redirect('/admin/thanhvien/'.$_POST['id'].'/chinhsua');
+            $this->redirect('/admin/thanh-vien/'.$_POST['id'].'/chinh-sua');
 
         } else {
             View::renderTemplate('ThanhVien/chinh_sua_thanh_vien.html',['account' => User::findByID($_POST['id'])]);

@@ -4,6 +4,65 @@ Phả đồ
 {% endblock %}
 {% block css %}
 <link href="/css/treemenu.css" rel="stylesheet">
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 99999; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+<script>
+    function showInfo(button) {
+        var maHoSo = $(button).prevAll(".maHoSo").val();
+        console.log(maHoSo);
+        modal.style.display = "block";
+        openPage("api/ajax/index?maHoSo="+maHoSo);
+    }
+    function openPage(url) {
+        if(url.indexOf("?") == -1) {
+            url = url + "?";
+        }
+
+        var encodedUrl = encodeURI(url);
+        $("#mainContent").load(encodedUrl);
+        //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSValidateTypes
+        $("body").scrollTop(0);
+//        history.pushState(null, null, url);
+    }
+</script>
 {% endblock %}
 {% block body %}
 <section class="content clearfix">
@@ -21,11 +80,74 @@ Phả đồ
                 <input type="button" value="Tìm kiếm">
             </div>
         </div>
+        <button id="myBtn">Open Modal</button>
         <div class="floating-tree">
             {{giaPhaNguoiDung()}}
         </div>
     </div>
 </section>
 {% endblock %}
+
 {% block footer %}
+<div id="myModal" class="modal">
+    <style>
+        .wrapper {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .wrapper .oneOfThree {
+            width: 33.33%;
+        }
+        .wrapper .twoOfThree {
+            width: 66.66%;
+        }
+    </style>
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <h3>Thông tin cá nhân</h3>
+        <div id="mainContent">
+        </div>
+
+        <br>
+
+
+
+
+
+
+    </div>
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 {% endblock %}

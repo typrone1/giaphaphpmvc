@@ -127,6 +127,10 @@ right connector from last child*/
     -moz-transition: all 0.5s;
 }
 
+.box-item.die {
+    background: linear-gradient(to bottom, grey 0%, lightgrey 100%) !important;
+}
+
 /*Time for some hover effects*/
 /*We will apply the hover effect the the lineage of the element also*/
 
@@ -169,7 +173,9 @@ right connector from last child*/
 }
 
 .item input+ .dropdown .arrow {
+
     transform: rotate(-90deg);
+    transform-origin: 20% 40%;
     transition: 0.1s;
 }
 

@@ -20,7 +20,7 @@ class SaoLuuDuLieu extends Controller
     function index(){
         View::renderTemplate('SaoLuuDuLieu/index.html');
     }
-    public function postXuatFileAction(){
+    public function postInFileAction(){
         $mysqli = mysqli_connect('localhost', 'root', '', 'giaphadb');
         $mysqli->set_charset('utf8');
         if (mysqli_connect_error()) {
@@ -161,12 +161,14 @@ class SaoLuuDuLieu extends Controller
                         }
                     }
                 }
-                if ($hasChildren == true) {
-                    $rowCount++;
-                    self::$copySheet->setCellValue('B'.$rowCount,'Vợ:');
-                }
+                $hasPrintNameless = false;
                 foreach ($data as $valChild) {
                     if ($valChild['doithu'] == $curDoiThu+1 && $valChild['mahosobo'] == $maHoSoBo && $valChild['mahosome'] == null) {
+                        if ($hasChildren == true && $hasPrintNameless == false) {
+                            $rowCount++;
+                            self::$copySheet->setCellValue('B'.$rowCount,'Vợ:');
+                        }
+                        $hasPrintNameless = true;
                         $rowCount++;
                         self::$copySheet->setCellValue('A'.$rowCount,$valChild['doithu'].'.'.$valChild['conthu']);
                         self::$copySheet->setCellValue('C'.$rowCount,$valChild['hoten']);

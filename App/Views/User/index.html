@@ -22,7 +22,7 @@ Trang chủ
 {% block body %}
 
 <section class="content clearfix">
-    <div class="container">
+    <div class="container" style="background-image: url('/images/spiration-light.png'); overflow: hidden">
         <div class="search-bar clearfix">
             <ul class="breadcrumb left clearfix">
                 <li class="start">
@@ -39,7 +39,7 @@ Trang chủ
         <div class="col-9">
             {% for baiViet in dsBaiViet|slice(0, 1) %}
             <div class="col-9">
-                <div id="big-news">
+                <div id="big-news" style="padding-left: .5em">
                     <div class="thumb">
                         <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                         {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
@@ -106,7 +106,7 @@ Trang chủ
 
                 <tr>
                     <td align="center">
-                        <div class="cal1" style="padding-left: 1em">
+                        <div class="cal1">
                             <div id="lich" class="clndr"></div>
                         </div>
                         <script language="JavaScript">
@@ -203,7 +203,6 @@ Trang chủ
                     <i class="fa fa-arrow-right"></i>
                 </a>
             </div>
-
         </div>
     </div>
 </section>
