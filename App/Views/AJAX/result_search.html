@@ -1,0 +1,16 @@
+<p>Tìm thấy <b>{{dsHoSo|length}}</b> kết quả:</p>
+{% for hoSo in dsHoSo %}
+<input type="hidden" class="maHoSo" value="{{hoSo.MaHoSo}}">
+<a href="javascript:;" onclick="showInfo(this);return false;" target="_self">
+    <div class="item-search" style="">
+        <div class="thumb" style="float: left;">
+            <img src="/images/user.png" alt="" style="width: 100%">
+        </div>
+        <div class="info-item-search" style="float: left; margin-left: 1em">
+            <h5>{{hoSo.HoTen}}</h5> <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
+            <p>Quê quán: {{hoSo.QueQuan}}</p>
+            <p><span>Ngày sinh: {{hoSo.NgaySinh}}</span> - <span>Ngày mất: {{hoSo.NgayMat}}</span></p>
+        </div>
+    </div>
+</a>
+{% endfor %}

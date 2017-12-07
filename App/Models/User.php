@@ -56,74 +56,74 @@ class User extends Model
         $this->validate();
         if (empty($this->errors)) {
             /*Them hinh anh */
-            $file_max_weight = 1000000; //limit the maximum size of file allowed (20Mb)
-            $ok_ext = array('jpg', 'png', 'gif', 'jpeg'); // allow only these types of files
-            $destination = '../public/images/AnhDaiDien/'; // where our files will be stored
-            $file = $_FILES['hinhAnh'];
-            $fileNewName = '';
-            if (!isset($_FILES['hinhAnh']['error']) ||
-                is_array($_FILES['hinhAnh']['error'])
-            ) {
-                throw new \RuntimeException('Invalid parameters.');
-            } else {
-                $filename = explode(".", $file["name"]);
-                $file_name = $file['name']; // file original name
-                $file_name_no_ext = isset($filename[0]) ? $filename[0] : null; // File name without the extension
-                $file_extension = $filename[count($filename) - 1];
-                $file_weight = $file['size'];
-                $file_type = $file['type'];
-                if ($file['error'] == 0) {
-                    // check if the extension is accepted
-                    if (in_array($file_extension, $ok_ext)):
+            if ($_FILES['hinhAnh']) {
+                $file_max_weight = 1000000; //limit the maximum size of file allowed (20Mb)
+                $ok_ext = array('jpg', 'png', 'gif', 'jpeg'); // allow only these types of files
+                $destination = '../public/images/AnhDaiDien/'; // where our files will be stored
+                $file = $_FILES['hinhAnh'];
+                $fileNewName = '';
+                if (!isset($_FILES['hinhAnh']['error']) ||
+                    is_array($_FILES['hinhAnh']['error'])
+                ) {
+                    throw new \RuntimeException('Invalid parameters.');
+                } else {
+                    $filename = explode(".", $file["name"]);
+                    $file_name = $file['name']; // file original name
+                    $file_name_no_ext = isset($filename[0]) ? $filename[0] : null; // File name without the extension
+                    $file_extension = $filename[count($filename) - 1];
+                    $file_weight = $file['size'];
+                    $file_type = $file['type'];
+                    if ($file['error'] == 0) {
+                        // check if the extension is accepted
+                        if (in_array($file_extension, $ok_ext)):
 
-                        // check if the size is not beyond expected size
-                        if ($file_weight <= $file_max_weight):
-
-
-                            // rename the file
-                            $fileNewName = md5($file_name_no_ext[0] . microtime()) . '.' . $file_extension;
+                            // check if the size is not beyond expected size
+                            if ($file_weight <= $file_max_weight):
 
 
-                            // and move it to the destination folder
-                            if (move_uploaded_file($file['tmp_name'], $destination . $fileNewName)):
+                                // rename the file
+                                $fileNewName = md5($file_name_no_ext[0] . microtime()) . '.' . $file_extension;
 
-                                echo " File uploaded !";
+
+                                // and move it to the destination folder
+                                if (move_uploaded_file($file['tmp_name'], $destination . $fileNewName)):
+
+                                    echo " File uploaded !";
+
+                                else:
+
+                                    echo "can't upload file.";
+
+                                endif;
+
 
                             else:
 
-                                echo "can't upload file.";
+                                echo "File too heavy.";
 
                             endif;
-
-
                         else:
 
-                            echo "File too heavy.";
+                            echo "File type is not supported.";
 
                         endif;
-
-
-                    else:
-
-                        echo "File type is not supported.";
-
-                    endif;
+                    }
                 }
             }
-
             /* Ma hoa mat khau MD5 */
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
             $token = new Token();
             $hash_token = $token->getHash();
             $this->activation_token = $token->getValue();
-            $sql = 'INSERT INTO users (name, email, password_hash,activation_hash, HinhAnh)
-            VALUES (:name, :email, :password_hash, :activation_hash, :hinhAnh)';
+            $sql = 'INSERT INTO users (name, email, password_hash,activation_hash,is_active, HinhAnh)
+            VALUES (:name, :email, :password_hash, :activation_hash, :is_active,:hinhAnh)';
             $db = static::getDB();
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':activation_hash', $hash_token, PDO::PARAM_STR);
+            $stmt->bindValue(':is_active', 1, PDO::PARAM_INT);
             $stmt->bindValue(':hinhAnh', $fileNewName, PDO::PARAM_STR);
             return $stmt->execute();
         }
@@ -132,7 +132,6 @@ class User extends Model
 
     public function validate()
     {
-// Name
         if ($this->name == '') {
             $this->errors[] = 'Name is required';
         }
@@ -145,19 +144,19 @@ class User extends Model
             $this->errors[] = 'email already taken';
         }
 
-        if (isset($this->password)) {
-            if (strlen($this->password) < 6) {
-                $this->errors[] = 'Please enter at least 6 characters for the password';
-            }
-
-            if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one letter';
-            }
-
-            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Password needs at least one number';
-            }
-        }
+//        if (isset($this->password)) {
+//            if (strlen($this->password) < 6) {
+//                $this->errors[] = 'Please enter at least 6 characters for the password';
+//            }
+//
+//            if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+//                $this->errors[] = 'Password needs at least one letter';
+//            }
+//
+//            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+//                $this->errors[] = 'Password needs at least one number';
+//            }
+//        }
         // Password
 
     }
@@ -456,15 +455,17 @@ password_reset_hash =:token_hash';
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function capNhatHoSoQuanLy($maHoSo)
+    public function capNhatHoSoQuanLy($maHoSo, $maCapQuanTri)
     {
         $sql = 'UPDATE users
-                SET MaHoSo = :mahoso
+                SET MaHoSo = :mahoso,
+                MaCapQuanTri = :maCapQuanTri
                 WHERE id = :id';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $this->id, PDO::PARAM_STR);
         $stmt->bindValue(':mahoso', $maHoSo, PDO::PARAM_STR);
+        $stmt->bindValue(':maCapQuanTri', $maCapQuanTri, PDO::PARAM_STR);
         $stmt->execute();
     }
 

@@ -102,8 +102,16 @@ class Auth
         }
         setcookie('remember_me', '', time() - 3600);  // set to expire in the past
     }
-    public static function checkQTV(){
-        if (User::findByID($_SESSION['user_id'])->MaCapQuanTri==2){
+    public static function checkQTVLevel2(){
+        if (User::findByID($_SESSION['user_id'])->MaCapQuanTri>=2){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    public static function checkQTVLevel3(){
+        if (User::findByID($_SESSION['user_id'])->MaCapQuanTri==3){
             return true;
         }
         else {

@@ -115,7 +115,7 @@
                 {% if current_user %}
                 <div class="profile_info">
                     <span>Xin chào,</span>
-                    <h2>{{ current_user.name }}</h2>
+                    <h4 style="font-family: Arial">{{ current_user.name }}</h4>
                     <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang quản trị</a>
                     |
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
@@ -128,7 +128,7 @@
                 {% endif %}
 
             </div>
-            <h1>Gia phả họ Nguyễn</h1>
+            <h1>Gia phả Nguyễn Hữu</h1>
             <p>Nơi lưu giữ nguồn cội
             </p>
         </div>
@@ -151,21 +151,21 @@
                     <li>
                         <a href="#">Tin tức</a>
                     </li>
-                    <li>
-                        <a href="#">Giới thiệu</a>
-                    </li>
-                    <li>
-                        <a href="#">Kết nối</a>
-                    </li>
-                    <li>
-                        <a href="#">Tư liệu</a>
-                    </li>
-                    <li>
-                        <a href="#">Văn hóa</a>
-                    </li>
-                    <li>
-                        <a href="#">Sự kiện</a>
-                    </li>
+                    <!--<li>-->
+                        <!--<a href="#">Giới thiệu</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">Kết nối</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">Tư liệu</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">Văn hóa</a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#">Sự kiện</a>-->
+                    <!--</li>-->
                 </ul>
             </div>
 
@@ -175,14 +175,13 @@
 {% block body %}
 {% endblock %}
 
-<footer style="background-color: #1b6d85; height: 50px; margin-top: 2em">
+<footer style="background-color: #1b6d85; height: 50px;">
     <div class="container">
         <p style="line-height: 50px; color: #FFFFFF; float: none; padding-left: .5em">C - Gia phả Họ Nguyễn Hữu 2017</p>
     </div>
 </footer>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/app.js"></script>
-<script src="/js/treemenu.js"></script>
 {% block footer %}
 {% endblock %}
 </body>

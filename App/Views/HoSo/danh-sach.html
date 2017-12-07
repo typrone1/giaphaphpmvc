@@ -59,28 +59,33 @@ Quản lý hồ sơ
                                 <td>
                                     <ul class="list-inline">
                                         <li>
-                                            <img src="/images/user.png" class="avatar" alt="Avatar">
+                                            {% if hoSo.HinhAnh %}
+                                            <img class="img-responsive avatar" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"
+                                                 alt="Avatar"
+                                                 title="" style="min-width: 100%">
+                                            {% else %}
+                                            <img class="img-responsive avatar" src="/images/AnhHoSo/user.png" alt="Avatar"
+                                                 title="" style="min-width: 100%">
+                                            {% endif %}
                                         </li>
                                     </ul>
                                 </td>
                                 <td>{{ hoSo.MaHoSo }}
                                 </td>
-                                <td>{{ hoSo.HoTen }} <br> <small>Khởi tạo 02.01.2018</small></td>
+                                <td>{{ hoSo.HoTen }} <br> <small>Chỉnh sửa lần cuối 02/01/2018</small></td>
                                 <td>{{ hoSo.DoiThu }}</td>
                                 <td>{{ hoSo.ConThu }}</td>
-                                <td>{{ hoSo.NgaySinh }}</td>
-                                <td>{{ hoSo.NgayMat }}</td>
+                                <td>{{ hoSo.NgaySinh |date("d/m/Y") }}</td>
+                                <td>{{ hoSo.NgayMat |date("d/m/Y") }}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-xs">Hiển thị</button>
                                 </td>
                                 <td>
-                                    <a href="/admin/ho-so/{{hoSo.MaHoSo}}" class="btn btn-primary btn-xs"><i class="fa fa-chain"></i> Xem chi tiết </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
+                                    <a href="/admin/ho-so/{{hoSo.MaHoSo}}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Sửa </a>
+                                    <a onclick="deleteHoSo({{hoSo.MaHoSo}})"class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Xóa </a>
                                 </td>
                             </tr>
                             {% endfor %}
-
                             </tbody>
                         </table>
                         <!-- end project list -->
@@ -92,5 +97,11 @@ Quản lý hồ sơ
     </div>
 </div>
 <!-- /page content -->
-
+<script>
+    function deleteHoSo(maHoSo) {
+        if (confirm("Xác nhận xóa!") == true) {
+            window.location.href = "/admin/ho-so/"+maHoSo+"/deleteHoSo";
+        }
+    }
+</script>
 {% endblock %}

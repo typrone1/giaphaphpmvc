@@ -1,0 +1,134 @@
+<div>
+    {% set countConTrai = 0 %}
+    {% set countConGai = 0 %}
+    <table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+        {% if hoSoOng is not null %}
+        <tr>
+            <td colspan="3" align="center" valign="middle">
+
+                <div class="hopTo">
+                    Ông nội: <br>
+                    <span>Đời thứ: {{ hoSoOng.doithu }} - Con thứ: {{ hoSoOng.conthu }}</span><br><a
+                        href="#"><b>{{ hoSoOng.hoten }}</b></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" height="10" align="center" valign="middle"><img
+                    src="/images/down.gif"></td>
+        </tr>
+        {% endif %}
+
+        {% if hoSoBo is not null %}
+        <tr>
+            <td colspan="3" align="center" valign="middle">
+                <div class="hopTo">
+                    Bố: <br>
+                    <span>Đời thứ: {{ hoSoBo.DoiThu }} - Con thứ: {{ hoSoBo.ConThu }}</span><br><a
+
+                        href="#"><b>{{ hoSoBo.HoTen }}</b></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" height="10" align="center" valign="middle"><img
+                    src="/images/down.gif"></td>
+        </tr>
+        {% endif %}
+        {% set count = dsAnhEm|length %}
+        {% if count == 0 %}
+        {% set count = 1 %}
+        {% endif %}
+        {% set percent = 100/count %}
+        {% set linePercent = 100/count %}
+        {% set marginPercent = linePercent/2 %}
+        {% set viTri = 0 %}
+        <tr>
+            <td colspan="3" align="center" style="position: relative"><img
+                    src="/images/VLine.jpg" width="{{linePercent*(count-1)}}%"
+                    height="1px" style="position: absolute; left: {{marginPercent}}%">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        {% for anhEm in dsAnhEm %}
+                        <td width="{{percent}}%" align="center" valign="top"
+                            style="vertical-align:middle;">
+                            <div align="center"><img
+                                    src="/images/down.gif"></div>
+                            <div class="hopNho"
+                                 style="min-height: 180px; {% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
+                                ACE: <br>
+                                <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
+                                    style="color: chocolate;"
+                                    href="#"><b>{{ anhEm.HoTen }}</b></a>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        {% set viTri = 0 %}
+                        {% set break = 0 %}
+                        {% set position = 0 %}
+                        {% for anhEm in dsAnhEm if break == 0 %}
+                        {% set viTri = viTri+1 %}
+                        {% if anhEm.MaHoSo == hoSo.MaHoSo %}
+                        {% set break = 1 %}
+                        {% set position = viTri %}
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        {% endfor %}
+
+                        <td align="center" valign="middle"><img src="/images/down.gif"></td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            {% set count = dsCon|length %}
+            {% if count == 0 %}
+            {% set count = 1 %}
+            {% endif %}
+            {% set percent = 100/count %}
+            {% set linePercent = 100/count %}
+            {% set marginPercent = linePercent/2 %}
+            {% set viTri = 0 %}
+
+
+            <td colspan="3" align="center" style="position: relative"><img
+                    src="/images/VLine.jpg" width="{{linePercent*(count-1)}}%"
+                    height="1px" style="position: absolute; left: {{marginPercent}}%">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        {% for con in dsCon %}
+                        {% if con.gioitinh == true %}
+                        {% set countConTrai = countConTrai + 1 %}
+                        {% else %}
+                        {% set countConGai = countConGai + 1 %}
+                        {% endif %}
+                        <td width="{{percent}}%" align="center" valign="top"
+                            style="vertical-align:middle; min-height: 180px; float: left">
+                            <div align="center"><img
+                                    src="/images/down.gif"></div>
+                            <div class="hopNho">
+                                Con: <br>
+                                <span>Đời thứ: {{con.doithu}} - Con thứ: {{con.conthu}}</span><br><a
+                                    href="#"><b>{{con.hoten}}</b></a>
+                            </div>
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Thống kê: </h4>
+    <p><i class="fa fa-child"></i> Số con trai: <b>{{countConTrai}}</b></p>
+    <p><i class="fa fa-child"></i> Số con gái: <b>{{countConGai}}</b></p>
+</div>

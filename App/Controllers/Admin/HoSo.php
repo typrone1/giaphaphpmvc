@@ -68,6 +68,7 @@ class HoSo extends Controller
         View::renderTemplate('HoSo/danh-sach.html', [
             'dsHoSo' => HoSoModel::getAll()
         ]);
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
     }
 
     public function searchAction()
@@ -91,13 +92,15 @@ class HoSo extends Controller
         echo \GuzzleHttp\json_encode($result,JSON_UNESCAPED_UNICODE);
     }
     public function deleteHoSoAction(){
+        $this->requireQuanTriVienLevel3();
         $mhs = $this->routeParams['id'];
-        if (!\App\Models\HoSo::find($mhs)->deleteHoSo()){
+        if (!HoSoModel::find($mhs)->deleteHoSo()){
             Flash::addMessage('Đã xóa thành công !');
         } else {
-            Flash::addMessage('Xóa thất bại !');
+            Flash::addMessage('Không thể xóa nhánh khi vẫn còn sự phụ thuộc! ', Flash::WARNING);
         }
-        $this->redirect('/giapha/giaPhaDangDung');
+
+        $this->redirect(isset($_SESSION['return_to']) ? $_SESSION['return_to'] : '/');
     }
     public function traCuuXungHoAction(){
         View::renderTemplate('TraCuuXungHo/index.html', ['dsHoSo' => HoSoModel::getAll()]);
@@ -175,5 +178,39 @@ class HoSo extends Controller
             $this->redirect('/admin/ho-so/them-ho-so');
         }
     }
+    public function capNhatHoSoAction(){
+        $maHoSo = $this->routeParams['mahoso'];
+        $hoSo = HoSoModel::find($maHoSo);
+        $hoSo->maHoSo = $maHoSo;
+        if ($hoSo->updateInfo($_POST)) {
+            Flash::addMessage('Cập nhật hồ sơ thành công !');
+        }
+        else {
+            Flash::addMessage(':( Cập nhật không thành công !', Flash::WARNING);
+        }
 
+        $this->redirect('/admin/ho-so/'.$maHoSo);
+    }
+    public function capNhatAnhHoSoAction(){
+        $maHoSo = $this->routeParams['mahoso'];
+        $hoSo = HoSoModel::find($maHoSo);
+        $hoSo->maHoSo = $maHoSo;
+        if ($hoSo->updatePicture($_POST)) {
+            Flash::addMessage('Cập nhật ảnh hồ sơ thành công !');
+        }
+        else {
+            Flash::addMessage(':( Cập nhật không thành công !', Flash::WARNING);
+        }
+
+        $this->redirect('/admin/ho-so/'.$maHoSo);
+    }
+    public function setProfileAction(){
+        $username = "stint";
+        if (isset($username)) {
+            $url = $_POST['url'];
+            $this->save_image($url, '/profile-pic/' . $username . '.jpg');
+            echo "success";
+        } else {
+            // if username is not redirect to the home page
+        }
 }

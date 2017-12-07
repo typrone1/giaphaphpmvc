@@ -85,11 +85,12 @@ class BaiViet extends Model
                     endif;
                 }
             }
-            $sql = 'INSERT INTO BaiViet (MaLoaiTin, TieuDe, NoiDung, HinhAnh)
-            VALUES (:maLoaiTin, :tieuDe, :noiDung, :hinhAnh)';
+            $sql = 'INSERT INTO BaiViet (MaLoaiTin, TieuDe, NoiDung, HinhAnh, NgayDuaTin, MaThanhVien)
+            VALUES (:maLoaiTin, :tieuDe, :noiDung, :hinhAnh, CURRENT_DATE, :maThanhVien)';
             $db = static::getDB();
             $stmt = $db->prepare($sql);
             $stmt->bindValue(':maLoaiTin', $this->maLoaiTin, PDO::PARAM_INT);
+            $stmt->bindValue(':maThanhVien', $this->maThanhVien, PDO::PARAM_INT);
             $stmt->bindValue(':tieuDe', $this->tieuDe, PDO::PARAM_STR);
             $stmt->bindValue(':noiDung', $this->noiDung, PDO::PARAM_STR);
             $stmt->bindValue(':hinhAnh', $fileNewName, PDO::PARAM_STR);
@@ -101,14 +102,14 @@ class BaiViet extends Model
     public static function getAll()
     {
         $db = static::getDB();
-        $stmt = $db->query('SELECT * FROM BaiViet');
+        $stmt = $db->query('SELECT TieuDe, NoiDung, BaiViet.HinhAnh, name, NgayDuaTin, MaBaiViet FROM BaiViet,users WHERE baiviet.MaThanhVien = users.id ORDER BY MaBaiViet DESC');
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public static function findOne($maBaiViet)
     {
-        $sql = 'SELECT * FROM BaiViet
-                WHERE mabaiviet = :mabaiviet';
+        $sql = 'SELECT TieuDe, NoiDung, BaiViet.HinhAnh, name, NgayDuaTin, MaBaiViet FROM BaiViet, users
+                WHERE mabaiviet = :mabaiviet AND baiviet.MaThanhVien = users.id';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':mabaiviet', $maBaiViet, PDO::PARAM_INT);

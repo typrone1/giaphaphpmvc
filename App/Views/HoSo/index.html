@@ -2,6 +2,12 @@
 {% block title %}
 Thêm hồ sơ
 {% endblock %}
+{% block external_css %}
+<link rel="stylesheet" href="/css/selectize.bootstrap3.css">
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jqueryui.js"></script>
+<script src="/js/selectize.min.js"></script>
+{% endblock %}
 {% block body %}
 <!-- page content -->
 <div class="right_col" role="main">
@@ -21,7 +27,8 @@ Thêm hồ sơ
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/admin/ho-so/postThemHoSoAction" method="post" class="form-horizontal form-label-left"
+                        <form action="/admin/ho-so/postThemHoSoAction" method="post"
+                              class="form-horizontal form-label-left"
                               enctype="multipart/form-data">
 
                             <div class="form-group">
@@ -29,30 +36,67 @@ Thêm hồ sơ
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="maHoSoBo" id="getHoSoMe">
+                                        <select id="getHoSoMe" name="maHoSoBo" placeholder="Nhập tên...">
+                                            {% for hoSo in dsHoSo %}
+                                            {% if maHoSoBo == hoSo.MaHoSo %}
+                                            <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời
+                                                thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
+                                            </option>
+                                            {% else %}
+                                            <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ
+                                                :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
+                                            </option>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    <script>
+                                        $('#getHoSoMe').selectize().on('change', function () {
+                                            let getHoSoMe = document.querySelector('#getHoSoMe');
+                                            let maHoSoMe = document.querySelector('#maHoSoMe');
+                                            let doiThu = document.querySelector('#doiThu');
+                                            let myString = $("#getHoSoMe option:selected").text();
+                                            let myRegexp = /\d(?= Con thứ)/g;
+                                            let match = myRegexp.exec(myString);
+                                            doiThu.value = parseInt(match[0]) + 1;
+                                            let id = this.value;
+                                            $.get("/admin/ho-so-ngoai-toc/list/" + id, function (data, status) {
+                                                data = JSON.parse(data);
+                                                while (maHoSoMe.hasChildNodes()) {
+                                                    maHoSoMe.removeChild(maHoSoMe.lastChild);
+                                                }
+                                                data.map(function (data) {
+                                                    var option = document.createElement('option');
+                                                    option.value = data.MaHoSoNT;
+                                                    option.textContent = data.HoTen;
+                                                    maHoSoMe.appendChild(option);
+                                                })
+                                            });
+                                        });
+                                    </script>
+                                    <!--<select class="form-control" name="maHoSoBo" id="getHoSoMe">-->
 
-                                        {% for hoSo in dsHoSo %}
-                                        {% if maHoSoBo == hoSo.MaHoSo %}
-                                        <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời
-                                            thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
-                                        </option>
-                                        {% else %}
-                                        <option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ
-                                            :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
-                                        </option>
-                                        {% endif %}
-                                        {% endfor %}
+                                        <!--{% for hoSo in dsHoSo %}-->
+                                        <!--{% if maHoSoBo == hoSo.MaHoSo %}-->
+                                        <!--<option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời-->
+                                            <!--thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})-->
+                                        <!--</option>-->
+                                        <!--{% else %}-->
+                                        <!--<option value="{{hoSo.MaHoSo}}">{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời thứ-->
+                                            <!--:{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})-->
+                                        <!--</option>-->
+                                        <!--{% endif %}-->
+                                        <!--{% endfor %}-->
 
-                                    </select>
+                                    <!--</select>-->
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Chọn nhánh mẹ
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" id="maHoSoMe">
-                                        {% for hoSo in dsHoSoNgoaiToc %}
+                                    <select class="form-control" id="maHoSoMe" name="maHoSoMe">
                                         <option></option>
+                                        {% for hoSo in dsHoSoNgoaiToc %}
                                         <option value="{{hoSo.MaHoSoNT}}">{{hoSo.HoTen}}</option>
                                         {% endfor %}
                                     </select>
@@ -103,7 +147,7 @@ Thêm hồ sơ
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input class="form-control col-md-7 col-xs-12"
-                                           type="text">
+                                           name="queQuan" type="text">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -126,31 +170,90 @@ Thêm hồ sơ
                                            type="text" value="1">
                                 </div>
                             </div>
+
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
-                                    <span class="required"></span>
+
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Thông tin bổ sung
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control col-md-7 col-xs-12"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ liên hệ
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control col-md-7 col-xs-12"
-                                           type="text">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
-                                    <span class="required"></span>
-                                </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input class="form-control col-md-7 col-xs-12"
-                                           type="text">
+                                    <div class="accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+
+                                        <div class="panel">
+                                            <a class="panel-heading collapsed" role="tab" id="headingTwo1"
+                                               data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo1"
+                                               aria-expanded="false" aria-controls="collapseTwo">
+                                                <h4 class="panel-title">Thông tin liên lạc</h4>
+                                            </a>
+                                            <div id="collapseTwo1" class="panel-collapse collapse" role="tabpanel"
+                                                 aria-labelledby="headingTwo" aria-expanded="false"
+                                                 style="height: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
+                                                            <span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input name="email" class="form-control col-md-7 col-xs-12"
+                                                                   type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ
+                                                            liên hệ
+                                                            <span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input class="form-control col-md-7 col-xs-12"
+                                                                   name="diaChi" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
+                                                            <span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input name="sdt" class="form-control col-md-7 col-xs-12"
+                                                                   type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel">
+                                            <a class="panel-heading collapsed" role="tab" id="headingOne1"
+                                               data-toggle="collapse" data-parent="#accordion1" href="#collapseOne1"
+                                               aria-expanded="false" aria-controls="collapseOne">
+                                                <h4 class="panel-title">Đã mất</h4>
+                                            </a>
+                                            <div id="collapseOne1" class="panel-collapse collapse" role="tabpanel"
+                                                 aria-labelledby="headingOne" aria-expanded="false"
+                                                 style="height: 0px;">
+                                                <div class="panel-body">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày
+                                                            mất
+                                                            <span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input name="ngayMat"
+                                                                   class="form-control col-md-7 col-xs-12" type="text">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Nơi an
+                                                            táng
+                                                            <span class="required"></span>
+                                                        </label>
+                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                            <input name="noiAnTang"
+                                                                   class="form-control col-md-7 col-xs-12" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -162,12 +265,10 @@ Thêm hồ sơ
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="button">Hủy</button>
                                     <button class="btn btn-primary" type="reset">Reset</button>
                                     <button type="submit" class="btn btn-success">Thêm</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -176,37 +277,11 @@ Thêm hồ sơ
     </div>
 </div>
 <!-- /page content -->
-
 {% endblock %}
-
 {% block footer %}
 <script>
     $('#myDatepicker2').datetimepicker({
         format: 'DD/MM/YYYY'
     });
-    let getHoSoMe = document.querySelector('#getHoSoMe');
-    let maHoSoMe = document.querySelector('#maHoSoMe');
-    let doiThu = document.querySelector('#doiThu');
-    getHoSoMe.addEventListener('change', function () {
-        let myString = $("#getHoSoMe option:selected").text();
-        ;
-        let myRegexp = /\d(?= Con thứ)/g;
-        let match = myRegexp.exec(myString);
-        doiThu.value = parseInt(match[0]) + 1;
-        let id = this.value;
-        $.get("/admin/ho-so-ngoai-toc/list/" + id, function (data, status) {
-            data = JSON.parse(data);
-            while (maHoSoMe.hasChildNodes()) {
-                maHoSoMe.removeChild(maHoSoMe.lastChild);
-            }
-            data.map(function (data) {
-                var option = document.createElement('option');
-                option.value = data.MaHoSoNT;
-                option.textContent = data.HoTen;
-                maHoSoMe.appendChild(option);
-            })
-        });
-    })
-
 </script>
 {% endblock %}

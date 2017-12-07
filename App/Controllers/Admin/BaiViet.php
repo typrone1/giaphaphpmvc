@@ -14,37 +14,47 @@ use Core\Controller;
 use Core\View;
 use App\Models\BaiViet as BaiVietModel;
 use App\Models\LoaiTin;
+
 class BaiViet extends Controller
 {
-    public function indexAction(){
+    public function indexAction()
+    {
 
     }
 
-    public function getDanhSachBaiVietAction(){
+    public function getDanhSachBaiVietAction()
+    {
         View::renderTemplate('BaiViet/danh_sach_bai_viet.html', ['dsBaiViet' => BaiVietModel::getAll()]);
     }
 
-    public function getThemBaiViet(){
-        View::renderTemplate('BaiViet/viet_bai.html',['dsLoaiTin' => LoaiTin::getAll()]);
+    public function getThemBaiViet()
+    {
+        View::renderTemplate('BaiViet/viet_bai.html', ['dsLoaiTin' => LoaiTin::getAll()]);
     }
-    public function getSuaBaiViet(){
+
+    public function getSuaBaiViet()
+    {
         $id = $this->routeParams['id'];
-        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html',['baiViet' => BaiVietModel::findOne($id),'dsLoaiTin' => LoaiTin::getAll()]);
+        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html', ['baiViet' => BaiVietModel::findOne($id), 'dsLoaiTin' => LoaiTin::getAll()]);
     }
-    public function postThemBaiViet(){
+
+    public function postThemBaiViet()
+    {
         $post = new BaiVietModel($_POST);
-        if ($post->save()){
+        if ($post->save()) {
             Flash::addMessage("Thêm thành công");
             $this->redirect('/admin/baiviet/getThemBaiViet');
         } else {
             Flash::addMessage("Thêm không công thành công", Flash::WARNING);
-            foreach ($post->errors as $error){
+            foreach ($post->errors as $error) {
                 Flash::addMessage($error, Flash::WARNING);
             }
             View::renderTemplate('BaiViet/viet_bai.html', ['dsLoaiTin' => LoaiTin::getAll(), 'post' => $post]);
         }
     }
-    public function xemLichAction(){
+
+    public function xemLichAction()
+    {
         View::renderTemplate('Lich/index.html');
     }
 }

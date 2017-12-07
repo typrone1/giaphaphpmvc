@@ -38,7 +38,20 @@ class HoSoNgoaiToc extends Controller
     }
     function getListVoByID(){
         $maHoSo = $this->routeParams['mahoso'];
-        $result = \App\Models\HoSoNgoaiToc::findByChong($maHoSo);
+        $result = HoSoNgoaiTocModel::findByChong($maHoSo);
         echo \GuzzleHttp\json_encode($result,JSON_UNESCAPED_UNICODE);
+    }
+    public function capNhatHoSoNgoaiTocAction(){
+        $maHoSo = $this->routeParams['mahoso'];
+        $hoSo = HoSoNgoaiTocModel::find($maHoSo);
+        $hoSo->maHoSoNT = $maHoSo;
+        if ($hoSo->updateInfo($_POST)) {
+            Flash::addMessage('Cập nhật hồ sơ thành công !');
+        }
+        else {
+            Flash::addMessage(':( Cập nhật không thành công !', Flash::WARNING);
+        }
+
+        $this->redirect('/admin/ho-so-ngoai-toc/'.$maHoSo);
     }
 }

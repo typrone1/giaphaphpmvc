@@ -20,6 +20,7 @@ class PhaDo extends Controller
     }
     public function xemPhaDoDangDungAction(){
         View::renderTemplate('GiaPha/gia_pha_dung.html');
+        $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
     }
     public function xemPhaDoChiAction(){
         $chiThu = $this->routeParams['chi'];

@@ -24,8 +24,7 @@ Danh sách bài viết
                             <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/camera.png"
                                                                  style="width: 64px; height: 64px;"> </a></div>
                         {% endif %}
-                        <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe
-                            }} <a class="btn btn-primary btn-sm" href="/admin/bai-viet/{{ baiViet.MaBaiViet }}/get-sua-bai-viet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
+                        <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe}} <small>Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small> <a class="btn btn-primary btn-sm" href="/admin/bai-viet/{{ baiViet.MaBaiViet }}/get-sua-bai-viet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
                         </div>
                     </div>
                     <hr>

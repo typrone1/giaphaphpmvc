@@ -79,10 +79,13 @@
                                 Phả đồ <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/pha-do/pha-do-dang-dung"><i class="fa fa-list-ol"
-                                                                            aria-hidden="true"></i>Dạng đứng</a></li>
-                                    <li><a href="/admin/pha-do/index"><i class="fa fa-sitemap" aria-hidden="true"></i>Dạng cây</a>
+                                                                                    aria-hidden="true"></i>Dạng đứng</a>
                                     </li>
-                                    <li><a href="/admin/tra-cuu-cach-xung-ho"><i class="fa fa-handshake-o" aria-hidden="true"></i>Tra
+                                    <li><a href="/admin/pha-do/index"><i class="fa fa-sitemap" aria-hidden="true"></i>Dạng
+                                        cây</a>
+                                    </li>
+                                    <li><a href="/admin/tra-cuu-cach-xung-ho"><i class="fa fa-handshake-o"
+                                                                                 aria-hidden="true"></i>Tra
                                         cứu cách xưng hô</a></li>
                                 </ul>
                             </li>
@@ -90,10 +93,12 @@
                                     class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="/admin/thanh-vien/danh-sach"><i class="fa fa-list-alt"
-                                                                            aria-hidden="true"></i>Danh sách thành viên</a>
+                                                                                 aria-hidden="true"></i>Danh sách thành
+                                        viên</a>
                                     </li>
                                     <li><a href="/admin/thanh-vien/cap-quyen"><i class="fa fa-code-fork"
-                                                                               aria-hidden="true"></i>Cấp quyền quản trị</a>
+                                                                                 aria-hidden="true"></i>Cấp quyền quản
+                                        trị</a>
                                     </li>
                                 </ul>
                             </li>
@@ -128,7 +133,7 @@
                                     <li><a href="page_403.html"><i class="fa fa-telegram" aria-hidden="true"></i> Gửi
                                         email tới các thành viên</a></li>
                                     <li><a href="/admin/sao-luu/in-file-excel"><i class="fa fa-file-excel-o"
-                                                                               aria-hidden="true"></i> Xuất tệp tin
+                                                                                  aria-hidden="true"></i> Xuất tệp tin
                                         Excel</a></li>
                                 </ul>
                             </li>
@@ -204,31 +209,8 @@
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
+                                <span class="badge bg-green">{{current_user.MaCapQuanTri}}</span>
                             </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <li>
-                                    <a>
-                                        <span class="image"><img src="/images/PA1057_gia-pha.png" alt="Profile Image"/></span>
-                                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <div class="text-center">
-                                        <a>
-                                            <strong>Xem tất cả thông báo</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>

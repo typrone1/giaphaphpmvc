@@ -23,4 +23,10 @@ abstract class Authenticated extends Controller
         }
         $this->requireQuanTriVien();
     }
+    protected function yeuCauQuanTriVienCap3(){
+        if (!Auth::isLoggedIn()){
+            $this->requireLogin();
+        }
+        $this->requireQuanTriVienLevel3();
+    }
 }

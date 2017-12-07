@@ -27,31 +27,34 @@ Trang chủ
             <ul class="breadcrumb left clearfix">
                 <li class="start">
                     <h4>
-                        <a href="javascript:void(0);" title="Trang nhất">Trang nhất</a>
+                        <a href="javascript:void(0);" title="Trang chủ">Trang chủ</a>
                     </h4>
                 </li>
             </ul>
             <div id="search-box">
-                <input type="text" name="keywords">
-                <input type="button" value="Tìm kiếm">
+                <form action="/ket-qua-tim-kiem" method="get" id="search">
+                    <input type="text" name="keywords">
+                    <input type="submit" value="Tìm kiếm">
+                </form>
             </div>
         </div>
+        <br>
         <div class="col-9">
             {% for baiViet in dsBaiViet|slice(0, 1) %}
             <div class="col-9">
                 <div id="big-news" style="padding-left: .5em">
                     <div class="thumb">
                         <a href="/bai-viet/{{baiViet.MaBaiViet}}">
-                        {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                        <img src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
-                        {% else %}
-                        <img src="/images/AnhBaiViet/camera.png" alt="">
-                        {% endif %}
+                            {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                            <img src="/images/AnhBaiViet/{{baiViet.HinhAnh}}" alt="">
+                            {% else %}
+                            <img src="/images/AnhBaiViet/camera.png" alt="">
+                            {% endif %}
                         </a>
                     </div>
                     <h5><a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a></h5>
                     <small>
-                        <i>Nguyễn Hữu Tý</i> - Thứ hai, 20/11/2017
+                        <i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}
                     </small>
                     <p>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                 </div>
@@ -68,16 +71,17 @@ Trang chủ
                     <div class="article">
                         <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
-                                <h5>{{baiViet.TieuDe}}</h5>
+                                <h5>{{baiViet.TieuDe}}<br><small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small></h5>
+
                             </a>
                         </a>
-                        <p>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
+                        <small>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</small>
                         <hr>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <a href="#" class="view-all">Xem tất cả
+            <a href="/user/LoaiTin/index/1" class="view-all">Xem tất cả
                 <i class="fa fa-arrow-right"></i>
             </a>
         </div>
@@ -85,7 +89,7 @@ Trang chủ
             <script>
                 var mockData = [{
                     "ngayGio": "2015-11-29"
-                },
+                    },
                     {
                         "ngayGio": "2017-09-20"
                     },
@@ -99,6 +103,26 @@ Trang chủ
                         "ngayGio": "2015-02-23"
                     }
                 ];
+                var getJSON = function(url, callback) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'json';
+                    xhr.onload = function() {
+                        var status = xhr.status;
+                        if (status === 200) {
+                            callback(null, xhr.response);
+                        } else {
+                            callback(status, xhr.response);
+                        }
+                    };
+                    xhr.send();
+                };
+                getJSON('/api/ajax/getAll', (err, data) => {
+                    mockData = data.data;
+                });
+                setTimeout(function () {
+                    console.log(mockData);
+                }, 1000);
                 setOutputSize("small");
                 showVietCal();
             </script>
@@ -193,6 +217,7 @@ Trang chủ
                                 {% endif %}
                             </a>
                         </div>
+                        <small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small>
                         <p class="description">{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                     </div>
                     <div class="clearfix"></div>

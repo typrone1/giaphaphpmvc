@@ -24,28 +24,43 @@ Hồ sơ ngoại tộc
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="col-md-3 col-sm-3 profile_left">
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"
-                                         title="Change the avatar">
+                                    {% if hoSo.HinhAnh %}
+                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"
+                                         alt="Avatar"
+                                         title="" style="min-width: 100%">
+                                    {% else %}
+                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/user.png" alt="Avatar"
+                                         title="" style="min-width: 100%">
+                                    {% endif %}
                                 </div>
                             </div>
                             <h3>{{ hoSo.HoTen}}</h3>
 
                             <ul class="list-unstyled user_data">
                                 <li>
-                                    <i class="fa fa-map-marker user-profile-icon"></i> Ngày sinh: {{hoSo.NgaySinh}}
+                                    <i class="fa fa-birthday-cake"></i> Ngày sinh: {{hoSo.NgaySinh|date("d/m/Y")}}
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i> Quê quán: {{hoSo.QueQuan}}
+                                    <i class="fa fa-map-o"></i> Quê quán: {{hoSo.QueQuan}}
+                                </li>
+
+                                <li>
+                                    <i class="fa fa-map-marker"></i> Địa chỉ: {{hoSo.DiaChi}}
                                 </li>
                             </ul>
+                            <div class="row">
+                                <div class="col-md-6"><a class="btn btn-success" style="width: 100%"
+                                                         href="/admin/ho-so/{{hoSoPhuThuoc.MaHoSo}}/them-con">
+                                    <i class="fa fa-child m-right-xs"></i> Thêm con</a>
+                                    <br/></div>
+                            </div>
                         </div>
-
-                        <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div class="col-md-9 col-sm-9">
                             <div class="profile_title">
                                 <div class="col-md-12">
                                     <h2>Thông tin cá nhân</h2>
@@ -53,46 +68,39 @@ Hồ sơ ngoại tộc
 
                             </div>
                             <br>
-                            <form id="demo-form2" class="form-horizontal form-label-left">
+                            <form action="/admin/ho-so-ngoai-toc/{{hoSo.MaHoSoNT}}/cap-nhat" enctype="multipart/form-data" method="post" class="form-horizontal form-label-left">
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Hồ sơ phụ thuộc
                                         <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
+                                        <input class="form-control col-md-7 col-xs-12 disabled"
                                                required="required" type="text" value="{{hoSo.MaHoSoNT}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên chồng (vợ)
                                         <span class="required"></span>
                                     </label>
-                                    <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSoPhuThuoc.HoTen}}">
+                                    <div class="col-md-3 col-sm-3 col-xs-12 disabled">
+                                        <input class="form-control col-md-7 col-xs-12" type="text" value="{{hoSoPhuThuoc.HoTen}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên bố
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.HoTenBo}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="hoTenMe" type="text" value="{{hoSo.HoTenBo}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ tên mẹ
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.HoTenMe}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="hoTenBo" type="text" value="{{hoSo.HoTenMe}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
-
-                                    <label for="middle-name"
-                                           class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên</label>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="middle-name" value="{{hoSo.HoTen}}">
+                                        <input class="form-control col-md-7 col-xs-12" type="text"
+                                               name="hoTen" value="{{hoSo.HoTen}}">
                                     </div>
                                 </div>
 
@@ -102,12 +110,12 @@ Hồ sơ ngoại tộc
                                         <div id="gender" class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-default" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="male"
+                                                <input type="radio" name="gioiTinh" value="male"
                                                        data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                                             </label>
                                             <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="female"
+                                                <input type="radio" name="gioiTinh" value="female"
                                                        data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
                                             </label>
                                         </div>
@@ -115,101 +123,89 @@ Hồ sơ ngoại tộc
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="date" value="{{hoSo.NgaySinh}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="ngaySinh" type="date" value="{{hoSo.NgaySinh}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Quê quán
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.QueQuan}}">
+                                               name="queQuan" type="text" value="{{hoSo.QueQuan}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Đời thứ
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.DoiThu}}" >
+                                               name="doiThu" type="text" value="{{hoSo.DoiThu}}" >
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.ConThu}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="conThu" type="text" value="{{hoSo.ConThu}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.Email}}">
+                                               name="email" type="text" value="{{hoSo.Email}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ liên hệ
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.DiaChi}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="diaChi" type="text" value="{{hoSo.DiaChi}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.SDT}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="sdt" type="text" value="{{hoSo.SDT}}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Hình ảnh</label>
+                                    <div class="col-md-9 col-sm-9 col-xs-12">
+                                        <input type="file" class="form-control" name="hinhAnh" id="hinhAnh">
+                                    </div>
+                                </div>
+                                <div class="bg-danger" style="border-radius: 5px; padding: 1em">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-sm-6">Ngày mất: <input value="{{hoSo.NgayMat}}" type="date"
+                                                                                   name="ngayMat"></div>
+                                            <div class="col-sm-6">Nơi mất: <input type="text"></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6">Ngày kỵ: <input type="text"></div>
+                                            <div class="col-sm-6">Nơi an táng: <input value="{{hoSo.NoiAnTang}}"
+                                                                                      type="text" name="noiAnTang">
+                                            </div>
+                                            <div class="col-sm-6">Người kỵ: <input type="text"></div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                        <button class="btn btn-primary" type="reset">Reset</button>
                                         <button type="submit" class="btn btn-success">Thêm</button>
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-6">
-                            {% for vo in dsVo %}
-                            {% if vo.hinhanh is not null and vo.hinhanh != '' %}
-                            <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="width: 100%">
-                            {% endif %}
-                            <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
-                            <p>Năm sinh: {{ vo.ngaysinh }}</p>
-                            <p>Quê quán: {{vo.quequan }}</p>
-                            <p>Mất ngày: {{vo.ngaymat }}</p>
-                            <p>Nơi mất: </p>
-                            <p>Nơi an táng: {{vo.noiantang}}</p>
-                            <p>Sinh hạ:</p>
-                            <a class="btn btn-success">
-                                <i class="fa fa-edit m-right-xs"></i>Chỉnh sửa hồ sơ</a>
-                            <br/>
-                            <ol>
-                                {% for con in dsCon %}
-                                {% if con.mahosome == vo.mahosont %}
-                                <li><a class="btn btn-link" href="#">Con thứ: {{con.conthu}} - {{con.hoten}}</a></li>
-                                {% endif %}
-                                {% endfor %}
-                            </ol>
-                            {% endfor %}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- /page content -->
 

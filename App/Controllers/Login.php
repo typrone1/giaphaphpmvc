@@ -139,7 +139,6 @@ class Login extends Controller
         if ($user) {
             Flash::addMessage('Login success');
             Auth::login($user, $remember_me);
-
 //            session_regenerate_id(true);
 //            $_SESSION['user_id'] = $user->id;
 //            echo $_SESSION['user_id'];
@@ -148,7 +147,7 @@ class Login extends Controller
 
             $this->redirect(Auth::getReturnToPage());
         } else {
-            Flash::addMessage('Login that bai, vui long thu lai', Flash::WARNING);
+            Flash::addMessage('Đăng nhập thất bại, Vui lòng thử lại sau', Flash::WARNING);
             View::renderTemplate('Login/new.html', [
                 'email' => $_POST['email'],
                 'remember_me' => $remember_me

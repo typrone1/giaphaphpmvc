@@ -4,7 +4,30 @@ Phả đồ
 {% endblock %}
 {% block css %}
 <link href="/css/treemenu.css" rel="stylesheet">
+<script src="/js/treemenu.js"></script>
 <style>
+
+    /* Cay gia pha gan */
+    .hopTo {
+        padding: 0.5em;
+        width: 20rem;
+        text-align: center;
+        vertical-align: middle;
+        background-image: url('/images/phado.gif');
+        overflow: hidden;
+    }
+
+    .hopNho {
+        padding: 0.5em;
+        text-align: center;
+        vertical-align: middle;
+        position: relative;
+        background-image: url('/images/phado.gif');
+        overflow: hidden;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+    }
+
     /* The Modal (background) */
     .modal {
         display: none; /* Hidden by default */
@@ -16,8 +39,8 @@ Phả đồ
         width: 100%; /* Full width */
         height: 100%; /* Full height */
         overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
     }
 
     /* Modal Content */
@@ -43,16 +66,20 @@ Phả đồ
         text-decoration: none;
         cursor: pointer;
     }
+
+    @media (max-width: 576px) {
+
+    }
 </style>
 <script>
     function showInfo(button) {
         var maHoSo = $(button).prevAll(".maHoSo").val();
         console.log(maHoSo);
         modal.style.display = "block";
-        openPage("api/ajax/index?maHoSo="+maHoSo);
+        openPage("api/ajax/index?maHoSo=" + maHoSo);
     }
     function openPage(url) {
-        if(url.indexOf("?") == -1) {
+        if (url.indexOf("?") == -1) {
             url = url + "?";
         }
 
@@ -61,6 +88,16 @@ Phả đồ
         //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSValidateTypes
         $("body").scrollTop(0);
 //        history.pushState(null, null, url);
+    }
+    function addTraCuuXungHo(maHoSo) {
+        var encodedUrl = encodeURI("tra-cuu-xung-ho/add/" + maHoSo);
+        $("#status").load(encodedUrl);
+        $("body").scrollTop(0);
+    }
+    function xemKetQuaTraCuuCachXungHo() {
+        var encodedUrl = encodeURI("user/tracuuxungho/getAllDoiTuong");
+        $("#mainContent2").load(encodedUrl);
+        $("body").scrollTop(0);
     }
 </script>
 {% endblock %}
@@ -71,82 +108,103 @@ Phả đồ
             <ul class="breadcrumb left clearfix">
                 <li class="start">
                     <h4>
-                        <a href="javascript:void(0);" title="Trang nhất">Phả đồ dạng đứng</a>
+                        <a href="javascript:void(0);" title="Phả đồ đứng">Phả đồ dạng đứng</a>
                     </h4>
                 </li>
             </ul>
             <div id="search-box">
-                <input type="text" name="keywords">
-                <input type="button" value="Tìm kiếm">
+                <form action="/ket-qua-tim-kiem" method="get" id="search">
+                    <a id="btnTraCuuXungHo" style="background-color: orange; padding: .2em; border-radius: .5em; text-align: center"><i class="fa fa-book"></i> Xưng hô</a>
+                    <input type="text" name="keywords">
+                    <input type="submit" value="Tìm kiếm">
+                </form>
             </div>
         </div>
-        <button id="myBtn">Open Modal</button>
-        <div class="floating-tree">
-            {{giaPhaNguoiDung()}}
+        <br>
+        <div style="display: flex">
+            <div class="floating-tree" style="flex: 2">
+                {{giaPhaNguoiDung()}}
+            </div>
+            <div style="flex: 3; overflow-x: auto;">
+                <div id="myModal">
+                    <div class="modal-content" style="width: 100%; margin-left: 1em; margin-right: 0;">
+                        <span class="close">&times;</span>
+                        <h3>Thông tin cá nhân</h3>
+                        <div id="mainContent">
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
         </div>
+        <button id="myBtn" style="display: none"></button>
+
     </div>
 </section>
 {% endblock %}
 
 {% block footer %}
-<div id="myModal" class="modal">
-    <style>
-        .wrapper {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        .wrapper .oneOfThree {
-            width: 33.33%;
-        }
-        .wrapper .twoOfThree {
-            width: 66.66%;
-        }
-    </style>
+
+<style>
+    .wrapper {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
+
+    .wrapper .oneOfThree {
+        width: 33.33%;
+    }
+
+    .wrapper .twoOfThree {
+        width: 66.66%;
+    }
+</style>
+<div id="modal2" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
 
-        <h3>Thông tin cá nhân</h3>
-        <div id="mainContent">
+        <h3>Xem kết quả tra cứu xưng hô</h3>
+        <div id="mainContent2">
         </div>
 
         <br>
-
-
-
-
-
-
     </div>
-
 </div>
 
 <script>
     // Get the modal
     var modal = document.getElementById('myModal');
+    var modal2 = document.getElementById('modal2');
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    var btn = document.getElementById("btnTraCuuXungHo");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
+    var span2 = document.getElementsByClassName("close")[1];
     // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
+    btn.onclick = function () {
+        xemKetQuaTraCuuCachXungHo();
+        modal2.style.display = "block";
     }
 
     // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    span.onclick = function () {
         modal.style.display = "none";
     }
 
+    span2.onclick = function () {
+        modal2.style.display = "none";
+    }
+
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
+            modal2.style.display = "none";
         }
     }
 </script>

@@ -45,23 +45,12 @@ $router->add('', ['namespace' => 'User', 'controller' => 'Home', 'action' => 'in
 $router->add('pha-do-dung', ['controller' => 'PhaDo', 'action' => 'index', 'namespace' => 'User']);
 $router->add('pha-do-cay', ['controller' => 'PhaDo', 'action' => 'xemPhaDoCay', 'namespace' => 'User']);
 $router->add('login', ['controller' => 'Login', 'action' => 'new']);
-//$router->add('giapha/phadochi/{chi:\d+}', ['controller' => 'GiaPha', 'action' => 'phaDoChi']);
+$router->add('signup/create', ['controller' => 'Signup', 'action' => 'create']);
 $router->add('login/', ['controller' => 'Login', 'action' => 'new']);
 $router->add('logout', ['controller' => 'Login', 'action' => 'destroy']);
-//$router->add('xem-lich', ['controller' => 'BaiViet', 'action' => 'XemLich', 'namespace' => 'Admin']);
 $router->add('password/reset/{token:[\da-f]+}', ['controller' => 'Password', 'action' => 'reset']);
-////    $router->add('posts',['controller' => 'Posts', 'action' => 'index']);
-////    $router->add('posts/new',['controller' => 'Posts', 'action' => 'new']);
-//$router->add('signup/activate/{token:[\da-f]+}', ['controller' => 'Signup', 'action' => 'activate']);
-//$router->add('ho-so/{mahoso:[\da-f]+}', ['controller' => 'ChiTietHoSo', 'action' => 'getChiTietHoSo']);
-//$router->add('ho-so-ngoai-toc/list/{mahoso:[\da-f]+}', ['controller' => 'HoSoNgoaiToc', 'action' => 'getListVoByID', 'namespace' => 'admin']);
 $router->add('admin/ho-so-ngoai-toc/{mahoso:[\da-f]+}', ['namespace' => 'Admin', 'controller' => 'HoSoNgoaiToc', 'action' => 'editHoSoNgoaiToc']);
 $router->add('admin/ho-so/{mahoso:[\da-f]+}/them-con', ['controller' => 'HoSo', 'action' => 'themCon', 'namespace' => 'Admin']);
-//$router->add('ho-so/{mahoso:[\da-f]+}/edit', ['controller' => 'ChiTietHoSo', 'action' => 'edit']);
-//$router->add('danh-sach-ho-so', ['controller' => 'TestPhanTrang', 'action' => 'index']);
-
-
-
 $router->add('admin/pha-do/pha-do-dang-dung', ['namespace' => 'Admin', 'controller' => 'PhaDo', 'action' => 'xemPhaDoDangDung']);
 $router->add('admin/tra-cuu-cach-xung-ho', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'traCuuXungHo']);
 $router->add('admin/get-tra-cuu-cach-xung-ho', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'getTraCuuXungHo']);
@@ -84,63 +73,18 @@ $router->add('admin', ['namespace' => 'Admin', 'controller' => 'Dashboard', 'act
 $router->add('admin/ho-so-ngoai-toc/list/{mahoso:[\da-f]+}', ['controller' => 'HoSoNgoaiToc', 'action' => 'getListVoByID', 'namespace' => 'Admin']);
 $router->add('admin/ho-so-ngoai-toc/{id:\d+}/them-vo-chong', ['controller' => 'HoSoNgoaiToc', 'action' => 'themVoChong', 'namespace' => 'Admin']);
 $router->add('admin/cai-dat', ['namespace' => 'Admin', 'controller' => 'CaiDat', 'action' => 'index']);
+$router->add('tim-kiem', ['namespace' => 'User', 'controller' => 'TimKiem', 'action' => 'index']);
+$router->add('tra-cuu-xung-ho/add/{mahoso:[\da-f]+}', ['namespace' => 'User', 'controller' => 'TraCuuXungHo', 'action' => 'add']);
+$router->add('tra-cuu-xung-ho/delete/{mahoso:[\da-f]+}', ['namespace' => 'User', 'controller' => 'TraCuuXungHo', 'action' => 'delete']);
+$router->add('ket-qua-tim-kiem', ['namespace' => 'User', 'controller' => 'TimKiem', 'action' => 'search']);
+$router->add('admin/ho-so/{mahoso:[\da-f]+}/cap-nhat', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'capNhatHoSo']);
+$router->add('admin/ho-so-ngoai-toc/{mahoso:[\da-f]+}/cap-nhat', ['namespace' => 'Admin', 'controller' => 'HoSoNgoaiToc', 'action' => 'capNhatHoSoNgoaiToc']);
+$router->add('admin/ho-so/{mahoso:[\da-f]+}/sua-anh', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'capNhatAnhHoSo']);
 $router->add('{controller}/{action}');
 $router->add('api/{controller}/{action}', ['namespace' => 'API']);
 $router->add('{controller}/{id:\d+}/{action}');
-
 $router->add('user/{controller}/{action}/{id:\d+}', ['namespace' => 'User']);
 $router->add('user/{controller}/{action}', ['namespace' => 'User']);
 $router->add('admin/{controller}/{id:\d+}/{action}', ['namespace' => 'Admin']);
-
 $router->add('bai-viet/{id:\d+}', ['namespace' => 'User', 'controller' => 'BaiViet', 'action' => 'xemChiTietBaiViet' ]);
 $router->dispatch($_SERVER['QUERY_STRING']);
-////Test request match URL
-//
-//$url = $_SERVER['QUERY_STRING'];
-
-//if ($router->match($url)){
-//    echo "<pre>";
-//    var_dump($router->getParams());
-//    echo "</pre>";
-//}
-//else {
-//    echo "Không tìm thấy kết quả trùng khớp";
-//}
-
-
-//Hiển thị routing table
-
-//echo '<pre>';
-//echo htmlspecialchars(print_r($router->getRoutes()), true);
-//echo '</pre>';
-//
-//
-//echo '<pre>';
-//echo htmlspecialchars(print_r($router->getParams()), true);
-//echo '</pre>';
-//$connection = new MySqlConnection([
-//    'dbname' => 'mvc',
-//    'hostname' => '127.0.0.1',
-//    'username' => 'root',
-//    'password' => '',
-//]);
-//
-//// create a new mysql instance.
-//$builder = new MySqlBuilder($connection);
-//
-//// test an example.
-//$user = $builder
-//    ->select('mahoso', 'hoten')
-//    ->where('mahoso', 1)
-//    ->from('hoso')
-//    ->first();
-//
-//print_r($user->hoten);
-//
-//// get a compiled select.
-//$sql = $builder->select('id', 'fullname')
-//    ->from('users')
-//    ->where('id', '=', 3)
-//    ->getCompiledSelectStatement();
-//
-//print_r($sql);

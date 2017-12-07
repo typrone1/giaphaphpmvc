@@ -25,6 +25,10 @@ class ComposerStaticInit98812ea1c7e8cb5ff2d82ff068b728e0
         array (
             'Psr\\Http\\Message\\' => 17,
         ),
+        'L' => 
+        array (
+            'League\\Fractal\\' => 15,
+        ),
         'H' => 
         array (
             'Http\\Promise\\' => 13,
@@ -63,6 +67,10 @@ class ComposerStaticInit98812ea1c7e8cb5ff2d82ff068b728e0
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
+        'League\\Fractal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/fractal/src',
         ),
         'Http\\Promise\\' => 
         array (

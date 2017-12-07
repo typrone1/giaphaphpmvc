@@ -6,32 +6,28 @@
  * Time: 3:46 PM
  */
 namespace App\Controllers;
+use App\Flash;
 use App\Models\User;
 use Core\Controller;
 use Core\View;
 
 class Signup extends Controller
 {
-    public function newAction(){
-        View::renderTemplate('Signup/new.html');
-    }
-
     public function createAction(){
         $user = new User($_POST);
         if ($user->save()) {
-
 //            $user->sendActivationEmail();
-            $this->redirect('/signup/success');
-
+            Flash::addMessage("Đăng ký thành công", Flash::SUCCESS);
+            View::renderTemplate('Login/new.html', ['user' => $user]);
 //            header('Location: http://'. $_SERVER['HTTP_HOST']. '/signup/success',true, 303);
 //            exit;
 //            Cái này bị lỗi double POST
 //            View::renderTemplate('Signup/success.html');
 //            echo "Chuyển hướng thành công";
-
 //            Tìm hiểu code 303 là code ...
         } else {
-            View::renderTemplate('Signup/new.html', ['user' => $user]);
+            Flash::addMessage("Đăng ký không thành công", Flash::WARNING);
+            View::renderTemplate('Login/new.html', ['user' => $user]);
 //            var_dump($user->errors);
         }
     }
@@ -45,11 +41,6 @@ class Signup extends Controller
         $this->redirect('/signup/activated');
     }
 
-    /**
-     * Show the activation success page
-     *
-     * @return void
-     */
     public function activatedAction()
     {
         View::renderTemplate('Signup/activated.html');

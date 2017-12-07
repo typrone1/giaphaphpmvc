@@ -18,30 +18,46 @@ Chi tiết hồ sơ
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Current avatar -->
-                                    <img class="img-responsive avatar-view" src="/images/picture.jpg" alt="Avatar"
-                                         title="">
+                                    {% if hoSo.HinhAnh %}
+                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"
+                                         alt="Avatar"
+                                         title="" style="min-width: 100%">
+                                    {% else %}
+                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/user.png" alt="Avatar"
+                                         title="" style="min-width: 100%">
+                                    {% endif %}
+
                                 </div>
+                                <br>
+                                <form action="/admin/ho-so/{{hoSo.MaHoSo}}/sua-anh" enctype="multipart/form-data"
+                                      method="post">
+                                    <input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo">
+                                    <input type="file" class="form-control" name="hinhAnh" id="hinhAnh">
+                                    <input type="submit" class="btn btn-primary btn-sm" value="Lưu ảnh">
+                                </form>
                             </div>
                             <h3>{{ hoSo.HoTen}}</h3>
                             <ul class="list-unstyled user_data">
                                 <li>
-                                    <i class="fa fa-birthday-cake"></i> Ngày sinh: {{hoSo.NgaySinh}}
+                                    <i class="fa fa-birthday-cake"></i> Ngày sinh: {{hoSo.NgaySinh|date("d/m/Y")}}
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-map-o"></i> Quê quán:
+                                    <i class="fa fa-map-o"></i> Quê quán: {{hoSo.QueQuan}}
                                 </li>
 
                                 <li>
-                                    <i class="fa fa-map-marker"></i> Địa chỉ:
+                                    <i class="fa fa-map-marker"></i> Địa chỉ: {{hoSo.DiaChi}}
                                 </li>
                             </ul>
                             <div class="row">
                                 <div class="container">
-                                    <div class="col-md-6"><a class="btn btn-danger" style="width: 100%" href="/admin/ho-so-ngoai-toc/{{hoSo.MaHoSo}}/them-vo-chong">
+                                    <div class="col-md-6"><a class="btn btn-danger" style="width: 100%"
+                                                             href="/admin/ho-so-ngoai-toc/{{hoSo.MaHoSo}}/them-vo-chong">
                                         <i class="fa fa-edit m-right-xs"></i> Thêm vợ </a>
                                         <br/></div>
-                                    <div class="col-md-6"><a class="btn btn-success" style="width: 100%" href="/admin/ho-so/{{hoSo.MaHoSo}}/them-con">
+                                    <div class="col-md-6"><a class="btn btn-success" style="width: 100%"
+                                                             href="/admin/ho-so/{{hoSo.MaHoSo}}/them-con">
                                         <i class="fa fa-child m-right-xs"></i> Thêm con</a>
                                         <br/></div>
                                 </div>
@@ -57,8 +73,8 @@ Chi tiết hồ sơ
                                 </div>
                             </div>
                             <br>
-                            <form class="form-horizontal form-label-left"
-                                  novalidate="">
+                            <form action="/admin/ho-so/{{hoSo.MaHoSo}}/cap-nhat" class="form-horizontal form-label-left"
+                                  method="post">
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                         Bố
@@ -79,12 +95,11 @@ Chi tiết hồ sơ
                                     </div>
                                 </div>
                                 <div class="form-group">
-
-                                    <label for="middle-name"
+                                    <label for="hoTen"
                                            class="control-label col-md-3 col-sm-3 col-xs-12">Họ và tên</label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text"
-                                               name="middle-name" value="{{hoSo.HoTen}}">
+                                        <input id="hoTen" class="form-control col-md-7 col-xs-12" type="text"
+                                               name="hoTen" value="{{hoSo.HoTen}}">
                                     </div>
                                 </div>
 
@@ -94,33 +109,30 @@ Chi tiết hồ sơ
                                         <div id="gender" class="btn-group" data-toggle="buttons">
                                             <label class="btn btn-default" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="male"
+                                                <input type="radio" name="gioiTinh" value="male"
                                                        data-parsley-multiple="gender"> &nbsp; Nam &nbsp;
                                             </label>
                                             <label class="btn btn-primary" data-toggle-class="btn-primary"
                                                    data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="gender" value="female"
-                                                       data-parsley-multiple="gender"> &nbsp; Nữ &nbsp;
+                                                <input type="radio" name="gioiTinh" value="female"> &nbsp; Nữ &nbsp;
                                             </label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Ngày sinh
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
-                                               required="required" type="date" value="{{hoSo.NgaySinh}}">
+                                        <input id="ngaySinh" class="form-control col-md-7 col-xs-12"
+                                               type="date" name="ngaySinh" value="{{hoSo.NgaySinh}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Quê quán
-                                        <span class="required">*</span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
                                         <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.QueQuan}}">
+                                               type="text" name="queQuan" value="{{hoSo.QueQuan}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -128,53 +140,53 @@ Chi tiết hồ sơ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.DoiThu}}">
+                                        <input class="form-control col-md-7 col-xs-12" name="doiThu" type="text"
+                                               value="{{hoSo.DoiThu}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Con thứ
                                         <span class="required">*</span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input id="birthday" class="date-picker form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.ConThu}}">
+                                        <input class="form-control col-md-7 col-xs-12" type="text"
+                                               name="conThu" value="{{hoSo.ConThu}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Email
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.Email}}">
+                                        <input class="form-control col-md-7 col-xs-12" type="text"
+                                               name="email" value="{{hoSo.Email}}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Địa chỉ liên hệ
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.DiaChi}}">
+                                        <input class="form-control col-md-7 col-xs-12" type="text"
+                                               name="diaChi" value="{{hoSo.DiaChi}}">
                                     </div>
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">SĐT
-                                        <span class="required"></span>
                                     </label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <input class="form-control col-md-7 col-xs-12"
-                                               required="required" type="text" value="{{hoSo.SDT}}">
+                                        <input name="sdt" class="form-control col-md-7 col-xs-12" type="text"
+                                               value="{{hoSo.SDT}}">
                                     </div>
                                 </div>
                                 <div class="bg-danger" style="border-radius: 5px; padding: 1em">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-sm-6">Ngày mất:</div>
-                                            <div class="col-sm-6">Nơi mất:</div>
+                                            <div class="col-sm-6">Ngày mất: <input value="{{hoSo.NgayMat}}" type="date"
+                                                                                   name="ngayMat"></div>
+                                            <div class="col-sm-6">Nơi mất: <input type="text"></div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-sm-6">Ngày kỵ:</div>
-                                            <div class="col-sm-6">Nơi an táng:</div>
-                                            <div class="col-sm-6">Người kỵ:</div>
+                                            <div class="col-sm-6">Ngày kỵ: <input type="text"></div>
+                                            <div class="col-sm-6">Nơi an táng: <input value="{{hoSo.NoiAnTang}}"
+                                                                                      type="text" name="noiAnTang">
+                                            </div>
+                                            <div class="col-sm-6">Người kỵ: <input type="text"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -194,9 +206,9 @@ Chi tiết hồ sơ
                             </div>
                             {% endif %}
                             <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
-                            <p>Năm sinh: {{ vo.ngaysinh }}</p>
+                            <p>Năm sinh: {{ vo.ngaysinh |date("d/m/Y")}}</p>
                             <p>Quê quán: {{vo.quequan }}</p>
-                            <p>Ngày mất : {{vo.ngaymat }}</p>
+                            <p>Ngày mất : {{vo.ngaymat |date("d/m/Y") }}</p>
                             <p>Nơi mất: </p>
                             <p>Nơi an táng: {{vo.noiantang}}</p>
                             <p>Sinh hạ:</p>
@@ -221,7 +233,7 @@ Chi tiết hồ sơ
                         </h2>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content" style="overflow: hidden">
+                    <div>
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tbody>
                             {% if hoSoOng is not null %}
@@ -231,7 +243,7 @@ Chi tiết hồ sơ
                                     <div class="hopTo">
                                         Ông nội: <br>
                                         <span>Đời thứ: {{ hoSoOng.doithu }} - Con thứ: {{ hoSoOng.conthu }}</span><br><a
-                                            href="/ho-so/{{ hoSoOng.mahoso }}">{{ hoSoOng.hoten }}</a>
+                                            href="#"><b>{{ hoSoOng.hoten }}</b></a>
                                     </div>
                                 </td>
                             </tr>
@@ -248,7 +260,7 @@ Chi tiết hồ sơ
                                         Bố: <br>
                                         <span>Đời thứ: {{ hoSoBo.DoiThu }} - Con thứ: {{ hoSoBo.ConThu }}</span><br><a
 
-                                            href="/ho-so/{{ hoSoBo.MaHoSo }}">{{ hoSoBo.HoTen }}</a>
+                                            href="#"><b>{{ hoSoBo.HoTen }}</b></a>
                                     </div>
                                 </td>
                             </tr>
@@ -279,10 +291,10 @@ Chi tiết hồ sơ
                                                         src="/images/down.gif"></div>
                                                 <div class="hopNho"
                                                      style="max-height: 105px; {% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
-                                                    Anh em: <br>
+                                                    ACE: <br>
                                                     <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
                                                         style="color: chocolate;"
-                                                        href="/ho-so/{{anhEm.MaHoSo}}"><b>{{ anhEm.HoTen }}</b></a>
+                                                        href="#"><b>{{ anhEm.HoTen }}</b></a>
                                                 </div>
                                             </td>
                                             {% endfor %}
@@ -333,7 +345,7 @@ Chi tiết hồ sơ
                                                 <div class="hopNho">
                                                     Con: <br>
                                                     <span>Đời thứ: {{con.doithu}} - Con thứ: {{con.conthu}}</span><br><a
-                                                        href="/ho-so/{{con.mahoso}}">{{con.hoten}}</a>
+                                                        href="#"><b>{{con.hoten}}</b></a>
                                                 </div>
                                             </td>
                                             {% endfor %}

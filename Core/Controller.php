@@ -49,17 +49,25 @@ abstract class Controller{
     public function requireLogin(){
         if (!Auth::isLoggedIn()){
 //            exit("Access denine");
-            Flash::addMessage('Vui long login', Flash::INFO);
+            Flash::addMessage('Vui lòng đăng nhập', Flash::INFO);
             Auth::rememberRequestedPage();
             $this->redirect('/login');
         }
     }
     public function requireQuanTriVien(){
         $this->requireLogin();
-        if (!Auth::checkQTV()){
+        if (!Auth::checkQTVLevel2()){
             Flash::addMessage('Bạn không có quyền vào trang này', Flash::INFO);
             Auth::rememberRequestedPage();
-            $this->redirect('/');
+            $this->redirect('/admin');
+        }
+    }
+    public function requireQuanTriVienLevel3(){
+        $this->requireLogin();
+        if (!Auth::checkQTVLevel3()){
+            Flash::addMessage('Bạn không có quyền vào trang này', Flash::INFO);
+            Auth::rememberRequestedPage();
+            $this->redirect('/admin');
         }
     }
 }

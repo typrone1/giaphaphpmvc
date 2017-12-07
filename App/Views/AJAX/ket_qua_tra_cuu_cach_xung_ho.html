@@ -1,0 +1,43 @@
+<div style="display: flex">
+    <div style="flex: 5">
+        <p>Đối tượng 1:</p>
+        {% if hoSo1 is not null %}
+        <img src="/images/user.png" alt="">
+        <p style="color: red;">Đời thứ: <b>{{hoSo1.DoiThu}}</b> - Con thứ: <b>{{hoSo1.ConThu}}</b></p>
+        <p>Họ và tên: <b>{{hoSo1.HoTen}}</b></p>
+        <p>Quê quán: <b>{{hoSo1.QueQuan}}</b></p>
+        <p>
+            <span>Ngày sinh: <b>{% if hoSo1.NgaySinh != '0000-00-00' %}{{hoSo1.NgaySinh|date("d/m/Y")}}{% endif %}</b></span>
+            | <span>{% if hoSo1.NgayMat != '0000-00-00' %} Ngày mất: {{hoSo1.NgayMat|date("d/m/Y")}}{% endif %}</span>
+        </p>
+        <button onclick="deleteTraCuuHoSo({{hoSo1.MaHoSo}})">Hủy so sánh</button>
+        {% else %}
+        <p>Vui lòng chọn !</p>
+        {% endif%}
+    </div>
+    <div style="flex: 1">
+    </div>
+    <div style="flex: 5">
+        <p>Đối tượng 2:</p>
+        {% if hoSo2 is not null %}
+        <img src="/images/user.png" alt="">
+        <p style="color: red;">Đời thứ: <b>{{hoSo2.DoiThu}}</b> - Con thứ: <b>{{hoSo2.ConThu}}</b></p>
+        <p>Họ và tên: <b>{{hoSo2.HoTen}}</b></p>
+        <p>Quê quán: <b>{{hoSo2.QueQuan}}</b></p>
+        <p>
+            <span>Ngày sinh: <b>{% if hoSo2.NgaySinh != '0000-00-00' %}{{hoSo2.NgaySinh |date("d/m/Y")}}{% endif %}</b></span>
+            | <span>{% if hoSo2.NgayMat != '0000-00-00' %} Ngày mất {{hoSo2.NgayMat |date("d/m/Y")}}{% endif %}</span>
+        </p>
+        <button onclick="deleteTraCuuHoSo({{hoSo2.MaHoSo}})">Hủy so sánh</button>
+        {% else %}
+        <p>Vui lòng chọn !</p>
+        {% endif%}
+    </div>
+</div>
+<script>
+    function deleteTraCuuHoSo(maHoSo) {
+        $.get("tra-cuu-xung-ho/delete/" + maHoSo, function () {
+            xemKetQuaTraCuuCachXungHo();
+        });
+    }
+</script>

@@ -21,6 +21,7 @@ class ThanhVien extends Authenticated
 {
     protected function before()
     {
+        $this->requireQuanTriVienLevel3();
         parent::before();
         $this->user = Auth::getUser();
     }
@@ -29,7 +30,7 @@ class ThanhVien extends Authenticated
     }
     public function capQuyenAction(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            User::findByID($_POST['mathanhvien'])->capNhatHoSoQuanLy($_POST['mahoso']);
+            User::findByID($_POST['mathanhvien'])->capNhatHoSoQuanLy($_POST['mahoso'], $_POST['maCapQuanTri']);
         }
         View::renderTemplate('ThanhVien/cap_quyen.html', ['users' => User::getAll(), 'dsHoSo' => HoSo::getAll()]);
     }
