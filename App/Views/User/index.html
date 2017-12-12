@@ -13,7 +13,8 @@ Trang chủ
     }
     .clndr .clndr-controls {
         padding: 0 !important;
-        line-height: 2em;
+        line-height: 1.6em;
+        font-size: 1em;
         background: linear-gradient(to bottom, rgba(243,197,189,1) 0%,rgba(232,108,87,1) 50%,rgba(234,40,3,1) 51%,rgba(255,102,0,1) 75%,rgba(199,34,0,1) 100%);
     }
 </style>
@@ -22,7 +23,7 @@ Trang chủ
 {% block body %}
 
 <section class="content clearfix">
-    <div class="container" style="background-image: url('/images/spiration-light.png'); overflow: hidden">
+    <div class="container">
         <div class="search-bar clearfix">
             <ul class="breadcrumb left clearfix">
                 <li class="start">
@@ -31,12 +32,6 @@ Trang chủ
                     </h4>
                 </li>
             </ul>
-            <div id="search-box">
-                <form action="/ket-qua-tim-kiem" method="get" id="search">
-                    <input type="text" name="keywords">
-                    <input type="submit" value="Tìm kiếm">
-                </form>
-            </div>
         </div>
         <br>
         <div class="col-9">
@@ -52,7 +47,7 @@ Trang chủ
                             {% endif %}
                         </a>
                     </div>
-                    <h5><a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a></h5>
+                    <p><a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a></p>
                     <small>
                         <i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}
                     </small>
@@ -63,20 +58,17 @@ Trang chủ
 
             <div class="col-3" id="bai-viet-gan">
                 <div class="header-box">
-                    <h4>
-                        <i class="fa fa-address-book"></i> Bài viết gần đây</h4>
+                    <p><i class="fa fa-address-book"></i> Bài viết gần đây</p>
                 </div>
                 <div id="danh-sach">
                     {% for baiViet in dsBaiViet|slice(1, dsBaiViet|length ) %}
                     <div class="article">
                         <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
-                                <h5>{{baiViet.TieuDe}}<br><small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small></h5>
-
+                                <p>{{baiViet.TieuDe}}</p>
                             </a>
                         </a>
-                        <small>{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</small>
-                        <hr>
+                        <p class="short-text">{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
                     </div>
                     {% endfor %}
                 </div>
@@ -199,15 +191,14 @@ Trang chủ
         <div>
             <div id="su-kien">
                 <div class="header-box">
-                    <h4>
-                        <i class="fa fa-address-book"></i> Sự kiện - Tin tức</h4>
+                    <p><i class="fa fa-address-book"></i> Sự kiện - Tin tức</p>
                 </div>
                 <article class="list-events">
                     {% for baiViet in dsBaiViet|slice(0, 3) %}
-                    <div class="event">
-                        <h5 class="title-events">
+                    <div class="event block-border">
+                        <p class="title-events">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a>
-                        </h5>
+                        </p>
                         <div class="thumb-su-kien" style="float: left">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                                 {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}

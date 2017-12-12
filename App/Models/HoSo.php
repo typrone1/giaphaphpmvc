@@ -322,5 +322,29 @@ class HoSo extends Model
         }
         fclose($in);
         fclose($out);
+        $sql = 'UPDATE HoSo
+            SET HinhAnh =:hinhAnh WHERE MaHoSo =:maHoSo';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $exploded = explode('/',$outPath);
+        $fileName = $exploded[count($exploded) - 1];
+        $stmt->bindValue(':hinhAnh', $fileName, PDO::PARAM_STR);
+        $stmt->bindValue(':maHoSo', $this->MaHoSo, PDO::PARAM_INT);
+        return $stmt->execute();
     }
+
+//    function checkImageIsNull(){
+//        $sql = 'SELECT * FROM HoSo
+//                WHERE MaHoSo = :maHoSo';
+//        $db = static::getDB();
+//        $stmt = $db->prepare($sql);
+//        $stmt->bindValue(':maHoSo', $this->MaHoSo, PDO::PARAM_STR);
+//        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+//        $stmt->execute();
+//        $hoSo = $stmt->fetch();
+//        if (empty($hoSo->HinhAnh)) {
+//            return true;
+//        }
+//        return false;
+//    }
 }

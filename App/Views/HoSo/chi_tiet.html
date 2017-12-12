@@ -2,6 +2,34 @@
 {% block title %}
 Chi tiết hồ sơ
 {% endblock %}
+{% block external_css %}
+<link href="/css/cropper.min.css" rel="stylesheet" type="text/css"/>
+<style>
+    #change-profile .preview {
+
+    }
+
+    .priview-wraper {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 25%;
+        right: 10%;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+
+    .priview-wraper-origal {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+</style>
+{% endblock %}
 {% block body %}
 <!-- page content -->
 <div class="right_col" role="main">
@@ -15,27 +43,45 @@ Chi tiết hồ sơ
                     </div>
                     <div class="x_content">
                         <div class="col-md-3 col-xs-12">
-                            <div class="profile_img">
-                                <div id="crop-avatar">
-                                    <!-- Current avatar -->
-                                    {% if hoSo.HinhAnh %}
-                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"
-                                         alt="Avatar"
-                                         title="" style="min-width: 100%">
-                                    {% else %}
-                                    <img class="img-responsive avatar-view" src="/images/AnhHoSo/user.png" alt="Avatar"
-                                         title="" style="min-width: 100%">
-                                    {% endif %}
-
-                                </div>
-                                <br>
-                                <form action="/admin/ho-so/{{hoSo.MaHoSo}}/sua-anh" enctype="multipart/form-data"
-                                      method="post">
-                                    <input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo">
-                                    <input type="file" class="form-control" name="hinhAnh" id="hinhAnh">
-                                    <input type="submit" class="btn btn-primary btn-sm" value="Lưu ảnh">
-                                </form>
+                            <div class="container" style="margin: 0 auto;">
+                                <a href="#" data-toggle="modal" data-target="#change-profile">
+                                    <div id="profile-result">
+                                        {% if hoSo.HinhAnh %}
+                                        <img src="/images/AnhHoSo/{{hoSo.HinhAnh}}" alt=""
+                                             class="img-responsive">
+                                        {% else %}
+                                        <img src="/images/AnhHoSo/user.png" alt=""
+                                             class="img-responsive">
+                                        {% endif %}
+                                    </div>
+                                </a>
                             </div>
+                            <input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo" id="maHoSo">
+                            <!--<div class="profile_img">-->
+                                <!--<a href="#" data-toggle="modal" data-target="#change-profile">-->
+                                    <!--<div id="crop-avatar profile-result">-->
+
+                                    <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
+                                    <!--{% if hoSo.HinhAnh %}-->
+                                    <!--<img class="img-responsive avatar-view thumb-lg img-circle" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"-->
+                                    <!--alt="Avatar"-->
+                                    <!--title="" style="min-width: 100%">-->
+                                    <!--{% else %}-->
+                                    <!--<img class="img-responsive avatar-view" src="/images/AnhHoSo/user.png"-->
+                                    <!--alt="Avatar"-->
+                                    <!--title="" style="min-width: 100%">-->
+                                    <!--{% endif %}-->
+
+                                    <!--</div>-->
+                                <!--</a>-->
+                                <!--<br>-->
+                                <!--<form action="/admin/ho-so/{{hoSo.MaHoSo}}/sua-anh" enctype="multipart/form-data"-->
+                                      <!--method="post">-->
+                                    <!--<input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo" id="maHoSo">-->
+                                    <!--<input type="file" class="form-control" name="hinhAnh" id="hinhAnh">-->
+                                    <!--<input type="submit" class="btn btn-primary btn-sm" value="Lưu ảnh">-->
+                                <!--</form>-->
+                            <!--</div>-->
                             <h3>{{ hoSo.HoTen}}</h3>
                             <ul class="list-unstyled user_data">
                                 <li>
@@ -400,14 +446,45 @@ Chi tiết hồ sơ
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="modal fade" id="change-profile">
+    <div class="modal-dialog">
+        <div class="" style="background: #fff;padding: 10px;">
+            <div class="ajax-response" id="loading"></div>
+            <h4 class="m-t-5 m-b-5 ellipsis">Thay đổi hình ảnh</h4>
+            <div class="profile-pic-wraper col-sm-8" style="margin-bottom: 1em">
+                {% if hoSo.HinhAnh %}
+                <img src="/images/AnhHoSo/{{hoSo.HinhAnh}}" alt="" id="change-profile-pic" style="width: 40%;">
+                {% else %}
+                <img src="/images/AnhHoSo/user.png" alt="" id="change-profile-pic" style="width: 40%;">
+                {% endif %}
+            </div>
+            <div class="priview-wraper">
+                <div class="preview"></div>
+            </div>
+            <br>
+            <div>
+                <form action="" enctype="multipart/form-data">
+                    <input type="file" accept="image/*" id="profile-file-input" onchange="loadFile(event)">
+                    <div style="position: absolute;right: 20px;bottom: 20px;">
+                        <button href="#" class="btn btn-primary " data-dismiss="modal" style="background: #8fcb62;">
+                            Đóng
+                        </button>
+                        <input type="button" value="Lưu lại" class="btn btn-primary" id="save-profile">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- /page content -->
-
+{% endblock %}
+{% block footer %}
+<script src="/js/cropper.js"></script>
+<script src="/js/main.js" type="text/javascript"></script>
 {% endblock %}

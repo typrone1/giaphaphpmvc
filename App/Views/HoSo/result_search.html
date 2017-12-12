@@ -36,36 +36,6 @@ Kết quả tìm kiếm
                     <div class="x_content">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                                <ul class="pagination pagination-split">
-                                    <li>
-                                        <a href="#">A</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">B</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">C</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">D</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">E</a>
-                                    </li>
-                                    <li>...</li>
-                                    <li>
-                                        <a href="#">W</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">X</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Y</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Z</a>
-                                    </li>
-                                </ul>
                             </div>
 
                             <div class="clearfix"></div>
@@ -79,7 +49,7 @@ Kết quả tìm kiếm
                                         <div class="left col-xs-7">
                                             <h2>{{ hoSo.HoTen }}</h2>
                                             <p>
-                                                <strong>Ngày sinh: </strong>{{ hoSo.NgaySinh }} </p>
+                                                <strong>Ngày sinh: </strong>{{ hoSo.NgaySinh | date("d/m/Y")}} </p>
                                             <ul class="list-unstyled">
                                                 <li>
                                                     <i class="fa fa-building"></i> Quê quán: {{ hoSo.QueQuan }}
@@ -90,12 +60,17 @@ Kết quả tìm kiếm
                                             </ul>
                                         </div>
                                         <div class="right col-xs-5 text-center">
-                                            <img src="/images/user.png" alt="" class="img-circle img-responsive">
+                                            {% if hoSo.HinhAnh %}
+                                            <img src="/images/AnhHoSo/{{hoSo.HinhAnh}}" alt="" class="img-circle img-responsive">
+                                            {% else %}
+
+                                            <img src="/images/AnhHoSo/user.png" alt="" class="img-circle img-responsive">
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="col-xs-12 bottom text-center">
                                         <div class="col-xs-12 col-sm-6 emphasis col-sm-push-6">
-                                            <a href="/ho-so/{{ hoSo.MaHoSo }}" class="btn btn-primary btn-xs">
+                                            <a href="/admin/ho-so/{{ hoSo.MaHoSo }}" class="btn btn-primary btn-xs">
                                                 <i class="fa fa-user"> </i> Xem chi tiết
                                             </a>
                                         </div>

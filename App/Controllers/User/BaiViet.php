@@ -18,7 +18,7 @@ class BaiViet extends Controller
     protected function xemChiTietBaiVietAction(){
         $maBaiViet = $this->routeParams['id'];
         $baiViet = BaiVietModel::findOne($maBaiViet);
-        View::renderTemplate('User/BaiViet/chi_tiet_bai_viet.html', ['baiViet' => $baiViet]);
+        View::renderTemplate('User/BaiViet/chi_tiet_bai_viet.html', ['baiViet' => $baiViet, 'dsBaiViet' => BaiVietModel::getAll()]);
     }
 
 }

@@ -32,91 +32,34 @@ Trang chủ
             </div>
         </div>
         <div class="col-3 clearfix">
-            <script>
-                var mockData = [{
-                    "ngayGio": "2015-11-29"
-                },
-                    {
-                        "ngayGio": "2017-09-20"
-                    },
-                    {
-                        "ngayGio": "2014-06-15"
-                    },
-                    {
-                        "ngayGio": "2015-01-10"
-                    },
-                    {
-                        "ngayGio": "2015-02-23"
-                    }
-                ];
-                setOutputSize("small");
-                showVietCal();
-            </script>
-            <table align="center" cellspacing="1" border="0">
-
-                <tr>
-                    <td align="center">
-                        <div class="cal1">
-                            <div id="lich" class="clndr"></div>
+            <div id="su-kien">
+                <article class="list-events">
+                    {% for baiViet in dsBaiViet|slice(0, 3) %}
+                    <div class="event" style="margin-bottom: 1em">
+                        <p class="title-events" style="font-size: 1rem">
+                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a>
+                        </p>
+                        <div class="thumb-su-kien" style="float: left; height: 50px; overflow: hidden">
+                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                                {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                                <img style="width: 100px; float: left"
+                                     src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                                {% else %}
+                                <img style="width: 100px; float: left"
+                                     src="/images/AnhBaiViet/camera.png" alt="">
+                                {% endif %}
+                            </a>
                         </div>
-                        <script language="JavaScript">
-                            document.getElementById('lich').innerHTML = printSelectedMonth();
-                        </script>
-                    </td>
-                </tr>
+                        <small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small>
+                    </div>
+                    <div class="clearfix"></div>
+                    {% endfor %}
 
-                <tr>
-                    <td align="center">
-                        <form name="SelectMonth" action="">
-                            Th&aacute;ng
-                            <select name="month">
-                                <option value="1">1
-                                <option value="2">2
-                                <option value="3">3
-                                <option value="4">4
-                                <option value="5">5
-                                <option value="6">6
-                                <option value="7">7
-                                <option value="8">8
-                                <option value="9">9
-                                <option value="10">10
-                                <option value="11">11
-                                <option value="12">12
-                            </select> &#160;&#160;&#160;&#160; N&#x103;m
-                            <INPUT NAME="year" size=4 value="2005"> &#160;
-
-                            <p>
-
-                                <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng" onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));"> &#160;&#160;
-                        </form>
-
-                        <script type="text/javascript">
-
-
-                            for (var i = mockData.length - 1; i >= 0; i--) {
-                                var timestamp = Date.parse(mockData[i].ngayGio)
-                                if (isNaN(timestamp) == false) {
-                                    var d = new Date(timestamp);
-                                    console.log(d.getDate() + "/" + d.getMonth());
-                                }
-                            }
-
-                            getSelectedMonth();
-                            document.SelectMonth.month.value = currentMonth;
-                            document.SelectMonth.year.value = currentYear;
-
-                            function viewMonth(mm, yy) {
-                                window.location = window.location.pathname + '?yy=' + yy + '&mm=' + mm;
-                            }
-
-                            // function viewYear(yy) {
-                            // 	var loc = 'currentyear.html?yy=' + yy;
-                            // 	var win2702 = window.open(loc, "win2702", "menubar=yes,scrollbars=yes,resizable=yes");
-                            // }
-                        </script>
-                    </td>
-                </tr>
-            </table>
+                </article>
+                <a href="/user/LoaiTin/index/1" class="view-all">Xem tất cả
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>

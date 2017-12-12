@@ -114,9 +114,9 @@
             <div id="tai-khoan">
                 {% if current_user %}
                 <div class="profile_info">
-                    <span>Xin chào,</span>
-                    <h4 style="font-family: Arial">{{ current_user.name }}</h4>
-                    <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i>Trang quản trị</a>
+                    <span>Xin chào, <b>{{ current_user.name }}</b></span>
+                    <br>
+                    <a href="/admin"><i class="fa fa-tachometer" aria-hidden="true"></i> Trang quản trị</a>
                     |
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                 </div>
@@ -126,11 +126,18 @@
                 <a href="/login#signup">
                     <i class="fa fa-address-book-o"></i> Đăng ký</a>
                 {% endif %}
-
             </div>
             <h1>Gia phả Nguyễn Hữu</h1>
             <p>Nơi lưu giữ nguồn cội
             </p>
+            <div id="search-bar">
+                <form action="/ket-qua-tim-kiem" method="get" id="search">
+                    <a id="btnTraCuuXungHo"><i class="fa fa-book"></i> Xưng hô</a>
+                    <input type="text" name="keywords">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <div class="clearfix"></div>
         </div>
         <nav id="nav" class="clearfix">
             <input type="checkbox" id="menu"/>
@@ -138,8 +145,7 @@
             <div id="menu-top">
                 <ul>
                     <li>
-                        <a href="/">
-                            <i class="fa fa-home"></i>Trang chủ</a>
+                        <a href="/"><i class="fa fa-home" style="border: 1px solid darkorange; border-radius: 2px; margin: 0 2px;"></i>Trang chủ</a>
                     </li>
                     <li>
                         <a href="/pha-do-dung">Xem phả đồ</a>

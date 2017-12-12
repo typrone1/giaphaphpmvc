@@ -74,7 +74,13 @@ Phả đồ
 <script>
     function showInfo(button) {
         var maHoSo = $(button).prevAll(".maHoSo").val();
-        console.log(maHoSo);
+        $("html, body").animate(
+            { scrollTop: "220px" },
+            {
+                complete : function(){
+                }
+            }
+        );
         modal.style.display = "block";
         openPage("api/ajax/index?maHoSo=" + maHoSo);
     }
