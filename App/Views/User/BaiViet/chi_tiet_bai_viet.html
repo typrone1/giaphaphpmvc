@@ -14,14 +14,8 @@ Trang chủ
                     </h4>
                 </li>
             </ul>
-            <div id="search-box">
-                <form action="/ket-qua-tim-kiem" method="get" id="search">
-                    <input type="text" name="keywords">
-                    <input type="submit" value="Tìm kiếm">
-                </form>
-            </div>
         </div>
-        <div class="col-9">
+        <div class="col-9" style="padding-right: 1em">
             <h3>{{baiViet.TieuDe}}</h3>
             <small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small>
             <div class="thumb">
@@ -31,35 +25,33 @@ Trang chủ
                 {{baiViet.NoiDung | raw }}
             </div>
         </div>
-        <div class="col-3 clearfix">
-            <div id="su-kien">
-                <article class="list-events">
-                    {% for baiViet in dsBaiViet|slice(0, 3) %}
-                    <div class="event" style="margin-bottom: 1em">
-                        <p class="title-events" style="font-size: 1rem">
-                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">{{baiViet.TieuDe}}</a>
-                        </p>
-                        <div class="thumb-su-kien" style="float: left; height: 50px; overflow: hidden">
-                            <a href="/bai-viet/{{baiViet.MaBaiViet}}">
-                                {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                                <img style="width: 100px; float: left"
-                                     src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
-                                {% else %}
-                                <img style="width: 100px; float: left"
-                                     src="/images/AnhBaiViet/camera.png" alt="">
-                                {% endif %}
-                            </a>
-                        </div>
-                        <small><i>{{baiViet.name}}</i> - Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small>
-                    </div>
-                    <div class="clearfix"></div>
-                    {% endfor %}
-
-                </article>
-                <a href="/user/LoaiTin/index/1" class="view-all">Xem tất cả
-                    <i class="fa fa-arrow-right"></i>
+        <div class="col-3 block-border">
+            {% for baiViet in dsBaiViet|slice(0, 5) %}
+            <div class="thumb-su-kien" style="float: left; height: 50px; overflow: hidden">
+                <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                    {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                    <img style="width: 100px; float: left"
+                         src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                    {% else %}
+                    <img style="width: 100px; float: left"
+                         src="/images/AnhBaiViet/camera.png" alt="">
+                    {% endif %}
                 </a>
             </div>
+            <div class="article">
+                <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                    <a href="/bai-viet/{{baiViet.MaBaiViet}}">
+                        <p>{{baiViet.TieuDe}}</p>
+                    </a>
+                </a>
+                <p class="short-text" style="min-height: 3em">{{ rutGonHTML(baiViet.NoiDung) |slice(0, 200) ~ '...' }}</p>
+            </div>
+            <div class="clearfix"></div>
+
+            {% endfor %}
+            <a href="/user/LoaiTin/index/1" class="view-all">Xem tất cả
+                <i class="fa fa-arrow-right"></i>
+            </a>
         </div>
     </div>
 </section>

@@ -141,13 +141,13 @@ class View
         foreach ($data as $val) {
             $parent = $val['mahosobo'];
             if ($parent == $mahsbo) {
-                $date = !$val['ngaymat'] ? ('NS: ' . $val['ngaysinh']) : ('Ngày mất: ' . $val['ngaymat']);
+                $date = !$val['ngaymat'] ? ('NS: ' . (date('d/m/Y',strtotime($val['ngaysinh'])))) : ('Ngày mất: ' . (date('d/m/Y',strtotime($val['ngaymat']))));
                 echo '<li class="zoomTarget" data-targetsize="1" data-scalemode="both" data-nativeanimation="true"><div class="dropdown box-item ' . ($val['ngaymat'] ? 'die' : '') . ' zoomTarget" data-targetsize="0.30" data-duration="600"><a style="font-size: 1.2em; font-weight: bold" href="/admin/ho-so/' . $val['mahoso'] . '">' . $val['hoten'] . '- ('
                     . $val['hotenvo'] . ")" . '</a><br>Đời: <b>' . $val['doithu'] . '</b>, Con thứ: <b>' . $val['conthu'] . '</b><br><img src="/images/user.png" style="width: 40px; height: 30px"><br>' . $date . '<br><button class="mo-rong" href="javascript:function() { return false; }">-</button><div class="dropdown-content">
-    <a href="#">Thêm con</a>
-    <a href="#">Chỉnh sửa</a>
-    <a href="#">Xóa</a>
-</div></div>';
+        <a href="#">Thêm con</a>
+        <a href="#">Chỉnh sửa</a>
+        <a href="#">Xóa</a>
+    </div></div>';
                 $mahoso = $val['mahoso'];
                 self::inGiaPha($data, $mahoso);
             }

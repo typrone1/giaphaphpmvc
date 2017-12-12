@@ -1,10 +1,33 @@
-{% extends "base.html" %}
-
-{% block title %}Page not found{% endblock %}
-
+{% extends "base_error.html" %}
+{% block title %}Không tìm thấy trang{% endblock %}
 {% block body %}
-
-<h1>Page not found</h1>
-<p>Sorry, that page doesn't exist.</p>
-
+<div class="container body">
+    <div class="main_container">
+        <!-- page content -->
+        <div class="col-md-12">
+            <div class="col-middle">
+                <div class="text-center">
+                    <h1 class="error-number">400</h1>
+                    <h2>:( Không tìm thấy trang yêu cầu</h2>
+                    <p>Trang bạn yêu cầu không tồn tại hoặc đang được xây dựng, truy cập trang khác để tiếp tục nhé !. <a href="/">Báo cáo?</a>
+                    </p>
+                    <div class="mid_center">
+                        <h3>Tìm kiếm</h3>
+                        <form action="/ket-qua-tim-kiem">
+                            <div class="col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="keywords" placeholder="Nhập từ khóa...">
+                                    <span class="input-group-btn">
+                              <button class="btn btn-default" type="button">Tìm!</button>
+                          </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
 {% endblock %}

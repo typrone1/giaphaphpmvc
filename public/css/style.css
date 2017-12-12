@@ -446,7 +446,7 @@ a {
 }
 
 .header-box {
-    font-size: 1.2em;
+    font-size: 1em;
     position: absolute;
     width: 100%;
     line-height: 2em;
@@ -580,9 +580,17 @@ max-width: 576px) {
 
 #btnTraCuuXungHo {
     padding: 8px;
-    background-color: orange;
+    background-color: #ffc300;
     border-radius: .5em;
     text-align: center;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+}
+#btnTraCuuXungHo:hover {
+    color: #FFF;
+    background-color: orange;
+    transition: all .2s;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
 #search-bar button {
@@ -594,7 +602,7 @@ max-width: 576px) {
     border: 1px solid;
     border-color: #bfbfbf #dedede #dedede #bfbfbf;
     font: 1em Arial, Helvetica, Verdana, sans-serif;
-    padding: 6px 1px;
+    padding: 5px 1px;
     margin-right: -5px;
 }
 
@@ -740,4 +748,7 @@ max-width: 576px) {
     margin-bottom: .5em;
     border: solid 1px #ccc;
     border-top: solid 1px #1b75bc;
+}
+.block-border:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
 }

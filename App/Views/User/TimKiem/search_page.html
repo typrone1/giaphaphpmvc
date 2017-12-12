@@ -184,7 +184,7 @@ Phả đồ
                             <div class="info-item-search" style="float: left; margin-left: 1em">
                                 <h5>{{hoSo.HoTen}}</h5> <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
                                 <p>Quê quán: {{hoSo.QueQuan}}</p>
-                                <p><span>Ngày sinh: {{hoSo.NgaySinh}}</span> - <span>Ngày mất: {{hoSo.NgayMat}}</span></p>
+                                <p><span>Ngày sinh: {{hoSo.NgaySinh |date("d/m/Y")}}</span> - <span>Ngày mất: {{hoSo.NgayMat |date("d/m/Y")}}</span></p>
                             </div>
                         </div>
                     </a>

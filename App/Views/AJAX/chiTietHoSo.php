@@ -11,7 +11,7 @@ echo '<div class="wrapper">
                 <h2 style="text-align: center">Đời thứ: ' . $hoSo->DoiThu . '</h2>
                 <p style="text-align: center">Con thứ: ' . $hoSo->ConThu . '</p>
                 <h3>' . $hoSo->HoTen . '</h3>
-                <p>Họ tên bố: '. $hoSoBo->HoTen .'</p>
+                <p>Họ tên bố: '. (isset($hoSoBo->HoTen)?$hoSoBo->HoTen:'') .'</p>
                 <p>Họ tên mẹ: '. (isset($hoSoMe->HoTen)?$hoSoMe->HoTen:'') .'</p>
                 
                 <p>Ngày, tháng, năm sinh: ' . ($hoSo->NgaySinh!='0000-00-00'?date('d/m/Y',strtotime($hoSo->NgaySinh)):null). '</p>
@@ -74,4 +74,4 @@ echo '<div class="wrapper">
         <button> Bổ sung thông tin </button>
         <h3 style="text-align: center">Sơ đồ gia đình</h3>
         <br><br>
-        ';
+    ';

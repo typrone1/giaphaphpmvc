@@ -9,8 +9,9 @@
 
                 <div class="hopTo">
                     Ông nội: <br>
-                    <span>Đời thứ: {{ hoSoOng.doithu }} - Con thứ: {{ hoSoOng.conthu }}</span><br><a
-                        href="#"><b>{{ hoSoOng.hoten }}</b></a>
+                    <span>Đời thứ: {{ hoSoOng.doithu }} - Con thứ: {{ hoSoOng.conthu }}</span><br>
+                    <input type="hidden" class="maHoSo" value="{{ hoSoOng.mahoso }}">
+                    <a href="javascript:;" onclick="showInfo(this);return false;" target="_self">{{ hoSoOng.hoten }}</a>
                 </div>
             </td>
         </tr>
@@ -25,9 +26,9 @@
             <td colspan="3" align="center" valign="middle">
                 <div class="hopTo">
                     Bố: <br>
-                    <span>Đời thứ: {{ hoSoBo.DoiThu }} - Con thứ: {{ hoSoBo.ConThu }}</span><br><a
-
-                        href="#"><b>{{ hoSoBo.HoTen }}</b></a>
+                    <span>Đời thứ: {{ hoSoBo.DoiThu }} - Con thứ: {{ hoSoBo.ConThu }}</span><br>
+                    <input type="hidden" class="maHoSo" value="{{ hoSoBo.MaHoSo }}">
+                    <a href="javascript:;" onclick="showInfo(this);return false;" target="_self">{{ hoSoBo.HoTen }}</a>
                 </div>
             </td>
         </tr>
@@ -59,9 +60,10 @@
                             <div class="hopNho"
                                  style="min-height: 180px; {% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
                                 ACE: <br>
-                                <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
-                                    style="color: chocolate;"
-                                    href="#"><b>{{ anhEm.HoTen }}</b></a>
+                                <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br>
+                                <input type="hidden" class="maHoSo" value="{{ anhEm.MaHoSo }}">
+                                <a href="javascript:;" onclick="showInfo(this);return false;" target="_self" style="color: chocolate;">{{ anhEm.HoTen }}</a>
+
                             </div>
                         </td>
                         {% endfor %}
@@ -116,8 +118,9 @@
                                     src="/images/down.gif"></div>
                             <div class="hopNho">
                                 Con: <br>
-                                <span>Đời thứ: {{con.doithu}} - Con thứ: {{con.conthu}}</span><br><a
-                                    href="#"><b>{{con.hoten}}</b></a>
+                                <span>Đời thứ: {{con.doithu}} - Con thứ: {{con.conthu}}</span><br>
+                                <input type="hidden" class="maHoSo" value="{{con.mahoso}}">
+                                <a href="javascript:;" onclick="showInfo(this);return false;" target="_self">{{con.hoten}}</a>
                             </div>
                         </td>
                         {% endfor %}

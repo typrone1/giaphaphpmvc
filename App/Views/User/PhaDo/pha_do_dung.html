@@ -118,20 +118,13 @@ Phả đồ
                     </h4>
                 </li>
             </ul>
-            <div id="search-box">
-                <form action="/ket-qua-tim-kiem" method="get" id="search">
-                    <a id="btnTraCuuXungHo" style="background-color: orange; padding: .2em; border-radius: .5em; text-align: center"><i class="fa fa-book"></i> Xưng hô</a>
-                    <input type="text" name="keywords">
-                    <input type="submit" value="Tìm kiếm">
-                </form>
-            </div>
         </div>
         <br>
         <div style="display: flex">
             <div class="floating-tree" style="flex: 2">
                 {{giaPhaNguoiDung()}}
             </div>
-            <div style="flex: 3; overflow-x: auto;">
+            <div style="flex: 3; overflow-x: auto">
                 <div id="myModal">
                     <div class="modal-content" style="width: 100%; margin-left: 1em; margin-right: 0;">
                         <span class="close">&times;</span>
@@ -148,7 +141,6 @@ Phả đồ
     </div>
 </section>
 {% endblock %}
-
 {% block footer %}
 
 <style>
@@ -171,7 +163,6 @@ Phả đồ
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-
         <h3>Xem kết quả tra cứu xưng hô</h3>
         <div id="mainContent2">
         </div>
