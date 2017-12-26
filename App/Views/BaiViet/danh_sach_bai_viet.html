@@ -15,20 +15,41 @@ Danh sách bài viết
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
-                    {% for baiViet in dsBaiViet %}
-                    <div class="media">
-                        {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                            <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}"
-                                                                 style="width: 64px; height: 64px;"> </a></div>
-                        {% else %}
-                            <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/camera.png"
-                                                                 style="width: 64px; height: 64px;"> </a></div>
-                        {% endif %}
-                        <div class="media-body"><h4 class="media-heading">{{ baiViet.MaBaiViet }} - {{baiViet.TieuDe}} <small>Ngày viết: {{baiViet.NgayDuaTin|date("d/m/Y")}}</small> <a class="btn btn-primary btn-sm" href="/admin/bai-viet/{{ baiViet.MaBaiViet }}/get-sua-bai-viet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-delicious"></i> Xóa</button></h4> {{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}
-                        </div>
-                    </div>
-                    <hr>
-                    {% endfor %}
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th width="10%">Ảnh</th>
+                            <th width="30%">Tiêu đề</th>
+                            <th>Ngày viết</th>
+                            <th>Tác giả</th>
+                            <th width="10%">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for baiViet in dsBaiViet %}
+                        <tr>
+
+                            <th scope="row">{{ baiViet.MaBaiViet }}</th>
+                            <td>
+                                {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
+                                <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}"
+                                                                         style="width: 64px; height: 64px;"> </a></div>
+                                {% else %}
+                                <div class="media-left"><a href="#"><img src="/images/AnhBaiViet/camera.png"
+                                                                         style="width: 64px; height: 64px;"> </a></div>
+                                {% endif %}
+                            </td>
+                            <td><span style="color: #000; font-weight: bold">{{baiViet.TieuDe}}</span><br><small>{{ baiViet.NoiDung | striptags | slice(0, 200) ~ '...' }}</small></td>
+                            <td>{{baiViet.NgayDuaTin|date("d/m/Y")}}</td>
+                            <td>@Nguyễn Hữu Tý</td>
+                            <td><a class="btn btn-primary btn-sm" href="/admin/bai-viet/{{ baiViet.MaBaiViet }}/get-sua-bai-viet"><i class="fa fa-edit"></i> Chỉnh sửa</a><button class="btn btn-primary btn-sm"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa</button></td>
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

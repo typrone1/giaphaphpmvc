@@ -16,47 +16,71 @@ Danh sách loại tin
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
-                    <ul class="list-group">
-                        {% for loaiTin in dsLoaiTin %}
-                        <li class="list-group-item">{{ loaiTin.MaLoaiTin }} - {{loaiTin.TenLoaiTin}} <button class="btn btn-warning">Xóa</button></li>
-                        {% endfor %}
-                    </ul>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalThemDanhMuc"><i
-                            class="fa fa-plus"></i>Thêm danh mục
+                            class="fa fa-plus"></i> Thêm danh mục
                     </button>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th width="50%">Tên loại tin</th>
+                            <th width="20%">Mô tả</th>
+                            <th width="20%">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for loaiTin in dsLoaiTin %}
 
-                    <!-- Small modal -->
-                    <div class="modal fade" id="modalThemDanhMuc" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
+                        <tr>
+                            <th scope="row">{{ loaiTin.MaLoaiTin }}</th>
+                            <td><b>{{loaiTin.TenLoaiTin}}</b></td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-primary"><i class="fa fa-edit"></i> Chỉnh sửa</button>
+                                <button class="btn btn-warning"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa
+                                </button>
+                            </td>
+                        </tr>
 
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                            aria-hidden="true">×</span>
-                                    </button>
-                                    <h4 class="modal-title" id="myModalLabel2">Thêm danh mục</h4>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                        <!-- Small modal -->
+                        <div class="modal fade" id="modalThemDanhMuc" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span
+                                                aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel2"> Thêm danh mục</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/admin/loaitin/postThemLoaiTin" method="post" id="danh-muc">
+                                            <div class="form-group">
+                                                <label for="tendanhmuc" class="form-control-label">Tên danh mục</label>
+                                                <input type="text" id="tendanhmuc" name="tenLoaiTin"
+                                                       class="form-control">
+
+                                                <label for="mota" class="form-control-label">Mô tả</label>
+                                                <input type="text" id="mota" name="mota" class="form-control">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        <button class="btn btn-success" type="submit" form="danh-muc" value="Submit">
+                                            Thêm
+                                        </button>
+                                    </div>
                                 </div>
-                                <div class="modal-body">
-                                    <form action="/admin/loaitin/postThemLoaiTin" method="post" id="danh-muc">
-                                        <div class="form-group">
-                                            <label for="tendanhmuc" class="form-control-label">Tên danh mục</label>
-                                            <input type="text" id="tendanhmuc" name="tenLoaiTin" class="form-control">
-
-                                            <label for="mota" class="form-control-label">Mô tả</label>
-                                            <input type="text" id="mota" name="mota" class="form-control">
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    <button class="btn btn-success" type="submit" form="danh-muc" value="Submit">Thêm
-                                    </button>
-                                </div>
-
                             </div>
                         </div>
-                    </div>
-                    <!-- /modals -->
+                        <!-- /modals -->
                 </div>
             </div>
         </div>

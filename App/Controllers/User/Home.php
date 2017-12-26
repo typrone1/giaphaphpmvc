@@ -10,12 +10,22 @@ namespace App\Controllers\User;
 
 
 use App\Models\BaiViet;
+use App\Models\HoSo;
 use Core\Controller;
 use Core\View;
 
 class Home extends Controller
 {
     public function index(){
-        View::renderTemplate('User/index.html', ['dsBaiViet' => BaiViet::getAll()]);
+        if(!isset($_SESSION["lastviewed"]))     {
+            $_SESSION["lastviewed"] = array();
+        }
+        $arrayHoSo = [];
+        foreach ($_SESSION["lastviewed"] as $item) {
+            array_push($arrayHoSo, HoSo::find($item));
+        }
+//        var_dump($arrayHoSo);
+//        die();
+        View::renderTemplate('User/index.html', ['dsBaiViet' => BaiViet::getAll(), 'dsXemGanDay' => $arrayHoSo]);
     }
 }

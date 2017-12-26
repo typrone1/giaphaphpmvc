@@ -37,6 +37,14 @@ class BaiViet extends Controller
         $id = $this->routeParams['id'];
         View::renderTemplate('BaiViet/chinh_sua_bai_viet.html', ['baiViet' => BaiVietModel::findOne($id), 'dsLoaiTin' => LoaiTin::getAll()]);
     }
+    public function postCapNhatBaiVietAction()
+    {
+        $id = $this->routeParams['mabaiviet'];
+        $post = BaiVietModel::findOne($id);
+        if ($post->updatePost($_POST))
+            Flash::addMessage("Cập nhật thành công");
+        View::renderTemplate('BaiViet/chinh_sua_bai_viet.html', ['baiViet' => BaiVietModel::findOne($id), 'dsLoaiTin' => LoaiTin::getAll()]);
+    }
 
     public function postThemBaiViet()
     {

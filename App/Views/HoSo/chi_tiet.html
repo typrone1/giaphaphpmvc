@@ -57,35 +57,13 @@ Chi tiết hồ sơ
                                 </a>
                             </div>
                             <input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo" id="maHoSo">
-                            <!--<div class="profile_img">-->
-                                <!--<a href="#" data-toggle="modal" data-target="#change-profile">-->
-                                    <!--<div id="crop-avatar profile-result">-->
-
-                                    <!--&lt;!&ndash; Current avatar &ndash;&gt;-->
-                                    <!--{% if hoSo.HinhAnh %}-->
-                                    <!--<img class="img-responsive avatar-view thumb-lg img-circle" src="/images/AnhHoSo/{{hoSo.HinhAnh}}"-->
-                                    <!--alt="Avatar"-->
-                                    <!--title="" style="min-width: 100%">-->
-                                    <!--{% else %}-->
-                                    <!--<img class="img-responsive avatar-view" src="/images/AnhHoSo/user.png"-->
-                                    <!--alt="Avatar"-->
-                                    <!--title="" style="min-width: 100%">-->
-                                    <!--{% endif %}-->
-
-                                    <!--</div>-->
-                                <!--</a>-->
-                                <!--<br>-->
-                                <!--<form action="/admin/ho-so/{{hoSo.MaHoSo}}/sua-anh" enctype="multipart/form-data"-->
-                                      <!--method="post">-->
-                                    <!--<input type="hidden" value="{{hoSo.MaHoSo}}" name="maHoSo" id="maHoSo">-->
-                                    <!--<input type="file" class="form-control" name="hinhAnh" id="hinhAnh">-->
-                                    <!--<input type="submit" class="btn btn-primary btn-sm" value="Lưu ảnh">-->
-                                <!--</form>-->
-                            <!--</div>-->
                             <h3>{{ hoSo.HoTen}}</h3>
                             <ul class="list-unstyled user_data">
                                 <li>
-                                    <i class="fa fa-birthday-cake"></i> Ngày sinh: {{hoSo.NgaySinh|date("d/m/Y")}}
+                                    <i class="fa fa-birthday-cake"></i> Ngày sinh:
+                                    {% if hoSo.NgaySinh is not null and hoSo.NgaySinh != '0000-00-00' %}
+                                    {{hoSo.NgaySinh | date("d/m/Y")}}
+                                    {% endif %}
                                 </li>
 
                                 <li>
@@ -222,17 +200,16 @@ Chi tiết hồ sơ
                                 <div class="bg-danger" style="border-radius: 5px; padding: 1em">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-sm-6">Ngày mất: <input value="{{hoSo.NgayMat}}" type="date"
+                                            <div class="col-sm-6">Ngày giỗ: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input value="{{hoSo.NgayMat}}" type="date"
                                                                                    name="ngayMat"></div>
-                                            <div class="col-sm-6">Nơi mất: <input type="text"></div>
+                                            <div class="col-sm-6">Nơi mất: &nbsp;&nbsp;&nbsp;<input type="text"></div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="col-sm-6">Ngày kỵ: <input type="text"></div>
-                                            <div class="col-sm-6">Nơi an táng: <input value="{{hoSo.NoiAnTang}}"
+                                            <div class="col-sm-6">Nơi an táng:&nbsp;<input value="{{hoSo.NoiAnTang}}"
                                                                                       type="text" name="noiAnTang">
                                             </div>
-                                            <div class="col-sm-6">Người kỵ: <input type="text"></div>
+                                            <div class="col-sm-6">Người kỵ:&nbsp;&nbsp;<input type="text"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -337,7 +314,7 @@ Chi tiết hồ sơ
                                                         src="/images/down.gif"></div>
                                                 <div class="hopNho"
                                                      style="max-height: 105px; {% if anhEm.MaHoSo == hoSo.MaHoSo %} background-image: url('/images/phado_c.gif'); {% endif %}">
-                                                    ACE: <br>
+                                                    Anh/em: <br>
                                                     <span>Đời thứ: {{ anhEm.DoiThu }} - Con thứ: {{ anhEm.ConThu }}</span><br><a
                                                         style="color: chocolate;"
                                                         href="#"><b>{{ anhEm.HoTen }}</b></a>

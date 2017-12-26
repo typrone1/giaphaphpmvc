@@ -70,8 +70,9 @@ class AJAX extends Controller
     public function renderResultSearchAction()
     {
         $key = isset($_GET['keywords']) ? $_GET['keywords'] : '';
+        $status = isset($_GET['status']) ? $_GET['status'] : '';
         $option = isset($_GET['option']) ? $_GET['option'] : '';
-        $dsHoSo = HoSo::getSearch($key, $option);
+        $dsHoSo = HoSo::getSearch($key, $option, $status);
         View::renderTemplate('AJAX/result_search.html', [
             'dsHoSo' => $dsHoSo
         ]);
@@ -92,5 +93,7 @@ class AJAX extends Controller
         });
         $array = $fractal->createData($resource)->toArray();
         echo $fractal->createData($resource)->toJson(JSON_UNESCAPED_UNICODE);
+    }
+    function getNgayGio(){
     }
 }

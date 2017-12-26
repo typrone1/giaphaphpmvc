@@ -37,7 +37,7 @@ Quản lý hồ sơ
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
-                                <th style="width: 1%">STT</th>
+                                <th style="width: 1%">#STT</th>
                                 <th>Hình ảnh</th>
                                 <th style="width: 10%">Mã hồ sơ</th>
                                 <th style="width: 20%">Họ và tên</th>
@@ -46,7 +46,7 @@ Quản lý hồ sơ
                                 <th>Ngày sinh</th>
                                 <th>Ngày mất</th>
                                 <th>Trạng thái</th>
-                                <th style="width: 20%">#Hành động</th>
+                                <th style="width: 20%">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -75,8 +75,12 @@ Quản lý hồ sơ
                                 <td>{{ hoSo.HoTen }} <br> <small>Chỉnh sửa lần cuối 02/01/2018</small></td>
                                 <td>{{ hoSo.DoiThu }}</td>
                                 <td>{{ hoSo.ConThu }}</td>
-                                <td>{{ hoSo.NgaySinh |date("d/m/Y") }}</td>
-                                <td>{{ hoSo.NgayMat |date("d/m/Y") }}</td>
+                                <td>{% if hoSo.NgaySinh is not null and hoSo.NgaySinh != '0000-00-00' %}
+                                    {{hoSo.NgaySinh | date("d/m/Y")}}
+                                    {% endif %}</td>
+                                <td>{% if hoSo.NgayMat is not null and hoSo.NgayMat != '0000-00-00' %}
+                                    {{hoSo.NgayMat | date("d/m/Y")}}
+                                    {% endif %}</td>
                                 <td>
                                     <button type="button" class="btn btn-success btn-xs">Hiển thị</button>
                                 </td>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Created by PhpStorm.
+ * Created by PhpSto rm.
  * User: Huu Ty
  * Date: 05/10/2017
  * Time: 9:01 AM
@@ -28,7 +28,7 @@ class HoSo extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public static function getSearch($tuKhoa = '', $option = 'all')
+    public static function getSearch($tuKhoa = '', $option = 'all' , $status = 'all')
     {
         $db = static::getDB();
         $query = "SELECT * FROM hoso WHERE hoten LIKE ?";
@@ -36,6 +36,11 @@ class HoSo extends Model
             $query = "SELECT * FROM hoso AS t1 LEFT JOIN hoso AS t2 ON t2.MaHoSoBo = t1.MaHoSo WHERE t1.hoten LIKE ? AND t2.MaHoSo IS NOT NULL";
         } else if ($option == 'namSinh') {
             $query = "select * from hoso WHERE YEAR(NgaySinh) = ?";
+        }
+        if ($status == 'die') {
+            $query.= " AND NgayMat IS NOT NULL";
+        } else if ($status == 'live'){
+            $query.= " AND NgayMat IS NULL";
         }
         $params = array("%$tuKhoa%");
         if ($option == 'namSinh') {
@@ -332,7 +337,15 @@ class HoSo extends Model
         $stmt->bindValue(':maHoSo', $this->MaHoSo, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
+    static function findByHoTen($hoTen) {
+        $sql = 'SELECT * FROM HoSo WHERE HoTen = :hoTen';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->bindValue(':hoTen', $hoTen, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
 //    function checkImageIsNull(){
 //        $sql = 'SELECT * FROM HoSo
 //                WHERE MaHoSo = :maHoSo';

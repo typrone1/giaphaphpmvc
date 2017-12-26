@@ -5,6 +5,7 @@
  * Date: 30/11/2017
  * Time: 11:17 PM
  */
+
 echo '<div class="wrapper">
             <div class="twoOfThree">
                 
@@ -20,15 +21,35 @@ echo '<div class="wrapper">
                 <p>Địa chỉ: ' . $hoSo->DiaChi . '</p>
                 <p>Ngày, tháng, năm tử: </p>
                 <div style="margin-left: 1em">
-                    <p>Ngày mất (ÂL): ' . ($hoSo->NgayMat!='0000-00-00'?date('d/m/Y',strtotime($hoSo->NgayMat)):null) . '</p>
+                    <p>Ngày mất (ÂL): ' .($hoSo->NgayMat!=''?date('d/m/Y',strtotime($hoSo->NgayMat)):null). '</p>
                     <p>Nơi an táng: ' . $hoSo->NoiAnTang . '</p>
                 </div>
             </div>
             <div class="oneOfThree">
                 <p>Hình ảnh</p>
-                <div style="width: 100%">
-                    <img src="/images/user.png" alt="" style="max-width: 100%">
-                    <br>
+                <div style="width: 100%">';
+if (!isset($hoSo->HinhAnh) || $hoSo->HinhAnh == null) {
+    echo '<img src="/images/user.png" alt="" style="max-width: 100%">';
+} else {
+    echo '<img src="/images/AnhHoSo/'.$hoSo->HinhAnh.'" alt="" style="max-width: 100%">';
+
+}
+if(!isset($_SESSION["lastviewed"]))     {
+    $_SESSION["lastviewed"] = array();
+}
+if (in_array($hoSo->MaHoSo, $_SESSION["lastviewed"])) {
+    $_SESSION["lastviewed"] = array_diff($_SESSION["lastviewed"], array($hoSo->MaHoSo));
+    $_SESSION["lastviewed"] = array_values($_SESSION["lastviewed"]);
+}
+if (count($_SESSION["lastviewed"]) >= 5) {
+    $_SESSION["lastviewed"] = array_slice($_SESSION["lastviewed"], 1);
+    array_push($_SESSION["lastviewed"],$hoSo->MaHoSo);
+} else {
+    array_push($_SESSION["lastviewed"],$hoSo->MaHoSo);
+
+}
+
+echo '<br>
                     <div id="status">
                         <button onclick="addTraCuuXungHo(' . $hoSo->MaHoSo . ')" style="width: 100%; border-radius: 5px;"> <i class="fa fa-search"></i> Tra cách xưng hô</button>
                     </div>

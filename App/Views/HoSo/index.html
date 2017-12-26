@@ -7,6 +7,7 @@ Thêm hồ sơ
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jqueryui.js"></script>
 <script src="/js/selectize.min.js"></script>
+
 {% endblock %}
 {% block body %}
 <!-- page content -->
@@ -27,7 +28,7 @@ Thêm hồ sơ
                     </div>
                     <div class="x_content">
                         <br>
-                        <form action="/admin/ho-so/postThemHoSoAction" method="post"
+                        <form action="/admin/ho-so/postThemHoSoAction" method="post" id="formProfile"
                               class="form-horizontal form-label-left"
                               enctype="multipart/form-data">
 
@@ -107,7 +108,7 @@ Thêm hồ sơ
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input type="text" name="hoTen"
+                                    <input type="text" id="hoTen" name="hoTen"
                                            class="form-control col-md-7 col-xs-12">
                                 </div>
                             </div>
@@ -155,7 +156,7 @@ Thêm hồ sơ
                                     <span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input name="doiThu"
+                                    <input name="doiThu" id="doiThu"
                                            class="form-control col-md-7 col-xs-12"
                                            type="text" id="doiThu">
                                 </div>
@@ -166,6 +167,7 @@ Thêm hồ sơ
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input name="conThu"
+                                           id="conThu"
                                            class="form-control col-md-7 col-xs-12"
                                            type="text" value="1">
                                 </div>
@@ -265,7 +267,7 @@ Thêm hồ sơ
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                    <button class="btn btn-primary" type="reset">Reset</button>
+                                    <button class="btn btn-primary" type="reset">Nhập lại</button>
                                     <button type="submit" class="btn btn-success">Thêm</button>
                                 </div>
                             </div>
@@ -282,6 +284,34 @@ Thêm hồ sơ
 <script>
     $('#myDatepicker2').datetimepicker({
         format: 'DD/MM/YYYY'
+    });
+</script>
+<script src="/js/jquery.validate.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#formProfile').validate({
+            rules: {
+                doiThu: 'required',
+                conThu: 'required',
+                hoTen: {
+                    required: true,
+                    remote: {
+                        url: '/admin/hoso/kiemTraTrungHoTen',
+                        data: {
+                        }
+                    }
+                },
+
+            },
+            messages: {
+                hoTen: {
+                    required: 'Vui lòng nhập họ tên',
+                    remote: 'Phát hiện trùng tên, vui lòng thêm đặc điểm để nhận biết khi tra cứu'
+                },
+                doiThu: "Vui lòng nhật đời thứ",
+                conThu: "Vui lòng nhật con thứ",
+            }
+        });
     });
 </script>
 {% endblock %}

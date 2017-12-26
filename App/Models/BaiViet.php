@@ -120,9 +120,18 @@ class BaiViet extends Model
 
     public function validate()
     {
-// Name
         if ($this->noiDung == '') {
             $this->errors[] = 'Nội dung không được để trống !';
         }
+    }
+    public function updatePost($data){
+        $sql = 'UPDATE BaiViet SET TieuDe =:tieuDe, NoiDung= :noiDung WHERE MaBaiViet=:maBaiViet';
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':maBaiViet', $this->MaBaiViet, PDO::PARAM_INT);
+        $stmt->bindValue(':tieuDe', $data['tieuDe'], PDO::PARAM_INT);
+        $stmt->bindValue(':noiDung', $data['noiDung'], PDO::PARAM_INT);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        return $stmt->execute();
     }
 }

@@ -78,6 +78,7 @@ $router->add('tra-cuu-xung-ho/add/{mahoso:[\da-f]+}', ['namespace' => 'User', 'c
 $router->add('tra-cuu-xung-ho/delete/{mahoso:[\da-f]+}', ['namespace' => 'User', 'controller' => 'TraCuuXungHo', 'action' => 'delete']);
 $router->add('ket-qua-tim-kiem', ['namespace' => 'User', 'controller' => 'TimKiem', 'action' => 'search']);
 $router->add('admin/ho-so/{mahoso:[\da-f]+}/cap-nhat', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'capNhatHoSo']);
+$router->add('admin/bai-viet/{mabaiviet:[\da-f]+}/cap-nhat', ['namespace' => 'Admin', 'controller' => 'BaiViet', 'action' => 'postCapNhatBaiViet']);
 $router->add('admin/ho-so-ngoai-toc/{mahoso:[\da-f]+}/cap-nhat', ['namespace' => 'Admin', 'controller' => 'HoSoNgoaiToc', 'action' => 'capNhatHoSoNgoaiToc']);
 $router->add('admin/ho-so/{mahoso:[\da-f]+}/sua-anh', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'capNhatAnhHoSo']);
 $router->add('{controller}/{action}');

@@ -7,9 +7,21 @@
             <img src="/images/user.png" alt="" style="width: 100%">
         </div>
         <div class="info-item-search" style="float: left; margin-left: 1em">
-            <h5>{{hoSo.HoTen}}</h5> <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
+            <h5>{{hoSo.HoTen}}</h5>
+            <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
             <p>Quê quán: {{hoSo.QueQuan}}</p>
-            <p><span>Ngày sinh: {{hoSo.NgaySinh |date("d/m/Y") }}</span> - <span>Ngày mất: {{hoSo.NgayMat |date("d/m/Y") }}</span></p>
+            <p>
+                <span>Ngày sinh:
+                    {% if hoSo.NgaySinh is not null and hoSo.NgaySinh != '0000-00-00' %}
+                        {{hoSo.NgaySinh | date("d/m/Y")}}
+                    {% endif %}
+                </span> -
+                <span>Ngày mất:
+                    {% if hoSo.NgayMat is not null and hoSo.NgayMat != '0000-00-00' %}
+                        {{hoSo.NgayMat | date("d/m/Y")}}
+                    {% endif %}
+                </span>
+            </p>
         </div>
     </div>
 </a>

@@ -3,104 +3,13 @@
 Phả đồ
 {% endblock %}
 {% block css %}
-<link href="/css/styles.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
 <style>
-    .hopTo {
-        padding: 0.5em;
-        width: 20rem;
-        text-align: center;
-        vertical-align: middle;
-        background-image: url('/images/phado.gif');
-        overflow: hidden;
-    }
-
-    .hopNho {
-        padding: 0.5em;
-        text-align: center;
-        vertical-align: middle;
-        position: relative;
-        background-image: url('/images/phado.gif');
-        overflow: hidden;
-        border-left: 1px solid white;
-        border-right: 1px solid white;
-    }
-
-    .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 99999; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0); /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-    }
-
-    /* Modal Content */
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-    }
-
-    /* The Close Button */
-    .close {
-        color: #aaaaaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    @media (max-width: 576px) {
-
-    }
-
     .thumb {
         width: 50px;
         height: 50px;
     }
-
-    .item-search {
-        float: left;
-        width: 100%;
-        border: 1px solid #1ABB9C;
-        border-radius: 3px;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
-        transition: all 200ms ease-out;
-        padding: .25em;
-        margin-bottom: .5em;
-    }
-    .item-search:hover {
-        box-shadow: 0 0 6px rgba(35, 173, 255, 1);
-    }
-    .wrapper {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        display: flex;
-    }
-
-    .wrapper .oneOfThree {
-        width: 33.33%;
-    }
-
-    .wrapper .twoOfThree {
-        width: 66.66%;
-    }
 </style>
-
 <script>
     function showInfo(button) {
         var maHoSo = $(button).prevAll(".maHoSo").val();
@@ -110,8 +19,8 @@ Phả đồ
     }
 
 
-    function showSearchResult(keywords, option) {
-        url = "api/ajax/renderResultSearch?keywords=" + keywords+"&option=" + option;
+    function showSearchResult(keywords, option, status) {
+        url = "api/ajax/renderResultSearch?keywords=" + keywords + "&option=" + option + "&status=" + status;;
         if (url.indexOf("?") == -1) {
             url = url + "?";
         }
@@ -126,9 +35,7 @@ Phả đồ
 
         var encodedUrl = encodeURI(url);
         $("#mainContent").load(encodedUrl);
-        //noinspection JSUnresolvedFunction,JSUnresolvedFunction,JSValidateTypes
         $("body").scrollTop(0);
-//        history.pushState(null, null, url);
     }
 </script>
 {% endblock %}
@@ -145,33 +52,62 @@ Phả đồ
             </ul>
         </div>
         <div style="display: flex">
-        <div id="divKeywordSearch" style="border: 2px solid #f2f2f2; padding: 20px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);">
-                <label for="txtKeywordSearch" >Tiêu chí tìm kiếm</label>
-                <div><input type="text" id="txtKeywordSearch"  placeholder="Nhập từ khóa tìm kiếm..." value=""></div>
-                <div><input type="text" style="display:none"> </div>
+            <div id="divKeywordSearch"
+                 style="border: 2px solid #f2f2f2; padding: 20px; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);">
+                <label for="txtKeywordSearch">Tiêu chí tìm kiếm</label>
+
+                <div><input type="text" id="txtKeywordSearch" placeholder="Nhập từ khóa tìm kiếm..." value=""></div>
                 <div class="search-radio-selectors" id="guidedFieldSelectors">
-                    <input type="radio" checked="checked" name="SearchTag" value="all" id="guidedField_0">
-                    <label for="guidedField_0" >Tất cả</label>
-                    <input type="radio" name="SearchTag" value="hoTen" id="guidedField_1">
-                    <label for="guidedField_1" >Họ tên</label>
-                    <input type="radio" name="SearchTag" value="hoTenBo" id="guidedField_2">
-                    <label for="guidedField_2" >Họ tên bố</label>
-                    <input type="radio" name="SearchTag" value="namSinh" id="guidedField_3">
-                    <label for="guidedField_3" >Năm sinh</label>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="radio" name="SearchTag" value="hoTen" id="guidedField_1">
+                                <label for="guidedField_1">Họ tên</label>
+                            </td>
+                            <td>
+                                <input type="radio" name="SearchTag" value="hoTenBo" id="guidedField_2">
+                                <label for="guidedField_2">Họ tên bố</label>
+                            </td>
+                            <td>
+                                <input type="radio" name="SearchTag" value="namSinh" id="guidedField_3">
+                                <label for="guidedField_3">Năm sinh</label>
+                            </td>
+                            <td>
+                                <input type="radio" name="SearchTag" value="doiThu" id="guidedField_4">
+                                <label for="guidedField_4">Đời thứ</label>
+                            </td>
+                            <td>
+                                <input type="radio" name="SearchTag" value="conThu" id="guidedField_5">
+                                <label for="guidedField_5">Con thứ</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Tình trạng:  </span>
+                            </td>
+                            <td>
+                                <input type="checkbox" checked name="isLive" id="isLive"> Còn sống
+                            </td>
+                            <td>
+                                <input type="checkbox" checked name="isDie" id="isDie"> Đã mất
+                            </td>
+                        </tr>
+                    </table>
                 </div>
                 <div class="form-actions-search">
-                    <a id="btnSearch" class="btn"><button><i class="fa fa-search"></i> Tìm kiếm </button></a>
-                    <a id="btnRefresh" class="btn"><button> Làm lại </button></a>
+                    <a id="btnRefresh" class="btn">
+                        <button> Làm lại</button>
+                    </a>
+                    <a id="btnSearch" class="btn">
+                        <button><i class="fa fa-search"></i> Tìm kiếm</button>
+                    </a>
                 </div>
             </div>
-
         </div>
-
         <br>
         <br>
         <div style="display: flex; flex-direction:row;">
             <div style="flex: 1;">
-
                 <div id="resultSearch">
                     <p>Tìm thấy <b>{{dsHoSo|length}}</b> kết quả:</p>
                     {% for hoSo in dsHoSo %}
@@ -182,9 +118,21 @@ Phả đồ
                                 <img src="/images/user.png" alt="" style="width: 100%">
                             </div>
                             <div class="info-item-search" style="float: left; margin-left: 1em">
-                                <h5>{{hoSo.HoTen}}</h5> <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
+                                <h5>{{hoSo.HoTen}}</h5>
+                                <small style="color: red">Đời thứ: {{hoSo.DoiThu}}, Con thứ {{hoSo.ConThu}}</small>
                                 <p>Quê quán: {{hoSo.QueQuan}}</p>
-                                <p><span>Ngày sinh: {{hoSo.NgaySinh |date("d/m/Y")}}</span> - <span>Ngày mất: {{hoSo.NgayMat |date("d/m/Y")}}</span></p>
+                                <p>
+                                    <span>Ngày sinh:
+                                        {% if hoSo.NgaySinh is not null and hoSo.NgaySinh != '0000-00-00' %}
+                                            {{hoSo.NgaySinh | date("d/m/Y")}}
+                                        {% endif %}
+                                    </span> -
+                                    <span>Ngày mất:
+                                        {% if hoSo.NgayMat is not null and hoSo.NgayMat != '0000-00-00' %}
+                                            {{hoSo.NgayMat | date("d/m/Y")}}
+                                        {% endif %}
+                                    </span>
+                                </p>
                             </div>
                         </div>
                     </a>
@@ -206,28 +154,17 @@ Phả đồ
         <button id="myBtn" style="display: none"></button>
     </div>
 </section>
-
 <script>
-    // Get the modal
     var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
     var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal
     btn.onclick = function () {
         modal.style.display = "block";
     }
-
     // When the user clicks on <span> (x), close the modal
     span.onclick = function () {
         modal.style.display = "none";
     }
-
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -236,13 +173,27 @@ Phả đồ
     var txtKeywordSearch = document.getElementById("txtKeywordSearch");
     var btnSearch = document.getElementById("btnSearch");
     var btnRefresh = document.getElementById("btnRefresh");
-    btnRefresh.addEventListener('click',function () {
+    btnRefresh.addEventListener('click', function () {
         txtKeywordSearch.value = '';
     });
     btnSearch.addEventListener('click', function () {
-
         var selectedVal = "";
         var selected = $("#divKeywordSearch input[type='radio']:checked");
+        var isLive = document.getElementById("isLive").checked;
+        var isDie = document.getElementById("isDie").checked;
+        var status = '';
+        if (isLive && isDie) {
+            status = 'all';
+        }
+        else if (isLive) {
+            status = 'live';
+        } else if (isDie){
+            status = 'die';
+        } else {
+            alert("Vui lòng chọn tình trạng !");
+            document.getElementById("isLive").focus();
+        }
+        console.log(status);
         if (selected.length > 0) {
             selectedVal = selected.val();
             if (selectedVal == 'namSinh') {
@@ -250,14 +201,13 @@ Phả đồ
                     alert("Vui lòng nhập năm sinh là số");
                     return;
                 } else {
-                    showSearchResult(txtKeywordSearch.value, selectedVal);
+                    showSearchResult(txtKeywordSearch.value, selectedVal, status);
                 }
             }
             else {
-                showSearchResult(txtKeywordSearch.value, selectedVal);
+                showSearchResult(txtKeywordSearch.value, selectedVal, status);
             }
         }
     })
-
 </script>
 {% endblock %}

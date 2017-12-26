@@ -230,4 +230,11 @@ class HoSo extends Controller
             echo "success";
         }
     }
+
+    public function kiemTraTrungHoTenAction()
+    {
+        $hoSo = HoSoModel::findByHoTen($_GET['hoTen']);
+        header('Content-Type: application/json');
+        echo json_encode(!isset($hoSo->MaHoSo));
+    }
 }

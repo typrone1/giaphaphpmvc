@@ -44,11 +44,16 @@ class View
             $rutGonHTML = new Twig_SimpleFunction('rutGonHTML', function ($string) {
                 return Html2Text::convert($string);
             });
+            $twig = new \Twig_Environment($loader, array(
+                'debug' => true,
+            ));
+            $twig->addExtension(new \Twig_Extension_Debug());
             $twig->addFunction($function);
             $twig->addFunction($function2);
             $twig->addFunction($giaPhaNguoiDung);
             $twig->addFunction($rutGonHTML);
 //            $twig->addGlobal('session', $_SESSION);
+            $twig->addGlobal('lastviewed', $_SESSION["lastviewed"]);
 //            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
             $twig->addGlobal('current_user', Auth::getUser());
             $twig->addGlobal('flash_messages', Flash::getMessages());
