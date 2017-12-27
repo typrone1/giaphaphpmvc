@@ -92,7 +92,6 @@ echo '<br>
         echo '
             </div>
         </div>
-        <button> Bổ sung thông tin </button>
         <h3 style="text-align: center">Sơ đồ gia đình</h3>
         <br><br>
     ';

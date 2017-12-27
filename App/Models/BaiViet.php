@@ -129,9 +129,8 @@ class BaiViet extends Model
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':maBaiViet', $this->MaBaiViet, PDO::PARAM_INT);
-        $stmt->bindValue(':tieuDe', $data['tieuDe'], PDO::PARAM_INT);
-        $stmt->bindValue(':noiDung', $data['noiDung'], PDO::PARAM_INT);
-        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->bindValue(':tieuDe', $data['tieuDe'], PDO::PARAM_STR);
+        $stmt->bindValue(':noiDung', $data['noiDung'], PDO::PARAM_STR);
         return $stmt->execute();
     }
 }

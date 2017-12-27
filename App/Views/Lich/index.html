@@ -20,21 +20,7 @@ Lịch
                     </div>
                     <div class="x_content">
                         <script>
-                            var mockData = [{
-                                    "ngayGio": "2015-11-29"
-                                },
-                                {
-                                    "ngayGio": "2017-09-20"
-                                },
-                                {
-                                    "ngayGio": "2014-06-15"
-                                },
-                                {
-                                    "ngayGio": "2015-01-10"
-                                },
-                                {
-                                    "ngayGio": "2015-02-23"
-                                }
+                            var mockData = [
                             ];
                             setOutputSize("big");
                             showVietCal();
@@ -47,7 +33,31 @@ Lịch
                                         <div id="lich" class="clndr"></div>
                                     </div>
                                     <script language="JavaScript">
-                                        document.getElementById('lich').innerHTML = printSelectedMonth();
+                                        var mockData = [];
+                                        var getJSON = function (url, callback) {
+                                            var xhr = new XMLHttpRequest();
+                                            xhr.open('GET', url, true);
+                                            xhr.responseType = 'json';
+                                            xhr.onload = function () {
+                                                var status = xhr.status;
+                                                if (status === 200) {
+                                                    callback(null, xhr.response);
+                                                } else {
+                                                    callback(status, xhr.response);
+                                                }
+                                            };
+                                            xhr.send();
+                                        };
+                                        getJSON('/api/ajax/getAll', (err, data) => {
+//                                mockData = data.data;
+//                                console.log(mockData);
+                                            getJSON('/api/ajax/getAllSuKien', (err, data) => {
+                                                mockData = data.data;
+//                                    console.log(mockData);
+                                                document.getElementById('lich').innerHTML = printSelectedMonth();
+
+                                            });
+                                        });
                                     </script>
 
                                 </td>
@@ -75,7 +85,9 @@ Lịch
 
                                         <p>
 
-                                            <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng" onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));"> &#160;&#160;
+                                            <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng"
+                                                   onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));">
+                                            &#160;&#160;
                                     </form>
 
                                     <script type="text/javascript">
@@ -96,28 +108,217 @@ Lịch
                                         function viewMonth(mm, yy) {
                                             window.location = window.location.pathname + '?yy=' + yy + '&mm=' + mm;
                                         }
-
-                                        // function viewYear(yy) {
-                                        // 	var loc = 'currentyear.html?yy=' + yy;
-                                        // 	var win2702 = window.open(loc, "win2702", "menubar=yes,scrollbars=yes,resizable=yes");
-                                        // }
                                     </script>
 
                                 </td>
                             </tr>
 
                         </table>
-
+                        <table class="table table-striped">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#calenderModalAdd">
+                                <i class="fa fa-plus"></i> Thêm
+                            </button>
+                            <thead>
+                            <tr>
+                                <th>Thời gian (Âm lịch)</th>
+                                <th>Tên sự kiện</th>
+                                <th>Nội dung</th>
+                                <th>Thành phần tham gia</th>
+                                <th>Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for event in dsSuKien | reverse %}
+                            <tr>
+                                <th scope="row">{{event.NgayDienRa | date("d/m/Y")}}</th>
+                                <td>{{event.TenSuKien}}</td>
+                                <td>{{event.NoiDung}}</td>
+                                <td>Tất cả mọi người</td>
+                                <td>
+                                    <input type="hidden" class="maSuKien" value="{{event.MaSuKien}}">
+                                    <button class="btn btn-primary" data-toggle="modal" data-target="#calenderModalEdit"
+                                            onclick="detailEvent(this)">Sửa
+                                    </button>
+                                    <button class="btn btn-primary btn-delete" data-toggle="modal"
+                                            data-target="#calenderModalRemove" data-id="{{event.MaSuKien}}">Xóa
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+<div id="calenderModalAdd" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" style="display: none ; padding-right: 16px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel2">Thêm sự kiện</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 5px 20px;">
+                    <form action="/admin/baiviet/storeEvent" method="post" class="form-horizontal" name="form-event"
+                          id="form-event">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tên sự kiện</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" name="tenSuKien">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;"
+                                          name="noiDung"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Ngày diễn ra</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" name="ngayDienRa">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary" form="form-event" value="Submit">Lưu</button>
+            </div>
+        </div>
+    </div>
 </div>
+<div id="calenderModalEdit" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" style="display: none ; padding-right: 16px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Chỉnh sửa sự kiện</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 5px 20px;">
+                    <form action="/admin/baiviet/updateEvent" method="post" class="form-horizontal calender" role="form" id="form-update-event" name="form-update-event">
+                        <input type="hidden" name="maSuKien" id="maSuKien">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Tên sự kiện</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="tenSuKien" name="tenSuKien">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Nội dung</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" style="height:55px;" id="noiDung"
+                                          name="noiDung"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Ngày diễn ra</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="ngayDienRa" name="ngayDienRa">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Địa điểm</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="diaDiem" name="diaDiem">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Hồ sơ liên quan</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="maHoSo" name="maHoSo">
+                                    <option value="" selected></option>
+                                    {% for hoSo in dsHoSo %}
+                                        <option value="{{hoSo.MaHoSo}}" selected>{{hoSo.MaHoSo}} - {{hoSo.HoTen}} ( Đời
+                                            thứ :{{hoSo.DoiThu}} Con thứ: {{hoSo.ConThu}})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Trạng thái</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="trangThai" id="trangThai">
+                                    <option value="1">Hiển thị</option>
+                                    <option value="0">Ẩn tin</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <button type="submit" class="btn btn-primary" form="form-update-event">Lưu</button>
+            </div>
+        </div>
+    </div>
 </div>
-<!-- /page content -->
+<div id="calenderModalRemove" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" style="display: none ; padding-right: 16px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Xác nhận</h4>
+            </div>
+            <div class="modal-body">
+                <div style="padding: 5px 20px;">
+                    <p>Xác nhận xóa sự kiện này ?</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="removeEvent(this)">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /page content -->
 
+{% endblock %}
+{% block footer %}
+<script>
+    function detailEvent(button) {
+        var maSuKien = $(button).prevAll(".maSuKien").val();
+        var url = "/api/ajax/getEvent/" + maSuKien;
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                var data = JSON.parse(JSON.stringify(xhr.response));
+                document.getElementById("tenSuKien").value = data.TenSuKien;
+                document.getElementById("noiDung").value = data.NoiDung;
+                document.getElementById("ngayDienRa").value = data.NgayDienRa;
+                document.getElementById("maSuKien").value = data.MaSuKien;
+            }
+        };
+        xhr.send();
+    }
+    $maSuKienNeedDelete = null;
+    $(".btn-delete").hover(function (event) {
+        event.preventDefault();
+        $maSuKienNeedDelete = $(this).data('id');
+    }, null);
+    function removeEvent(button) {
+        var url = "/admin/baiviet/deleteEvent";
+        $.post(url, {maSuKien: $maSuKienNeedDelete})
+            .done(function () {
+                alert("Xóa thành công!");
+            });
+    }
+</script>
 {% endblock %}

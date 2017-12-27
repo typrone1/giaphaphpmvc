@@ -11,6 +11,7 @@ namespace App\Controllers\User;
 
 use App\Models\BaiViet;
 use App\Models\HoSo;
+use App\Models\SuKien;
 use Core\Controller;
 use Core\View;
 
@@ -26,6 +27,9 @@ class Home extends Controller
         }
 //        var_dump($arrayHoSo);
 //        die();
-        View::renderTemplate('User/index.html', ['dsBaiViet' => BaiViet::getAll(), 'dsXemGanDay' => $arrayHoSo]);
+        $dsSuKien = SuKien::getAll();
+//        var_dump($dsSuKien);
+//        die();
+        View::renderTemplate('User/index.html', ['dsBaiViet' => BaiViet::getAll(), 'dsXemGanDay' => $arrayHoSo, 'dsSuKien' => $dsSuKien]);
     }
 }

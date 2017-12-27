@@ -11,6 +11,7 @@ use App\Database\MySqlConnection;
 use App\Database\Query\MySqlBuilder;
 use App\Models\HoSo;
 use App\Models\HoSoNgoaiToc;
+use App\Models\SuKien;
 use Core\Controller;
 use Core\View;
 use League\Fractal;
@@ -94,6 +95,25 @@ class AJAX extends Controller
         $array = $fractal->createData($resource)->toArray();
         echo $fractal->createData($resource)->toJson(JSON_UNESCAPED_UNICODE);
     }
-    function getNgayGio(){
+    function getAllSuKien(){
+        $suKiens = SuKien::getAll();
+        $fractal = new Fractal\Manager();
+        $resource = new Fractal\Resource\Collection($suKiens, function(array $suKien) {
+            return [
+                'id'      => (int) $suKien['MaSuKien'],
+                'ngayGio'   => $suKien['NgayDienRa'],
+            ];
+        });
+        $array = $fractal->createData($resource)->toArray();
+        echo $fractal->createData($resource)->toJson(JSON_UNESCAPED_UNICODE);
+    }
+    function getEvent(){
+        $suKien = SuKien::find($this->routeParams['id']);
+        if (isset($suKien)) {
+            header('Content-Type: application/json');
+            echo \GuzzleHttp\json_encode($suKien, JSON_UNESCAPED_UNICODE);
+        } else {
+            echo "Không tìm thấy";
+        }
     }
 }

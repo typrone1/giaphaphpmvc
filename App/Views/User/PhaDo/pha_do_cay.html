@@ -24,9 +24,9 @@ Phả đồ
             </ul>
         </div>
     </div>
-    <div style="overflow-y: hidden">
-        <div class="tree">
-            {{ inGiaPhaDangCay(null) }}
+    <div style="overflow-y: hidden" class="zoomViewport">
+        <div class="tree zoomContainer" style="overflow: hidden;">
+            {{ inGiaPhaDangCay(hoSo.MaHoSo) }}
         </div>
     </div>
 </section>

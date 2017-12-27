@@ -217,7 +217,6 @@ class HoSo extends Controller
         } else {
             Flash::addMessage(':( Cập nhật không thành công !', Flash::WARNING);
         }
-
         $this->redirect('/admin/ho-so/' . $maHoSo);
     }
 

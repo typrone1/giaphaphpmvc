@@ -83,6 +83,7 @@ $router->add('admin/ho-so-ngoai-toc/{mahoso:[\da-f]+}/cap-nhat', ['namespace' =>
 $router->add('admin/ho-so/{mahoso:[\da-f]+}/sua-anh', ['namespace' => 'Admin', 'controller' => 'HoSo', 'action' => 'capNhatAnhHoSo']);
 $router->add('{controller}/{action}');
 $router->add('api/{controller}/{action}', ['namespace' => 'API']);
+$router->add('api/ajax/getEvent/{id:[\da-f]+}', ['namespace' => 'API', 'controller' => 'AJAX', 'action' => 'getEvent']);
 $router->add('{controller}/{id:\d+}/{action}');
 $router->add('user/{controller}/{action}/{id:\d+}', ['namespace' => 'User']);
 $router->add('user/{controller}/{action}', ['namespace' => 'User']);

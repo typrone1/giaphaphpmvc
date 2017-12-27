@@ -10,6 +10,8 @@ namespace App\Controllers\Admin;
 
 
 use App\Flash;
+use App\Models\HoSo;
+use App\Models\SuKien;
 use Core\Controller;
 use Core\View;
 use App\Models\BaiViet as BaiVietModel;
@@ -63,6 +65,49 @@ class BaiViet extends Controller
 
     public function xemLichAction()
     {
-        View::renderTemplate('Lich/index.html');
+        $dsSuKien = SuKien::getAll();
+        View::renderTemplate('Lich/index.html', ['dsSuKien' => $dsSuKien, 'dsHoSo' => HoSo::getAll()]);
+    }
+    public function storeEvent() {
+        $event = new SuKien($_POST);
+        if ($event->save()) {
+            Flash::addMessage("Thêm thành công");
+            $this->redirect('/admin/lich-viec-toc');
+        } else {
+            Flash::addMessage("Thêm không công thành công", Flash::WARNING);
+            foreach ($event->errors as $error) {
+                Flash::addMessage($error, Flash::WARNING);
+            }
+            $dsSuKien = SuKien::getAll();
+            View::renderTemplate('Lich/index.html', ['dsSuKien' => $dsSuKien]);
+        }
+    }
+    public function deleteEvent() {
+        $event = SuKien::find($_POST['maSuKien']);
+        if ($event->delete()) {
+            Flash::addMessage("Xóa thành công");
+            $this->redirect('/admin/lich-viec-toc');
+        } else {
+            Flash::addMessage("Xóa không thành công", Flash::WARNING);
+            foreach ($event->errors as $error) {
+                Flash::addMessage($error, Flash::WARNING);
+            }
+            $dsSuKien = SuKien::getAll();
+            View::renderTemplate('Lich/index.html', ['dsSuKien' => $dsSuKien]);
+        }
+    }
+    public function updateEvent() {
+        $event = SuKien::find($_POST['maSuKien']);
+        if ($event->update($_POST)) {
+            Flash::addMessage("Cập nhật thành công !");
+            $this->redirect('/admin/lich-viec-toc');
+        } else {
+            Flash::addMessage("Cập nhật không thành công !", Flash::WARNING);
+            foreach ($event->errors as $error) {
+                Flash::addMessage($error, Flash::WARNING);
+            }
+            $dsSuKien = SuKien::getAll();
+            View::renderTemplate('Lich/index.html', ['dsSuKien' => $dsSuKien]);
+        }
     }
 }

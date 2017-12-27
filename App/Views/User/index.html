@@ -8,15 +8,18 @@ Trang chủ
     table {
         width: 100%;
     }
+
     .cal1 .clndr .clndr-table tr .day {
         height: 0;
     }
+
     .clndr .clndr-controls {
         padding: 0 !important;
         line-height: 1.6em;
         font-size: 1em;
-        background: linear-gradient(to bottom, rgba(243,197,189,1) 0%,rgba(232,108,87,1) 50%,rgba(234,40,3,1) 51%,rgba(255,102,0,1) 75%,rgba(199,34,0,1) 100%);
+        background: linear-gradient(to bottom, rgba(243, 197, 189, 1) 0%, rgba(232, 108, 87, 1) 50%, rgba(234, 40, 3, 1) 51%, rgba(255, 102, 0, 1) 75%, rgba(199, 34, 0, 1) 100%);
     }
+
     /* The Modal (background) */
     .modal {
         display: none; /* Hidden by default */
@@ -28,8 +31,8 @@ Trang chủ
         width: 100%; /* Full width */
         height: 100%; /* Full height */
         overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
     }
 
     /* Modal Content */
@@ -55,6 +58,7 @@ Trang chủ
         text-decoration: none;
         cursor: pointer;
     }
+
     /* Cay gia pha gan */
     .hopTo {
         padding: 0.5em;
@@ -75,6 +79,7 @@ Trang chủ
         border-left: 1px solid white;
         border-right: 1px solid white;
     }
+
     .wrapper {
         width: 100%;
         margin: 0;
@@ -88,6 +93,21 @@ Trang chủ
 
     .wrapper .twoOfThree {
         width: 66.66%;
+    }
+    .suKien table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .suKien td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .suKien tr:nth-child(even) {
+        background-color: #dddddd;
     }
 </style>
 <link rel="stylesheet" href="/css/clndr.css">
@@ -168,11 +188,11 @@ Trang chủ
 //                        "ngayGio": "2015-02-23"
 //                    }
                 ];
-                var getJSON = function(url, callback) {
+                var getJSON = function (url, callback) {
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', url, true);
                     xhr.responseType = 'json';
-                    xhr.onload = function() {
+                    xhr.onload = function () {
                         var status = xhr.status;
                         if (status === 200) {
                             callback(null, xhr.response);
@@ -182,15 +202,6 @@ Trang chủ
                     };
                     xhr.send();
                 };
-                getJSON('/api/ajax/getAll', (err, data) => {
-                    mockData = data.data;
-                });
-                setTimeout(function () {
-//                    setOutputSize("small");
-                    showVietCal();
-//                    console.log(mockData);
-                }, 2000);
-
             </script>
             <table align="center" cellspacing="1" border="0" style="padding-left: 1em">
                 <tr>
@@ -199,7 +210,16 @@ Trang chủ
                             <div id="lich" class="clndr"></div>
                         </div>
                         <script language="JavaScript">
-                            document.getElementById('lich').innerHTML = printSelectedMonth();
+                            getJSON('/api/ajax/getAll', (err, data) => {
+//                                mockData = data.data;
+//                                console.log(mockData);
+                                getJSON('/api/ajax/getAllSuKien', (err, data) => {
+                                    mockData = data.data;
+//                                    console.log(mockData);
+                                    document.getElementById('lich').innerHTML = printSelectedMonth();
+
+                                });
+                            });
                         </script>
                     </td>
                 </tr>
@@ -222,11 +242,11 @@ Trang chủ
                                 <option value="11">11
                                 <option value="12">12
                             </select> &#160;&#160;&#160;&#160; N&#x103;m
-                            <INPUT NAME="year" size=4 value="2005"> &#160;
-
+                            <INPUT NAME="year" size=4 value="2017"> &#160;
                             <p>
-
-                                <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng" onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));"> &#160;&#160;
+                                <input type="button" value="Xem l&#x1ECB;ch th&aacute;ng"
+                                       onClick="javascript:viewMonth(parseInt(month.value), parseInt(year.value));">
+                                &#160;&#160;
                         </form>
 
                         <script type="text/javascript">
@@ -250,18 +270,48 @@ Trang chủ
             </table>
             <div id="recent-view">
                 <p>Xem gần đây</p>
-                {% for item in dsXemGanDay|reverse  %}
+                {% for item in dsXemGanDay|reverse %}
                 <div class="view-item block-border">
-                    <div style="width: 40px; margin-right: .5em" class="thumbnail-img"><img src="/images/AnhBaiViet/camera.png" alt="" style="width: 100%"></div>
+                    <div style="width: 40px; margin-right: .5em" class="thumbnail-img"><img
+                            src="/images/AnhBaiViet/camera.png" alt="" style="width: 100%"></div>
                     <div class="info">
                         <input type="hidden" class="maHoSo" value="{{item.MaHoSo}}">
                         <a href="#" onclick="showInfo(this);return false;">{{item.HoTen}}</a>
                         <br>
-                        <small style="font-weight: normal; color: red;">Đời thứ {{item.DoiThu}} - Con thứ {{item.ConThu}}</small>
+                        <small style="font-weight: normal; color: red;">Đời thứ {{item.DoiThu}} - Con thứ
+                            {{item.ConThu}}
+                        </small>
                     </div>
                 </div>
                 {% endfor %}
+                <div class="suKien" >
+                    <table style="padding-left: 1em;">
+                        <p style="text-align: left">Lịch sự kiện</p>
+                        <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Tên sự kiện</th>
+                            <!--<th>Nội dung</th>-->
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in dsSuKien | reverse %}
+                        <tr>
+                            <td>
+                                {% if event.NgayDienRa is not null and event.NgayDienRa != '0000-00-00' %}
+                                    {{event.NgayDienRa | date("d/m/Y")}}
+                                {% endif %}
+                            </td>
+                            <td><a href="#" onclick="displayModal({{event.MaSuKien}})">{{event.TenSuKien}}</a></td>
+                            <!--<td>{{event.NoiDung}}</td>-->
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
+
         </div>
         <div id="myModal" class="modal">
             <!-- Modal content -->
@@ -273,14 +323,79 @@ Trang chủ
             </div>
         </div>
 
+        <div id="modalEvent" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <h2 style="text-align: center">Chi tiết sự kiện</h2>
+                <hr>
+                <br>
+                <div id="eventInfo">
+                    <div style="display: flex">
+                        <div style="flex: 1">
+                            <div style="padding: 2em; text-align: center">
+                                <p>Tên sự kiện: <span id="tenSuKien"></span></p>
+                                <p>Ngày diễn ra: <span id="ngayDienRa"></span></p>
+                                <p style="min-height: 5em">Nội dung: <span id="noiDung"></span></p>
+                                <p>Địa điểm: <span id="diaDiem">Tại nhà thờ tộc</span></p>
+                            </div>
+                        </div>
+                        <div style="flex: 1; text-align: center; border: 1px solid #f2f2f2; padding: 1em; display: none"
+                             id="hoSo">
+                            <div style="width: 150px; height: 150px;"><img style="max-width: 100%; border-radius: 50%"
+                                                                           src="/images/PA1057_gia-pha.png" alt="">
+                            </div>
+                            <h5 id="hoTen" style="font-size: 2em"></h5>
+                            <p style="font-family: sans-serif">Ngày sinh: <span id="ngaySinh"></span></p>
+                            <p style="font-family: sans-serif">Ngày mất: <span id="noiMat"></span></p>
+                            <p style="font-family: sans-serif">Nơi an táng: <span id="noiAnTang"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var modalEvent = document.getElementById('modalEvent');
+            function displayModal(maSuKien) {
+                var modalEvent = document.getElementById("modalEvent");
+                var url = "/api/ajax/getEvent/" + maSuKien;
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = function () {
+                    var status = xhr.status;
+                    if (status === 200) {
+                        var data = JSON.parse(JSON.stringify(xhr.response));
+                        document.getElementById("tenSuKien").innerHTML = data.TenSuKien;
+                        document.getElementById("noiDung").innerHTML = data.NoiDung;
+                        document.getElementById("ngayDienRa").innerHTML = new Date(data.NgayDienRa).toLocaleDateString();
+                        if (data.MaHoSo) {
+                            document.getElementById("hoSo").style.display = 'block';
+                            document.getElementById("ngaySinh").innerHTML = new Date(data.NgaySinh).toLocaleDateString();
+                            document.getElementById("hoTen").innerHTML = data.HoTen;
+                            document.getElementById("noiMat").innerHTML = data.NoiMat;
+                            document.getElementById("noiAnTang").innerHTML = data.NoiAnTang;
+                        } else {
+                            document.getElementById("hoSo").style.display = 'none';
+                        }
+                        modalEvent.style.display = "block";
+                    }
+                };
+                xhr.send();
+            }
+            document.getElementById("closeModal").onclick = function () {
+                modalEvent.style.display = "none";
+            }
+        </script>
+
         <script>
             function showInfo(button) {
                 var maHoSo = $(button).prevAll(".maHoSo").val();
                 console.log(maHoSo);
                 $("html, body").animate(
-                    { scrollTop: "220px" },
+                    {scrollTop: "220px"},
                     {
-                        complete : function(){
+                        complete: function () {
                         }
                     }
                 );
@@ -315,7 +430,6 @@ Trang chủ
                 <h3>Xem kết quả tra cứu xưng hô</h3>
                 <div id="mainContent2">
                 </div>
-
                 <br>
             </div>
         </div>
@@ -333,9 +447,11 @@ Trang chủ
                         <div class="thumb-su-kien" style="float: left">
                             <a href="/bai-viet/{{baiViet.MaBaiViet}}">
                                 {% if baiViet.HinhAnh is not null and baiViet.HinhAnh != '' %}
-                                <img style="min-width: 100%; height: 100%; float: left" src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
+                                <img style="min-width: 100%; height: 100%; float: left"
+                                     src="/images/AnhBaiViet/{{ baiViet.HinhAnh }}" alt="">
                                 {% else %}
-                                <img style="min-width: 100%; height: 100%; float: left" src="/images/AnhBaiViet/camera.png" alt="">
+                                <img style="min-width: 100%; height: 100%; float: left"
+                                     src="/images/AnhBaiViet/camera.png" alt="">
                                 {% endif %}
                             </a>
                         </div>
@@ -358,18 +474,20 @@ Trang chủ
                 modal2.style.display = "block";
             }
             var modal = document.getElementById('myModal');
+
             var span = document.getElementsByClassName("close")[0];
-            var span2 = document.getElementsByClassName("close")[1];
-            span.onclick = function() {
+            var span2 = document.getElementsByClassName("close")[2];
+            span.onclick = function () {
                 modal.style.display = "none";
             }
-            span2.onclick = function() {
+            span2.onclick = function () {
                 modal2.style.display = "none";
             }
-            window.onclick = function(event) {
+            window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                     modal2.style.display = "none";
+                    modalEvent.style.display = "none";
                 }
             }
         </script>

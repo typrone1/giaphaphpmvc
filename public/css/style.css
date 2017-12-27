@@ -395,7 +395,7 @@ a {
     background: #eceeed;
     border-left: 3px solid #ffc300;
     padding: 0 8px;
-    z-index: 99;
+    z-index: -1;
     margin: 5px 0;
 }
 
