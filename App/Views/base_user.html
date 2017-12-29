@@ -14,28 +14,28 @@
     {% endblock %}
     <style>
         .dropbtn {
-            /*color: white;*/
-            border: none;
-            cursor: pointer;
-        }
+                /*color: white;*/
+                border: none;
+                cursor: pointer;
+            }
 
-        /* The container <div> - needed to position the dropdown content */
-        .dropdown {
-            position: relative;
-            /*display: inline-block;*/
-        }
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                /*display: inline-block;*/
+            }
 
-        /* Dropdown Content (Hidden by Default) */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            min-width: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            top: 2em;
-            right: 0;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-        }
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                min-width: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                top: 2em;
+                right: 0;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                z-index: 9999;
+            }
 
         /* Links inside the dropdown */
         .dropdown-content a {
@@ -66,18 +66,20 @@
         /* Change the background color of the dropdown button when the dropdown content is shown */
         .dropdown:hover .dropbtn {
         }
-    </style>
-    <style>
+
         #menu-top ul {
         }
+
         #menu-top li {
             color: #f1f1f1;
             display: inline-block;
         }
+
         #menu-top a {
             text-decoration: none;
             display: block;
         }
+
         #menu-top a:hover {
         }
 
@@ -87,12 +89,15 @@
             z-index: 9999;
             position: absolute;
         }
+
         #menu-top li {
             position: relative;
         }
+
         #menu-top li:hover .sub-menu {
             display: block;
         }
+
         .sub-menu li {
             margin-left: 0 !important;
         }
@@ -100,6 +105,61 @@
         /*==Menu cấp 3==*/
         .sub-menu > ul {
             display: none !important;
+        }
+
+        .scroll-text {
+            line-height: 2em;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scroll-text p {
+            font-size: 1em;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            text-align: center;
+            /* Starting position */
+            -moz-transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            /* Apply animation to this element */
+            -moz-animation: scroll-text 15s linear infinite;
+            -webkit-animation: scroll-text 15s linear infinite;
+            animation: scroll-text 15s linear infinite;
+        }
+
+        /* Move it (define the animation) */
+        @-moz-keyframes scroll-text {
+            0% {
+                -moz-transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+            }
+        }
+
+        @-webkit-keyframes scroll-text {
+            0% {
+                -webkit-transform: translateX(100%);
+            }
+            100% {
+                -webkit-transform: translateX(-100%);
+            }
+        }
+
+        @keyframes scroll-text {
+            0% {
+                -moz-transform: translateX(100%); /* Firefox bug fix */
+                -webkit-transform: translateX(100%); /* Firefox bug fix */
+                transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%); /* Firefox bug fix */
+                -webkit-transform: translateX(-100%); /* Firefox bug fix */
+                transform: translateX(-100%);
+            }
         }
     </style>
     {% block css %}
@@ -110,7 +170,6 @@
 <header>
     <div class="container">
         <div id="banner">
-
             <div id="tai-khoan">
                 {% if current_user %}
                 <div class="profile_info">
@@ -139,14 +198,31 @@
             </div>
             <div class="clearfix"></div>
         </div>
+        <style>
+            #nav {
+                display: flex;
+            }
+
+            #nav .scroll-text {
+                flex: 1;
+            }
+
+        </style>
         <nav id="nav" class="clearfix">
             <input type="checkbox" id="menu"/>
             <label for="menu" id="nav-icon">&#9776;</label>
             <div id="menu-top">
                 <ul>
                     <li>
-                        <a href="/"><i class="fa fa-home" style="border: 1px solid darkorange; border-radius: 2px; margin: 0 2px;"></i>Trang chủ</a>
+                        <a href="/"><i class="fa fa-home"
+                                       style="border: 1px solid darkorange; border-radius: 2px; margin: 0 2px;"></i>Trang
+                            chủ</a>
                     </li>
+
+                    <li>
+                        <a href="/user/LoaiTin/index/1">Tin tức</a>
+                    </li>
+
                     <li>
                         <a href="/pha-do-dung">Xem phả đồ</a>
                         <ul class="sub-menu">
@@ -154,36 +230,25 @@
                             <li><a href="/pha-do-cay">Phả đồ cây</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#">Tin tức</a>
-                    </li>
-                    <!--<li>-->
-                        <!--<a href="#">Giới thiệu</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">Kết nối</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">Tư liệu</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">Văn hóa</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="#">Sự kiện</a>-->
-                    <!--</li>-->
                 </ul>
             </div>
 
+            <div class="scroll-text">
+                <p>
+                    © Gia phả Họ Nguyễn Hữu 2017 - Thực hiện: Nguyễn Hữu Tý
+                </p>
+            </div>
         </nav>
     </div>
 </header>
+
 {% block body %}
 {% endblock %}
 
 <footer style="background-color: #1b6d85; height: 50px;">
     <div class="container">
-        <p style="line-height: 50px; color: #FFFFFF; float: none; padding-left: .5em">© Gia phả Họ Nguyễn Hữu 2017 - Thực hiện: Nguyễn Hữu Tý</p>
+        <p style="line-height: 50px; color: #FFFFFF; float: none; padding-left: .5em">© Gia phả Họ Nguyễn Hữu 2017 -
+            Thực hiện: Nguyễn Hữu Tý</p>
     </div>
 </footer>
 <script src="/js/jquery.min.js"></script>

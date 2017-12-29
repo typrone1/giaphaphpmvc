@@ -57,7 +57,7 @@ class View
 //            $twig->addGlobal('is_logged_in', Auth::isLoggedIn());
             $twig->addGlobal('current_user', Auth::getUser());
             $twig->addGlobal('flash_messages', Flash::getMessages());
-
+            $twig->addExtension(new AppExtension());
         }
         echo $twig->render($template, $args);
     }

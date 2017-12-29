@@ -79,8 +79,13 @@ echo '<br>
                     <h4> Danh sách vợ </h4>
                     ';
         foreach ($dsVo as $vo) {
-            echo '<div >
-                    <img src ="/images/user.png" alt = "" style = "width: 20%;" >
+            echo '<div >';
+            if ($vo->HinhAnh == null) {
+                echo '<img src ="/images/user.png" alt = "" style = "width: 50%;" >';
+            } else {
+                echo '<img src ="/images/AnhHoSo/'.($vo->HinhAnh).'" alt = "" style = "width: 50%;" >';
+            }
+            echo '
                     <p>Họ tên: ' . $vo->HoTen . '</p>
                     <p>NS: ' . ($vo->NgaySinh!='0000-00-00'?date('d/m/Y',strtotime($vo->NgaySinh)):null) . '</p>
                     <p>Quê quán: ' . $vo->QueQuan . '</p>

@@ -32,7 +32,7 @@ class SuKien extends Model
 
     public static function find($id)
     {
-        $sql = 'SELECT * FROM SuKien, HoSo WHERE MaSuKien = :id AND SuKien.MaHoSo = HoSo.MaHoSo';
+        $sql = 'SELECT * FROM SuKien LEFT JOIN hoso ON sukien.MaHoSo = hoso.MaHoSo WHERE MaSuKien = :id';
         $db = static::getDB();
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':id', $id, \PDO::PARAM_INT);
@@ -80,7 +80,7 @@ class SuKien extends Model
         $stmt->bindValue(':noiDung', $data['noiDung'], PDO::PARAM_STR);
         $stmt->bindValue(':diaDiem', $data['diaDiem'], PDO::PARAM_STR);
         $stmt->bindValue(':ngayDienRa', $data['ngayDienRa'], PDO::PARAM_STR);
-        $stmt->bindValue(':maHoSo', $data['maHoSo'], PDO::PARAM_INT);
+        $stmt->bindValue(':maHoSo', ($data['maHoSo']!='')?$data['maHoSo']:null, PDO::PARAM_INT);
         $stmt->bindValue(':trangThai', $data['trangThai'], PDO::PARAM_INT);
         return $stmt->execute();
     }

@@ -120,7 +120,7 @@ Trang chủ
             <ul class="breadcrumb left clearfix">
                 <li class="start">
                     <h4>
-                        <a href="javascript:void(0);" title="Trang chủ">Trang chủ</a>
+                        <a href="javascript:void(0);" title="Trang chủ">Trang chủ</a>.
                     </h4>
                 </li>
             </ul>
@@ -286,7 +286,7 @@ Trang chủ
                 {% endfor %}
                 <div class="suKien" >
                     <table style="padding-left: 1em;">
-                        <p style="text-align: left">Lịch sự kiện</p>
+                        <p style="text-align: left">Lịch sự kiện (Ngày {{0|amLich |date("d/m/Y")}} âm lịch)</p>
                         <thead>
                         <tr>
                             <th>Ngày</th>
@@ -298,9 +298,32 @@ Trang chủ
                         {% for event in dsSuKien | reverse %}
                         <tr>
                             <td>
-                                {% if event.NgayDienRa is not null and event.NgayDienRa != '0000-00-00' %}
-                                    {{event.NgayDienRa | date("d/m/Y")}}
+                                {# endDate and startDate are strings or DateTime objects #}
+                                {% set myDatetimeString = date(startDate) | date("d/m/Y") | amLich %}
+                                {% set format = craft.i18n.getTimepickerJsFormat() %}
+                                <!--{{myDatetimeString|date(format)|date("d/m/Y")}}-->
+                                {% set numDay = target.dateStop | date ("w", user_timezone) %}
+                                {% set daysOfWeek = {0: 'Chủ nhật', 1: 'Thứ hai', 2: 'Thứ ba', 3: 'Thứ tư', 4: 'Thứ năm', 5: 'Thứ sáu', 6: 'Thứ bảy'} %}
+                                {% set weekDay = daysOfWeek[numDay] %}
+
+
+
+                                {% set difference = date(event.NgayDienRa).diff(date(myDatetimeString|date(format))) %}
+                                {% set leftDays = difference.days %}
+                                {% set sumDay = numDay + leftDays %}
+                                {% set weekDay = daysOfWeek[sumDay%7] %}
+
+
+                                {% if leftDays == 0 %}
+                                Hôm nay,
+                                {% else %}
+                                {% if leftDays == 1 %}
+                                Còn 1 ngày nữa,
+                                {% else %}
+                                {{ leftDays }} ngày nữa,
                                 {% endif %}
+                                {% endif %}
+                                {{weekDay}}, {{event.NgayDienRa | date("d/m/Y")}}
                             </td>
                             <td><a href="#" onclick="displayModal({{event.MaSuKien}})">{{event.TenSuKien}}</a></td>
                             <!--<td>{{event.NoiDung}}</td>-->
@@ -356,6 +379,7 @@ Trang chủ
         </div>
         <script>
             var modalEvent = document.getElementById('modalEvent');
+
             function displayModal(maSuKien) {
                 var modalEvent = document.getElementById("modalEvent");
                 var url = "/api/ajax/getEvent/" + maSuKien;
@@ -364,14 +388,21 @@ Trang chủ
                 xhr.responseType = 'json';
                 xhr.onload = function () {
                     var status = xhr.status;
+
                     if (status === 200) {
+                        var options = {
+                            weekday: "short",
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "numeric"
+                        };
                         var data = JSON.parse(JSON.stringify(xhr.response));
                         document.getElementById("tenSuKien").innerHTML = data.TenSuKien;
                         document.getElementById("noiDung").innerHTML = data.NoiDung;
-                        document.getElementById("ngayDienRa").innerHTML = new Date(data.NgayDienRa).toLocaleDateString();
+                        document.getElementById("ngayDienRa").innerHTML = new Date(data.NgayDienRa).toLocaleDateString("vi", options);
                         if (data.MaHoSo) {
                             document.getElementById("hoSo").style.display = 'block';
-                            document.getElementById("ngaySinh").innerHTML = new Date(data.NgaySinh).toLocaleDateString();
+                            document.getElementById("ngaySinh").innerHTML = new Date(data.NgaySinh).toLocaleDateString("vi", options);
                             document.getElementById("hoTen").innerHTML = data.HoTen;
                             document.getElementById("noiMat").innerHTML = data.NoiMat;
                             document.getElementById("noiAnTang").innerHTML = data.NoiAnTang;

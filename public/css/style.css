@@ -68,6 +68,7 @@ body {
 #nav-icon {
     font-size: 28px;
     float: right;
+    height: 40px;
     line-height: 40px;
     color: #F44336;
     display: none;
@@ -76,6 +77,17 @@ body {
 #menu:checked ~ #menu-top ul {
     animation: xuatHien 1s ease;
     display: block;
+}
+#menu:checked ~ #nav-icon {
+    color: black;
+    background-color: #f44336;
+}
+
+#menu:checked ~ .scroll-text {
+    flex: 0 !important;
+}
+#menu:checked ~ #menu-top {
+    flex: 1 !important;
 }
 
 /* End */
@@ -343,6 +355,8 @@ input[type="checkbox"] {
 }
 
 #nav-icon {
+    position: relative;
+    z-index: 9999;
     font-size: 28px;
     float: right;
     line-height: 40px;
@@ -387,8 +401,7 @@ li {
     }
 }
 
-.breadcrumb .start
-a {
+.breadcrumb .start a {
     font-weight: 700;
     color: #9f224e;
     text-decoration: none;
@@ -520,8 +533,7 @@ a {
     color: #333;
 }
 
-@media (
-max-width: 576px) {
+@media (max-width: 576px) {
     #nav {
         background: linear-gradient(to bottom, rgba(230, 240, 163, 1) 0%, rgba(210, 230, 56, 1) 50%, rgba(195, 216, 37, 1) 51%, rgba(219, 240, 67, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
@@ -529,13 +541,23 @@ max-width: 576px) {
     #menu-top ul {
         display: none;
     }
+    #menu-top {
+        position: relative;
+        margin-left: -46px;
+    }
+    /*#menu-top ul li {*/
+    /*background: transparent;*/
+    /*display: block;*/
+    /*width: 100%;*/
+    /*height: 2em;*/
+    /*line-height: 2em;*/
+    /*}*/
 
-    #menu-top ul li {
-        background: transparent;
-        display: block;
-        width: 100%;
-        height: 2em;
-        line-height: 2em;
+    #nav #menu-top {
+        flex: 0 !important;
+    }
+    #nav .scroll-text {
+        flex: 1 !important;
     }
 
     #nav-icon {
@@ -586,6 +608,7 @@ max-width: 576px) {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
     cursor: pointer;
 }
+
 #btnTraCuuXungHo:hover {
     color: #FFF;
     background-color: orange;
@@ -623,13 +646,13 @@ max-width: 576px) {
         background: linear-gradient(to bottom, rgba(230, 240, 163, 1) 0%, rgba(210, 230, 56, 1) 50%, rgba(195, 216, 37, 1) 51%, rgba(219, 240, 67, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
 
-    #menu-top ul {
-        display: none;
+    #nav .scroll-text {
+        flex: 1;
     }
 
     #menu-top ul li {
         background: transparent;
-        display: block;
+        /*display: block;*/
         width: 100%;
         height: 2em;
         line-height: 2em;
@@ -637,6 +660,14 @@ max-width: 576px) {
 
     #nav-icon {
         display: block;
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 0px 15px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
     }
 
     .col-9 {
@@ -715,7 +746,7 @@ max-width: 576px) {
     float: right;
 }
 
-#menu-top ul {
+#nav {
     background-image: url(/images/spiration-light.png);
 }
 
@@ -749,24 +780,30 @@ max-width: 576px) {
     border: solid 1px #ccc;
     border-top: solid 1px #1b75bc;
 }
+
 .block-border:hover {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.24);
 }
+
 #recent-view {
     padding-left: 1em;
 }
+
 .view-item {
     display: block;
     height: 60px;
 }
+
 .view-item .info {
     float: left;
     font-weight: bold;
     font-family: sans-serif;
 }
+
 .thumbnail-img {
     float: left;
 }
+
 .hopTo {
     padding: 0.5em;
     width: 20rem;
@@ -839,9 +876,11 @@ max-width: 576px) {
     padding: .25em;
     margin-bottom: .5em;
 }
+
 .item-search:hover {
     box-shadow: 0 0 6px rgba(35, 173, 255, 1);
 }
+
 .wrapper {
     width: 100%;
     margin: 0;

@@ -224,14 +224,14 @@ Chi tiết hồ sơ
                         <div class="col-md-3 col-sm-3 col-xs-6">
                             {% for vo in dsVo %}
                             {% if vo.hinhanh is not null and vo.hinhanh != '' %}
-                            <div style="width: 150px; max-height: 150px">
+                            <div style="width: 150px; max-height: 250px; overflow: hidden">
                                 <img src="/images/AnhHoSo/{{ vo.hinhanh }}" style="max-width: 100%">
                             </div>
                             {% endif %}
                             <h5><i class="fa fa-arrow-circle-o-up"></i> Vợ {{ vo.hoten }}</h5>
-                            <p>Năm sinh: {{ vo.ngaysinh |date("d/m/Y")}}</p>
+                            <p>Năm sinh: {% if vo.ngaysinh != '0000-00-00' %}{{vo.ngaysinh|date("d/m/Y")}}{% endif %}</p>
                             <p>Quê quán: {{vo.quequan }}</p>
-                            <p>Ngày mất : {{vo.ngaymat |date("d/m/Y") }}</p>
+                            <p>Ngày mất : {% if vo.ngaymat != '0000-00-00' %}{{vo.ngaymat|date("d/m/Y")}}{% endif %}</p>
                             <p>Nơi mất: </p>
                             <p>Nơi an táng: {{vo.noiantang}}</p>
                             <p>Sinh hạ:</p>

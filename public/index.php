@@ -19,6 +19,13 @@ use App\Database\Query\MySqlBuilder;
  * Date: 16/09/2017
  * Time: 11:05 PM
  */
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+//
+//if (date_default_timezone_get()) {
+//    echo 'date_default_timezone_set: ' . date_default_timezone_get() . '
+//';
+//}
+//echo date('d/m/Y H:i:s');
 //echo $_SERVER['QUERY_STRING'];
 spl_autoload_register(function ($class) {
     $root = dirname(__DIR__);

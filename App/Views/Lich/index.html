@@ -130,7 +130,34 @@ Lịch
                             <tbody>
                             {% for event in dsSuKien | reverse %}
                             <tr>
-                                <th scope="row">{{event.NgayDienRa | date("d/m/Y")}}</th>
+                                <th scope="row">
+                                    {# endDate and startDate are strings or DateTime objects #}
+                                    {% set myDatetimeString = date(startDate) | date("d/m/Y") | amLich %}
+                                    {% set format = craft.i18n.getTimepickerJsFormat() %}
+                                    <!--{{myDatetimeString|date(format)|date("d/m/Y")}}-->
+                                    {% set numDay = target.dateStop | date ("w", user_timezone) %}
+                                    {% set daysOfWeek = {0: 'Chủ nhật', 1: 'Thứ hai', 2: 'Thứ ba', 3: 'Thứ tư', 4: 'Thứ năm', 5: 'Thứ sáu', 6: 'Thứ bảy'} %}
+                                    {% set weekDay = daysOfWeek[numDay] %}
+
+
+
+                                    {% set difference = date(event.NgayDienRa).diff(date(myDatetimeString|date(format))) %}
+                                    {% set leftDays = difference.days %}
+                                    {% set sumDay = numDay + leftDays %}
+                                    {% set weekDay = daysOfWeek[sumDay%7] %}
+
+
+                                    {% if leftDays == 0 %}
+                                    Hôm nay,
+                                    {% else %}
+                                        {% if leftDays == 1 %}
+                                        Còn 1 ngày nữa,
+                                        {% else %}
+                                        {{ leftDays }} ngày nữa,
+                                        {% endif %}
+                                    {% endif %}
+                                    {{weekDay}}, {{event.NgayDienRa | date("d/m/Y")}}
+                                </th>
                                 <td>{{event.TenSuKien}}</td>
                                 <td>{{event.NoiDung}}</td>
                                 <td>Tất cả mọi người</td>
@@ -319,6 +346,7 @@ Lịch
             .done(function () {
                 alert("Xóa thành công!");
             });
+        location.reload();
     }
 </script>
 {% endblock %}

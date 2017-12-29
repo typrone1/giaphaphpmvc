@@ -19,12 +19,13 @@ Danh sách thành viên
                         <table id="datatable" class="table table-striped table-bordered">
                             <thead>
                             <tr>
-                                <th>Mã thành viên</th>
+                                <th width="10%">Mã thành viên</th>
                                 <th>Họ và tên</th>
                                 <th>Email</th>
                                 <th>Kích hoạt</th>
                                 <th>Ngày khởi tạo</th>
                                 <th>MHS quản lý</th>
+                                <th>Cấp quản trị</th>
                                 <th>Hành động</th>
                             </tr>
                             </thead>
@@ -40,6 +41,15 @@ Danh sách thành viên
                                 <td>{{user.is_active}}</td>
                                 <td>02/01/2018</td>
                                 <td>{{user.MaHoSo}}</td>
+                                {% if user.MaCapQuanTri == 1 %}
+                                    <th>Thành viên <small>(Lv.1)</small></th>
+                                {% endif %}
+                                {% if user.MaCapQuanTri == 2 %}
+                                    <th>Cộng tác viên <small>(Lv.2)</small></th>
+                                {% endif %}
+                                {% if user.MaCapQuanTri == 3 %}
+                                    <th>Quản trị viên <small>(Lv.3)</small></th>
+                                {% endif %}
                                 <td><a href="/admin/thanh-vien/{{user.id}}/chinh-sua" class="btn btn-warning btn-sm">Cập nhật thông tin</a></td>
                             </tr>
                             {% endfor %}

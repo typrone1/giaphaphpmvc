@@ -48,7 +48,7 @@ class HoSo extends Controller
                 }
             }
             $dsVo = $builder
-                ->select('mahoso', 'hoten', 'ngaysinh', 'mahosont', 'hinhanh', 'doithu', 'conthu')
+                ->select('mahoso', 'hoten', 'ngaysinh', 'ngaymat', 'mahosont', 'hinhanh', 'doithu', 'conthu')
                 ->where('mahoso', $maHoSo)
                 ->from('hosongoaitoc')
                 ->all();
