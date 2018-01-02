@@ -94,6 +94,7 @@ Trang chủ
     .wrapper .twoOfThree {
         width: 66.66%;
     }
+
     .suKien table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -113,14 +114,13 @@ Trang chủ
 <link rel="stylesheet" href="/css/clndr.css">
 {% endblock %}
 {% block body %}
-
 <section class="content clearfix">
     <div class="container">
         <div class="search-bar clearfix">
             <ul class="breadcrumb left clearfix">
                 <li class="start">
                     <h4>
-                        <a href="javascript:void(0);" title="Trang chủ">Trang chủ</a>.
+                        <a href="javascript:void(0);" title="Trang chủ">Trang chủ</a>
                     </h4>
                 </li>
             </ul>
@@ -211,11 +211,11 @@ Trang chủ
                         </div>
                         <script language="JavaScript">
                             getJSON('/api/ajax/getAll', (err, data) => {
-//                                mockData = data.data;
+                                mockData = data.data;
 //                                console.log(mockData);
                                 getJSON('/api/ajax/getAllSuKien', (err, data) => {
-                                    mockData = data.data;
-//                                    console.log(mockData);
+                                    mockData = mockData.concat(data.data);
+//
                                     document.getElementById('lich').innerHTML = printSelectedMonth();
 
                                 });
@@ -269,24 +269,13 @@ Trang chủ
                 </tr>
             </table>
             <div id="recent-view">
-                <p>Xem gần đây</p>
-                {% for item in dsXemGanDay|reverse %}
-                <div class="view-item block-border">
-                    <div style="width: 40px; margin-right: .5em" class="thumbnail-img"><img
-                            src="/images/AnhBaiViet/camera.png" alt="" style="width: 100%"></div>
-                    <div class="info">
-                        <input type="hidden" class="maHoSo" value="{{item.MaHoSo}}">
-                        <a href="#" onclick="showInfo(this);return false;">{{item.HoTen}}</a>
-                        <br>
-                        <small style="font-weight: normal; color: red;">Đời thứ {{item.DoiThu}} - Con thứ
-                            {{item.ConThu}}
-                        </small>
-                    </div>
-                </div>
-                {% endfor %}
-                <div class="suKien" >
-                    <table style="padding-left: 1em;">
-                        <p style="text-align: left">Lịch sự kiện (Ngày {{0|amLich |date("d/m/Y")}} âm lịch)</p>
+                <br>
+                <div style="width: 50%; border-bottom: 2px solid red; margin-left: 25%"></div>
+                <br>
+                <p style="text-align: left">Lịch sự kiện (Ngày {{0|amLich |date("d/m/Y")}} âm lịch)</p>
+                <div class="suKien" style="; height: 250px; overflow: auto">
+                    <table style="padding-left: 1em">
+
                         <thead>
                         <tr>
                             <th>Ngày</th>
@@ -303,26 +292,28 @@ Trang chủ
                                 {% set format = craft.i18n.getTimepickerJsFormat() %}
                                 <!--{{myDatetimeString|date(format)|date("d/m/Y")}}-->
                                 {% set numDay = target.dateStop | date ("w", user_timezone) %}
-                                {% set daysOfWeek = {0: 'Chủ nhật', 1: 'Thứ hai', 2: 'Thứ ba', 3: 'Thứ tư', 4: 'Thứ năm', 5: 'Thứ sáu', 6: 'Thứ bảy'} %}
+                                {% set daysOfWeek = {0: 'Chủ nhật', 1: 'Thứ hai', 2: 'Thứ ba', 3: 'Thứ tư', 4: 'Thứ
+                                năm', 5: 'Thứ sáu', 6: 'Thứ bảy'} %}
                                 {% set weekDay = daysOfWeek[numDay] %}
-
-
-
                                 {% set difference = date(event.NgayDienRa).diff(date(myDatetimeString|date(format))) %}
                                 {% set leftDays = difference.days %}
                                 {% set sumDay = numDay + leftDays %}
                                 {% set weekDay = daysOfWeek[sumDay%7] %}
-
-
                                 {% if leftDays == 0 %}
                                 Hôm nay,
                                 {% else %}
                                 {% if leftDays == 1 %}
                                 Còn 1 ngày nữa,
                                 {% else %}
+                                {% if date(event.NgayDienRa) | date("d/m/Y") <
+                                date(myDatetimeString|date(format))|date("d/m/Y")%}
+                                {{ leftDays }} ngày trước,
+                                {% else %}
                                 {{ leftDays }} ngày nữa,
                                 {% endif %}
                                 {% endif %}
+                                {% endif %}
+                                <br>
                                 {{weekDay}}, {{event.NgayDienRa | date("d/m/Y")}}
                             </td>
                             <td><a href="#" onclick="displayModal({{event.MaSuKien}})">{{event.TenSuKien}}</a></td>
@@ -332,6 +323,24 @@ Trang chủ
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <div style="width: 50%; border-bottom: 2px solid red; margin-left: 25%"></div>
+                <br>
+                <p>Xem gần đây</p>
+                {% for item in dsXemGanDay|reverse %}
+                <div class="view-item block-border">
+                    <div style="width: 40px; margin-right: .5em" class="thumbnail-img"><img
+                            src="/images/AnhBaiViet/camera.png" alt="" style="width: 100%"></div>
+                    <div class="info">
+                        <input type="hidden" class="maHoSo" value="{{item.MaHoSo}}">
+                        <a href="#" onclick="showInfo(this);return false;">{{item.HoTen}}</a>
+                        <br>
+                        <small style="font-weight: normal; color: red;">Đời thứ {{item.DoiThu}} - Con thứ
+                            {{item.ConThu}}
+                        </small>
+                    </div>
+                </div>
+                {% endfor %}
 
             </div>
 
@@ -340,7 +349,7 @@ Trang chủ
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h3>Xem kết quả tra cứu xưng hô</h3>
+                <h3>Thông tin hồ sơ</h3>
                 <div id="mainContent">
                 </div>
             </div>

@@ -28,6 +28,12 @@ class HoSo extends Model
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public static function getAllNgayGio()
+    {
+        $db = static::getDB();
+        $stmt = $db->query('SELECT * FROM hoso WHERE DoiThu < 5');
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
     public static function getSearch($tuKhoa = '', $option = 'all' , $status = 'all')
     {
         $db = static::getDB();

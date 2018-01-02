@@ -1,20 +1,41 @@
+{% extends "base_login.html" %}
 
-{% extends 'base_user.html' %}
-
-{% block title %}Forgot password{% endblock %}
+{% block title %}Quên mật khẩu{% endblock %}
 
 {% block body %}
+<div class="login_wrapper">
+    <div class="animate form login_form">
+        <section class="login_content">
+            <h1>Quên mật khẩu</h1>
+            <form method="post" action="/password/request-reset">
+                <div>
+                    <label for="inputEmail">Địa chỉ Email</label>
+                    <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Địa chỉ Email" autofocus required/>
+                </div>
 
-<h1>Request password reset</h1>
-
-<form method="post" action="/password/request-reset">
-
-    <div>
-        <label for="inputEmail">Email address</label>
-        <input type="email" id="inputEmail" name="email" placeholder="Email address" autofocus required />
+                <button type="submit" class="form-control">Lấy mã xác nhận</button>
+            </form>
+            <div class="clearfix"></div>
+            <div class="separator">
+                <p class="change_link">Bạn là thành viên?
+                    <a href="/login" class="to_register"> Đăng nhập</a>
+                </p>
+                <div class="clearfix"></div>
+                <br/>
+                <div>
+                    <h1>
+                        Quản lý Gia phả Online
+                    </h1>
+                    <img src="/images/PA1057_gia-pha.png" alt="" style="width: 20%">
+                </div>
+            </div>
+        </section>
     </div>
-
-    <button type="submit">Send password reset</button>
-</form>
-
+</div>
+{% endblock %}
+{% block footer %}
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.validate.js"></script>
+<script src="/js/hideShowPassword.m in.js"></script>
+<script src="/js/app.js"></script>
 {% endblock %}

@@ -22,7 +22,7 @@ class LoaiTin extends Controller
         $trang = 0;
         if (isset($_GET["trang"]))
             $trang = $_GET["trang"];
-        $laysp = static::phan_trang("*", "baiviet", "WHERE MaLoaiTin = $maLoaiTin", 2, $trang, "", "/user/LoaiTin/index/" . $maLoaiTin);
+        $laysp = static::phan_trang("*", "baiviet", "WHERE MaLoaiTin = $maLoaiTin", 5, $trang, "", "/user/LoaiTin/index/" . $maLoaiTin);
         $truyvan_laysp = $laysp;
         $dsBaiViet = mysqli_fetch_all($truyvan_laysp, MYSQLI_ASSOC);
         View::renderTemplate('User/LoaiTin/index.html', ['dsBaiViet' => $dsBaiViet, 'dsLoaiTin' => LoaiTinModel::getAll(), 'urlPagination' => self::$url]);

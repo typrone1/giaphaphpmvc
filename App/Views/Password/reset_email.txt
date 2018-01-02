@@ -1,5 +1,7 @@
-Password reset
+Quên mật khẩu
 
+
+Hãy click vào đường link dưới đây để reset mật khẩu:
 Please click the following link to reset your password:
 
 {{ url }}

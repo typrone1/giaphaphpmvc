@@ -473,7 +473,7 @@ function printCell(lunarDate, solarDate, solarMonth, solarYear) {
     if (solarDate == 1 || lunar == 1) {
         lunar = lunarDate.day + "/" + lunarDate.month;
     }
-    var ngayGio;
+    var ngayGio = '';
     var link;
     for (var i = mockData.length - 1; i >= 0; i--) {
         var timestamp = Date.parse(mockData[i].ngayGio)
@@ -481,7 +481,12 @@ function printCell(lunarDate, solarDate, solarMonth, solarYear) {
             var d = new Date(timestamp);
             if (lunarDate.day == d.getDate() && lunarDate.month == d.getMonth() + 1) {
                 // console.log(d.getDate() + "/" + d.getMonth());
-                ngayGio = " <a href='#' onclick='clickNgayGio("+mockData[i].id+")'><i class='fa fa-dot-circle-o' style='color: red;'></i> Ngày giỗ</a>";
+                if (mockData[i].hoTen == null) {
+                    ngayGio += "<br><a href='#' onclick='clickNgayGio("+mockData[i].id+")' style='font-size: .8em'><i class='fa fa-calendar' style='color: blueviolet;'></i> Sự kiện</a>";
+                } else {
+                    ngayGio += '<input type="hidden" class="maHoSo" value="'+mockData[i].id+'">';
+                    ngayGio += "<br><a href='#' onclick='showInfo(this)' style='font-size: .8em'>Giỗ cụ: "+mockData[i].hoTen+"</a>"
+                }
                 // console.log(ngayGio);
             }
         }

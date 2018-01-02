@@ -79,7 +79,7 @@ class AJAX extends Controller
         ]);
     }
     function getAll(){
-        $hoSos = HoSo::getAll();
+        $hoSos = HoSo::getAllNgayGio();
         $fractal = new Fractal\Manager();
         $resource = new Fractal\Resource\Collection($hoSos, function(array $hoSo) {
             return [
